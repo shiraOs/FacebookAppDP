@@ -16,7 +16,6 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         private readonly FormFriend r_FriendForm = new FormFriend();
         private readonly FormAlbum r_AlbumForm = new FormAlbum();
         private readonly AppSettings r_AppSettings;
-        private readonly List<Post> r_PostList = new List<Post>();
         private LoginResult m_LoginResult;
         private User m_LoggedInUser;
         private string m_AccessToken;
@@ -159,8 +158,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             {
                 if (!string.IsNullOrEmpty(post.Name))
                 {
-                    listBoxPosts.Items.Add(post.Name);
-                    r_PostList.Add(post);
+                    listBoxPosts.Items.Add(new ProxyPost(post));
                 }
             }
 
@@ -348,15 +346,10 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             {                
                 if (listBoxPosts.SelectedItem != null)
                 {
-                    Post selectedPost = r_PostList[listBoxPosts.SelectedIndex];
-                    textBoxPostDate.Text = LogicApp.CheckPropertyStr(selectedPost.CreatedTime.ToString());
-                    textBoxPostMsg.Text = LogicApp.CheckPropertyStr(selectedPost.Message);
-                    if (string.IsNullOrEmpty(textBoxPostMsg.Text))
-                    {
-                        textBoxPostMsg.Text = LogicApp.CheckPropertyStr(selectedPost.Description);
-                    }
-
-                    LogicApp.LoadPicture(pictureBoxPost, selectedPost.PictureURL);
+                    ProxyPost selectedPost =(ProxyPost)listBoxPosts.SelectedItem;
+                    textBoxPostDate.Text = selectedPost.Date;
+                    textBoxPostMsg.Text = selectedPost.Message;
+                    LogicApp.LoadPicture(pictureBoxPost, selectedPost.PictureUrl);
                 }
 
             }
