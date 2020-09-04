@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdapterUser.cs" />
     <Compile Include="AppSettings.cs" />
     <Compile Include="FacadePictureGame.cs" />
     <Compile Include="FormAlbum.cs">
