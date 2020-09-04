@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using FacebookWrapper;
 using FacebookWrapper.ObjectModel;
+using System.Threading;
 
 namespace C20_Ex02_Shira_311119002_Yair_305789596
 {
@@ -24,11 +25,10 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         {
             InitializeComponent();
             this.Size = LogicApp.sr_SmallFormSize;
-            buildFeaturesSetting();
             r_AppSettings = AppSettings.LoadFromFile();
             fetchSettingData();
+            buildFeaturesSetting();
         }
-        
 
         private void buildFeaturesSetting()
         {
@@ -104,11 +104,11 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         }
 
         private void fetchUserData()
-        {
+        { // Using Threads
             fetchPersonalDetails();
-            fetchFriends();
-            fetchAlbums();
-            fetchPosts();
+            new Thread(fetchFriends).Start();
+            new Thread(fetchAlbums).Start();
+            new Thread(fetchPosts).Start();
         }
 
         private void fetchSettingData()
@@ -118,19 +118,19 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         }
 
         private void fetchPersonalDetails()
-        {
+        { // Using data binding
             userBindingSource.DataSource = this.m_LoggedInUser;
             textBoxGender.Text = LogicApp.CheckPropertyStr(m_LoggedInUser.Gender.ToString());
         }
 
         private void fetchAlbums()
-        {
-            listBoxAlbums.Items.Clear();
-            listBoxAlbums.DisplayMember = "Name";
+        { // Action in other threads and data binding
+            listBoxAlbums.Invoke(new Action(() => albumBindingSource.DataSource = m_LoggedInUser.Albums));
+            //listBoxAlbums.Invoke(new Action(() => listBoxAlbums.DisplayMember = "Name"));
 
             foreach (Album album in m_LoggedInUser.Albums)
             {
-                listBoxAlbums.Items.Add(album);
+                //listBoxAlbums.Invoke(new Action(() => listBoxAlbums.Items.Add(album)));
 
                 if (!string.IsNullOrEmpty(album.Location) && !string.IsNullOrEmpty(album.PictureAlbumURL))
                 { // album has picture and location
@@ -141,47 +141,46 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
             if (m_LoggedInUser.Albums.Count == 0)
             {
-                listBoxAlbums.Items.Add("No Albums to Show.");
-                listBoxAlbums.Enabled = false;
+                listBoxAlbums.Invoke(new Action(() => listBoxAlbums.Items.Add("No Albums to Show.")));
+                listBoxAlbums.Invoke(new Action(() => listBoxAlbums.Enabled = false));
             }
 
             createAlbumGame();
         }
 
         private void fetchPosts()
-        {
-            listBoxPosts.DisplayMember = "Name";
+        { // Using DP Proxy
+            listBoxPosts.Invoke(new Action(() => listBoxPosts.DisplayMember = "Name"));
 
-            foreach (Post post in m_LoggedInUser.Posts)
+            foreach (Post post in m_LoggedInUser.NewsFeed)
             {
                 if (!string.IsNullOrEmpty(post.Name))
                 {
-                    listBoxPosts.Items.Add(new ProxyPost(post));
+                    listBoxPosts.Invoke(new Action(() => listBoxPosts.Items.Add(new ProxyPost(post))));
                 }
             }
 
-            if (m_LoggedInUser.Posts.Count == 0)
+            if (m_LoggedInUser.NewsFeed.Count == 0)
             {
-                listBoxPosts.Items.Add("No Posts to Show.");
-                listBoxPosts.Enabled = false;
+                listBoxPosts.Invoke(new Action(() => listBoxPosts.Items.Add("No Posts to Show.")));
+                listBoxPosts.Invoke(new Action(() => listBoxPosts.Enabled = false));
             }
         }
 
         private void fetchFriends()
         {
-            listBoxFriends.Items.Clear();
-            listBoxFriends.DisplayMember = "Name";
+            listBoxFriends.Invoke(new Action(() => listBoxFriends.DisplayMember = "Name"));
 
             foreach (User friend in m_LoggedInUser.Friends)
             {
-                listBoxFriends.Items.Add(friend);
+                listBoxFriends.Invoke(new Action(() => listBoxFriends.Items.Add(friend)));
                 friend.ReFetch(DynamicWrapper.eLoadOptions.Full);
             }
 
             if (m_LoggedInUser.Friends.Count == 0)
             {
-                listBoxFriends.Items.Add("No Friends to Show.");
-                listBoxFriends.Enabled = false;
+                listBoxFriends.Invoke(new Action(() => listBoxFriends.Items.Add("No Friends to Show.")));
+                listBoxFriends.Invoke(new Action(() => listBoxFriends.Enabled = false));
             }
         }
 
@@ -199,18 +198,18 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         }
 
         private void abortAlbumGame()
-        {
-            labelSubAlbumGame.Text = "Cannot load Game!";
-            labelError.Text = "You should have at least 4 album with location";
-            labelGamePoints.ForeColor = Color.White;
+        { // Action in other threads
+            labelSubAlbumGame.Invoke(new Action(() => labelSubAlbumGame.Text = "Cannot load Game!"));
+            labelError.Invoke(new Action(() => labelError.Text = "You should have at least 4 albums with location"));
+            labelGamePoints.Invoke(new Action(() => labelGamePoints.ForeColor = Color.White));
             pictureBox1.BackColor = Color.White;
             pictureBox2.BackColor = Color.White;
             pictureBox3.BackColor = Color.White;
             pictureBox4.BackColor = Color.White;
-            pictureBox1.Enabled = false;
-            pictureBox2.Enabled = false;
-            pictureBox3.Enabled = false;
-            pictureBox4.Enabled = false;
+            pictureBox1.Invoke(new Action(() => pictureBox1.Enabled = false));
+            pictureBox2.Invoke(new Action(() => pictureBox2.Enabled = false));
+            pictureBox3.Invoke(new Action(() => pictureBox3.Enabled = false));
+            pictureBox4.Invoke(new Action(() => pictureBox4.Enabled = false));
         }
 
         private void resetFeatures()
@@ -236,16 +235,6 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             listBoxMatchingFriends.ClearSelected();
             checkBoxMale.Checked = false;
             checkBoxFemale.Checked = false;
-        }
-
-        private void showAlbumForm(int i_SelectedAlbumIndex)
-        {
-            if (i_SelectedAlbumIndex >= 0)
-            {
-                Album selectedAlbum = this.m_LoggedInUser.Albums[i_SelectedAlbumIndex];
-                r_AlbumForm.BuildForm(selectedAlbum);
-                r_AlbumForm.ShowDialog();
-            }
         }
 
         private void showFriendForm(User i_SelectedFriend)
@@ -318,7 +307,8 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
         private void listBoxAgeRange_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LogicApp.RequiredAgeRange = (LogicApp.eAgeRange)(sender as ListBox).SelectedIndex;
+            LogicApp.RequiredAgeRange = (LogicApp.eAgeRange)listBoxAgeRange.SelectedIndex;
+
             if (checkBoxMale.Checked || checkBoxFemale.Checked)
             {
                 buttonMatch.Enabled = true;
@@ -328,14 +318,24 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         private void listBoxFriends_SelectedIndexChanged(object sender, EventArgs e)
         { // Invoke for both cases- match friends and all friends
             ListBox listbox = (sender as ListBox);
-            showFriendForm((User)listbox.SelectedItem);
+            showFriendForm(listbox.SelectedItem as User);
             listbox.ClearSelected();
         }
 
         private void listBoxAlbums_SelectedIndexChanged(object sender, EventArgs e)
         {
-            showAlbumForm(listBoxAlbums.SelectedIndex);
+            if (listBoxAlbums.SelectedItem != null)
+            {
+                showAlbumForm(listBoxAlbums.SelectedItem as Album);
+            }
+
             listBoxAlbums.ClearSelected();
+        }
+
+        private void showAlbumForm(Album o_SelectedAlbum)
+        {
+            r_AlbumForm.BuildForm(o_SelectedAlbum);
+            r_AlbumForm.ShowDialog();
         }
 
         private void listBoxPosts_SelectedIndexChanged(object sender, EventArgs e)

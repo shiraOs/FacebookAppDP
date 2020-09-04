@@ -72,6 +72,8 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             this.textBoxAbout = new System.Windows.Forms.TextBox();
             this.labelAbout = new System.Windows.Forms.Label();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.albumBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.postBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureProfile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -79,6 +81,8 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPost)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.albumBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.postBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureProfile
@@ -107,6 +111,8 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // listBoxAlbums
             // 
             this.listBoxAlbums.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.listBoxAlbums.DataSource = this.albumBindingSource;
+            this.listBoxAlbums.DisplayMember = "Name";
             this.listBoxAlbums.FormattingEnabled = true;
             this.listBoxAlbums.Location = new System.Drawing.Point(645, 41);
             this.listBoxAlbums.Margin = new System.Windows.Forms.Padding(2);
@@ -536,6 +542,14 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // 
             this.userBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.User);
             // 
+            // albumBindingSource
+            // 
+            this.albumBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.Album);
+            // 
+            // postBindingSource
+            // 
+            this.postBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.Post);
+            // 
             // FormApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -597,6 +611,8 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPost)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.albumBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.postBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -644,5 +660,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         private System.Windows.Forms.BindingSource userBindingSource;
         private System.Windows.Forms.TextBox textBoxAbout;
         private System.Windows.Forms.Label labelAbout;
+        private System.Windows.Forms.BindingSource albumBindingSource;
+        private System.Windows.Forms.BindingSource postBindingSource;
     }
 }
