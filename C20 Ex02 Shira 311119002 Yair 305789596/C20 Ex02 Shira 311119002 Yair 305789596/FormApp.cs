@@ -153,6 +153,8 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
         private void fetchPosts()
         {
+            listBoxPosts.DisplayMember = "Name";
+
             foreach (Post post in m_LoggedInUser.Posts)
             {
                 if (!string.IsNullOrEmpty(post.Name))
@@ -343,7 +345,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         private void listBoxPosts_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (this.Size.Equals(LogicApp.sr_BigFormSize))
-            {
+            {                
                 if (listBoxPosts.SelectedItem != null)
                 {
                     Post selectedPost = r_PostList[listBoxPosts.SelectedIndex];
