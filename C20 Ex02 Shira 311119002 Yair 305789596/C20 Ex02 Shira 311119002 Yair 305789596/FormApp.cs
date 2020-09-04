@@ -98,7 +98,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
         private void logoutCompleted()
         {
-            // FacebookWrapper.logout isn't working properly //
+            //FacebookWrapper.logout isn't working properly //
             MessageBox.Show("Logout Complete");
             this.Close();
         }
@@ -119,10 +119,8 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
         private void fetchPersonalDetails()
         {
-            LogicApp.LoadPicture(pictureProfile, m_LoggedInUser.PictureNormalURL);
-            textBoxFirstName.Text = m_LoggedInUser.FirstName;
+            userBindingSource.DataSource = this.m_LoggedInUser;
             textBoxGender.Text = LogicApp.CheckPropertyStr(m_LoggedInUser.Gender.ToString());
-            textBoxAge.Text = LogicApp.GetUserAge(m_LoggedInUser.Birthday).ToString();
         }
 
         private void fetchAlbums()
@@ -132,7 +130,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
             foreach (Album album in m_LoggedInUser.Albums)
             {
-                listBoxAlbums.Items.Add(album.Name);
+                listBoxAlbums.Items.Add(album);
 
                 if (!string.IsNullOrEmpty(album.Location) && !string.IsNullOrEmpty(album.PictureAlbumURL))
                 { // album has picture and location
@@ -250,12 +248,11 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             }
         }
 
-        private void showFriendForm(int i_SelectedFriendIndex)
+        private void showFriendForm(User i_SelectedFriend)
         {
-            if (i_SelectedFriendIndex >= 0)
+            if (i_SelectedFriend != null)
             {
-                User selectedFriend = this.m_LoggedInUser.Friends[i_SelectedFriendIndex];
-                r_FriendForm.BuildForm(selectedFriend);
+                r_FriendForm.BuildForm(i_SelectedFriend);
                 r_FriendForm.ShowDialog();
             }
         }
@@ -330,8 +327,9 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
         private void listBoxFriends_SelectedIndexChanged(object sender, EventArgs e)
         { // Invoke for both cases- match friends and all friends
-            showFriendForm(listBoxFriends.SelectedIndex);
-            listBoxFriends.ClearSelected();
+            ListBox listbox = (sender as ListBox);
+            showFriendForm((User)listbox.SelectedItem);
+            listbox.ClearSelected();
         }
 
         private void listBoxAlbums_SelectedIndexChanged(object sender, EventArgs e)

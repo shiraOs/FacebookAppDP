@@ -32,20 +32,20 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAlbum));
             this.labelPictureCount = new System.Windows.Forms.Label();
-            this.albumBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.labelCreateDate = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.labelPlace = new System.Windows.Forms.Label();
             this.labelName = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.albumBindingSource)).BeginInit();
+            this.albumBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.albumBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // labelPictureCount
             // 
             this.labelPictureCount.BackColor = System.Drawing.SystemColors.Control;
             this.labelPictureCount.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.labelPictureCount.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.albumBindingSource, "Count", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, "0 Pictures", "0 Pictures in the album"));
+            this.labelPictureCount.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.albumBindingSource, "Count", true));
             this.labelPictureCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.labelPictureCount.ForeColor = System.Drawing.Color.Black;
             this.labelPictureCount.Location = new System.Drawing.Point(12, 342);
@@ -55,15 +55,11 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             this.labelPictureCount.Text = "Picture Count";
             this.labelPictureCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // albumBindingSource
-            // 
-            this.albumBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.Album);
-            // 
             // labelCreateDate
             // 
             this.labelCreateDate.BackColor = System.Drawing.SystemColors.Control;
             this.labelCreateDate.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.labelCreateDate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.albumBindingSource, "CreatedTime", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null, "d"));
+            this.labelCreateDate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.albumBindingSource, "CreatedTime", true));
             this.labelCreateDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.labelCreateDate.ForeColor = System.Drawing.Color.Black;
             this.labelCreateDate.Location = new System.Drawing.Point(12, 306);
@@ -75,7 +71,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // 
             // pictureBox1
             // 
-            this.pictureBox1.DataBindings.Add(new System.Windows.Forms.Binding("Image", this.albumBindingSource, "PictureAlbumURL", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.pictureBox1.DataBindings.Add(new System.Windows.Forms.Binding("Image", this.albumBindingSource, "ImageAlbum", true));
             this.pictureBox1.Location = new System.Drawing.Point(63, 100);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(164, 151);
@@ -86,7 +82,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // labelPlace
             // 
             this.labelPlace.BackColor = System.Drawing.SystemColors.Control;
-            this.labelPlace.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.albumBindingSource, "Location", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null, "Taken in 0"));
+            this.labelPlace.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.albumBindingSource, "Location", true));
             this.labelPlace.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.labelPlace.ForeColor = System.Drawing.Color.Black;
             this.labelPlace.Location = new System.Drawing.Point(12, 264);
@@ -99,7 +95,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // labelName
             // 
             this.labelName.BackColor = System.Drawing.SystemColors.Control;
-            this.labelName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.albumBindingSource, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.labelName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.albumBindingSource, "Name", true));
             this.labelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.labelName.ForeColor = System.Drawing.Color.Black;
             this.labelName.Location = new System.Drawing.Point(12, 9);
@@ -108,6 +104,10 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             this.labelName.TabIndex = 5;
             this.labelName.Text = "Album Name";
             this.labelName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // albumBindingSource
+            // 
+            this.albumBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.Album);
             // 
             // FormAlbum
             // 
@@ -126,8 +126,8 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             this.Name = "FormAlbum";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormAlbum";
-            ((System.ComponentModel.ISupportInitialize)(this.albumBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.albumBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

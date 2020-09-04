@@ -29,6 +29,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormApp));
             this.pictureProfile = new System.Windows.Forms.PictureBox();
             this.listBoxFriends = new System.Windows.Forms.ListBox();
@@ -43,7 +44,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.labelBirthday = new System.Windows.Forms.Label();
-            this.textBoxAge = new System.Windows.Forms.TextBox();
+            this.textBoxBirthday = new System.Windows.Forms.TextBox();
             this.lableFriends = new System.Windows.Forms.Label();
             this.lableAlbums = new System.Windows.Forms.Label();
             this.labelPosts = new System.Windows.Forms.Label();
@@ -68,17 +69,22 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             this.pictureBoxPost = new System.Windows.Forms.PictureBox();
             this.labelPostPic = new System.Windows.Forms.Label();
             this.labelError = new System.Windows.Forms.Label();
+            this.textBoxAbout = new System.Windows.Forms.TextBox();
+            this.labelAbout = new System.Windows.Forms.Label();
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureProfile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPost)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureProfile
             // 
             this.pictureProfile.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.pictureProfile.DataBindings.Add(new System.Windows.Forms.Binding("Image", this.userBindingSource, "ImageNormal", true));
             this.pictureProfile.Location = new System.Drawing.Point(22, 13);
             this.pictureProfile.Margin = new System.Windows.Forms.Padding(2);
             this.pictureProfile.Name = "pictureProfile";
@@ -133,6 +139,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // 
             // textBoxFirstName
             // 
+            this.textBoxFirstName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "Name", true));
             this.textBoxFirstName.Location = new System.Drawing.Point(215, 25);
             this.textBoxFirstName.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxFirstName.Name = "textBoxFirstName";
@@ -217,18 +224,19 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             this.labelBirthday.Location = new System.Drawing.Point(144, 89);
             this.labelBirthday.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelBirthday.Name = "labelBirthday";
-            this.labelBirthday.Size = new System.Drawing.Size(29, 13);
+            this.labelBirthday.Size = new System.Drawing.Size(48, 13);
             this.labelBirthday.TabIndex = 15;
-            this.labelBirthday.Text = "Age:";
+            this.labelBirthday.Text = "Birthday:";
             // 
-            // textBoxAge
+            // textBoxBirthday
             // 
-            this.textBoxAge.Location = new System.Drawing.Point(215, 87);
-            this.textBoxAge.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxAge.Name = "textBoxAge";
-            this.textBoxAge.ReadOnly = true;
-            this.textBoxAge.Size = new System.Drawing.Size(85, 20);
-            this.textBoxAge.TabIndex = 16;
+            this.textBoxBirthday.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "Birthday", true));
+            this.textBoxBirthday.Location = new System.Drawing.Point(215, 87);
+            this.textBoxBirthday.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxBirthday.Name = "textBoxBirthday";
+            this.textBoxBirthday.ReadOnly = true;
+            this.textBoxBirthday.Size = new System.Drawing.Size(85, 20);
+            this.textBoxBirthday.TabIndex = 16;
             // 
             // lableFriends
             // 
@@ -410,7 +418,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // 
             this.buttonOpenFeature.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.buttonOpenFeature.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.buttonOpenFeature.Location = new System.Drawing.Point(22, 134);
+            this.buttonOpenFeature.Location = new System.Drawing.Point(22, 169);
             this.buttonOpenFeature.Name = "buttonOpenFeature";
             this.buttonOpenFeature.Size = new System.Drawing.Size(188, 57);
             this.buttonOpenFeature.TabIndex = 35;
@@ -504,12 +512,38 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             this.labelError.Size = new System.Drawing.Size(0, 16);
             this.labelError.TabIndex = 43;
             // 
+            // textBoxAbout
+            // 
+            this.textBoxAbout.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "About", true));
+            this.textBoxAbout.Location = new System.Drawing.Point(71, 136);
+            this.textBoxAbout.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxAbout.Name = "textBoxAbout";
+            this.textBoxAbout.ReadOnly = true;
+            this.textBoxAbout.Size = new System.Drawing.Size(229, 20);
+            this.textBoxAbout.TabIndex = 45;
+            // 
+            // labelAbout
+            // 
+            this.labelAbout.AutoSize = true;
+            this.labelAbout.Location = new System.Drawing.Point(19, 138);
+            this.labelAbout.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelAbout.Name = "labelAbout";
+            this.labelAbout.Size = new System.Drawing.Size(38, 13);
+            this.labelAbout.TabIndex = 44;
+            this.labelAbout.Text = "About:";
+            // 
+            // userBindingSource
+            // 
+            this.userBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.User);
+            // 
             // FormApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(795, 686);
+            this.Controls.Add(this.textBoxAbout);
+            this.Controls.Add(this.labelAbout);
             this.Controls.Add(this.listBoxPosts);
             this.Controls.Add(this.labelError);
             this.Controls.Add(this.labelPostPic);
@@ -535,7 +569,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             this.Controls.Add(this.labelPosts);
             this.Controls.Add(this.lableAlbums);
             this.Controls.Add(this.lableFriends);
-            this.Controls.Add(this.textBoxAge);
+            this.Controls.Add(this.textBoxBirthday);
             this.Controls.Add(this.labelBirthday);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pictureBox3);
@@ -562,6 +596,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPost)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -581,7 +616,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label labelBirthday;
-        private System.Windows.Forms.TextBox textBoxAge;
+        private System.Windows.Forms.TextBox textBoxBirthday;
         private System.Windows.Forms.Label lableFriends;
         private System.Windows.Forms.Label lableAlbums;
         private System.Windows.Forms.Label labelPosts;
@@ -606,5 +641,8 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         private System.Windows.Forms.Label labelPostPic;
         private System.Windows.Forms.Label labelError;
         private System.Windows.Forms.Label labelGamePoints;
+        private System.Windows.Forms.BindingSource userBindingSource;
+        private System.Windows.Forms.TextBox textBoxAbout;
+        private System.Windows.Forms.Label labelAbout;
     }
 }

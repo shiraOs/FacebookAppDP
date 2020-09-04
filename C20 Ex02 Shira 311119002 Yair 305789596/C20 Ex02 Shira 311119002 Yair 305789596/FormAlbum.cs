@@ -13,7 +13,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         public void BuildForm(Album i_SelectedAlbum)
         {
             albumBindingSource.DataSource = i_SelectedAlbum;
-            LogicApp.LoadPicture(this.pictureBox1, i_SelectedAlbum.PictureAlbumURL);
+            this.Text = i_SelectedAlbum.Name;
         }
     }
 }

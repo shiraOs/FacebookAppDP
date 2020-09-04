@@ -41,20 +41,18 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(80, 55);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Location = new System.Drawing.Point(60, 45);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(303, 279);
+            this.pictureBox1.Size = new System.Drawing.Size(227, 227);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // buttonAnswer1
             // 
-            this.buttonAnswer1.Location = new System.Drawing.Point(108, 357);
-            this.buttonAnswer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonAnswer1.Location = new System.Drawing.Point(81, 290);
             this.buttonAnswer1.Name = "buttonAnswer1";
-            this.buttonAnswer1.Size = new System.Drawing.Size(227, 46);
+            this.buttonAnswer1.Size = new System.Drawing.Size(170, 37);
             this.buttonAnswer1.TabIndex = 1;
             this.buttonAnswer1.Text = "button1";
             this.buttonAnswer1.UseVisualStyleBackColor = true;
@@ -62,10 +60,9 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // 
             // buttonAnswer2
             // 
-            this.buttonAnswer2.Location = new System.Drawing.Point(108, 410);
-            this.buttonAnswer2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonAnswer2.Location = new System.Drawing.Point(81, 333);
             this.buttonAnswer2.Name = "buttonAnswer2";
-            this.buttonAnswer2.Size = new System.Drawing.Size(227, 46);
+            this.buttonAnswer2.Size = new System.Drawing.Size(170, 37);
             this.buttonAnswer2.TabIndex = 2;
             this.buttonAnswer2.Text = "button2";
             this.buttonAnswer2.UseVisualStyleBackColor = true;
@@ -73,10 +70,9 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // 
             // buttonAnswer3
             // 
-            this.buttonAnswer3.Location = new System.Drawing.Point(108, 463);
-            this.buttonAnswer3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonAnswer3.Location = new System.Drawing.Point(81, 376);
             this.buttonAnswer3.Name = "buttonAnswer3";
-            this.buttonAnswer3.Size = new System.Drawing.Size(227, 46);
+            this.buttonAnswer3.Size = new System.Drawing.Size(170, 37);
             this.buttonAnswer3.TabIndex = 3;
             this.buttonAnswer3.Text = "button3";
             this.buttonAnswer3.UseVisualStyleBackColor = true;
@@ -84,10 +80,9 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // 
             // buttonAnswer4
             // 
-            this.buttonAnswer4.Location = new System.Drawing.Point(108, 516);
-            this.buttonAnswer4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonAnswer4.Location = new System.Drawing.Point(81, 419);
             this.buttonAnswer4.Name = "buttonAnswer4";
-            this.buttonAnswer4.Size = new System.Drawing.Size(227, 46);
+            this.buttonAnswer4.Size = new System.Drawing.Size(170, 37);
             this.buttonAnswer4.TabIndex = 4;
             this.buttonAnswer4.Text = "button4";
             this.buttonAnswer4.UseVisualStyleBackColor = true;
@@ -97,18 +92,17 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // 
             this.labelQuestion.AutoSize = true;
             this.labelQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.labelQuestion.Location = new System.Drawing.Point(59, 22);
-            this.labelQuestion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelQuestion.Location = new System.Drawing.Point(44, 18);
             this.labelQuestion.Name = "labelQuestion";
-            this.labelQuestion.Size = new System.Drawing.Size(327, 29);
+            this.labelQuestion.Size = new System.Drawing.Size(258, 24);
             this.labelQuestion.TabIndex = 5;
             this.labelQuestion.Text = "Where the picture was taken?";
             // 
             // FormPictureGame
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(481, 602);
+            this.ClientSize = new System.Drawing.Size(361, 489);
             this.Controls.Add(this.labelQuestion);
             this.Controls.Add(this.buttonAnswer4);
             this.Controls.Add(this.buttonAnswer3);
@@ -116,7 +110,6 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             this.Controls.Add(this.buttonAnswer1);
             this.Controls.Add(this.pictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormPictureGame";

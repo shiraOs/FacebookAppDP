@@ -111,7 +111,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
             if (i_Friend.Gender.Equals(RequiredGender) && AgeInRange(age, RequiredAgeRange))
             {
-                if (i_Friend.RelationshipStatus.Equals(User.eRelationshipStatus.Single))
+                if (i_Friend.RelationshipStatus.Equals(User.eRelationshipStatus.Single) || i_Friend.RelationshipStatus.Equals(User.eRelationshipStatus.None))
                 {
                     isMatch = true;
                 }
