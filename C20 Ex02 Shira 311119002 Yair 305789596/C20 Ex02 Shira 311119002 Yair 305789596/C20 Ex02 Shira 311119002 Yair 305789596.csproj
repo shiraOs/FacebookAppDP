@@ -52,7 +52,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdapterUser.cs" />
     <Compile Include="AppSettings.cs" />
     <Compile Include="FacadePictureGame.cs" />
     <Compile Include="FormAlbum.cs">
@@ -66,6 +65,12 @@
     </Compile>
     <Compile Include="FormApp.Designer.cs">
       <DependentUpon>FormApp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDeatils.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDeatils.Designer.cs">
+      <DependentUpon>FormDeatils.cs</DependentUpon>
     </Compile>
     <Compile Include="FormFriend.cs">
       <SubType>Form</SubType>
@@ -85,6 +90,8 @@
     <Compile Include="FormPictureGame.Designer.cs">
       <DependentUpon>FormPictureGame.cs</DependentUpon>
     </Compile>
+    <Compile Include="IFormAlbum.cs" />
+    <Compile Include="IFormFriend.cs" />
     <Compile Include="LogicApp.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormApp.resx">
       <DependentUpon>FormApp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDeatils.resx">
+      <DependentUpon>FormDeatils.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFriend.resx">
       <DependentUpon>FormFriend.cs</DependentUpon>

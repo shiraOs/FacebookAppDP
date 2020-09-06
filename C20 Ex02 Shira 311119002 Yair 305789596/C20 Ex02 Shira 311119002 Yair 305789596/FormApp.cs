@@ -13,9 +13,10 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         public event Action PictureClick;
 
         private readonly FormPictureGame r_PictureGameForm = new FormPictureGame();
+        private readonly FormDeatils r_FormDeatils = new FormDeatils();
         private readonly FormLogin r_LoginForm = new FormLogin();
-        private readonly FormFriend r_FriendForm = new FormFriend();
-        private readonly FormAlbum r_AlbumForm = new FormAlbum();
+      //  private readonly FormFriend r_FriendForm = new FormFriend();
+   //     private readonly FormAlbum r_AlbumForm = new FormAlbum();
         private readonly AppSettings r_AppSettings;
         private LoginResult m_LoginResult;
         private User m_LoggedInUser;
@@ -227,8 +228,8 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         {
             if (i_SelectedFriend != null)
             {
-                r_FriendForm.BuildForm(i_SelectedFriend);
-                r_FriendForm.ShowDialog();
+                r_FormDeatils.BuildForm(new IFormFriend (i_SelectedFriend));
+                r_FormDeatils.ShowDialog();
             }
         }
 
@@ -325,7 +326,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
         private void listBoxFriends_SelectedIndexChanged(object sender, EventArgs e)
         { // Invoke for both cases- match friends and all friends
-            ListBox listbox = (sender as ListBox);
+            ListBox listbox = sender as ListBox;
             showFriendForm(listbox.SelectedItem as User);
             listbox.ClearSelected();
         }
@@ -342,8 +343,8 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
         private void showAlbumForm(Album o_SelectedAlbum)
         {
-            r_AlbumForm.BuildForm(o_SelectedAlbum);
-            r_AlbumForm.ShowDialog();
+            r_FormDeatils.BuildForm(new IFormAlbum(o_SelectedAlbum));
+            r_FormDeatils.ShowDialog();
         }
 
         private void listBoxPosts_SelectedIndexChanged(object sender, EventArgs e)
