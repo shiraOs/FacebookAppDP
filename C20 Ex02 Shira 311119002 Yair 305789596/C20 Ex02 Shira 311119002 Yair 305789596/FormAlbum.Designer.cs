@@ -32,14 +32,14 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAlbum));
             this.labelDate = new System.Windows.Forms.Label();
+            this.albumBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.labelPlace = new System.Windows.Forms.Label();
             this.labelName = new System.Windows.Forms.Label();
-            this.albumBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.labelPicturesCounter = new System.Windows.Forms.Label();
             this.labelCreateDate = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.albumBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // labelDate
@@ -49,19 +49,26 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             this.labelDate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.albumBindingSource, "CreatedTime", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "d"));
             this.labelDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.labelDate.ForeColor = System.Drawing.Color.Black;
-            this.labelDate.Location = new System.Drawing.Point(133, 325);
+            this.labelDate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelDate.Location = new System.Drawing.Point(183, 400);
+            this.labelDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelDate.Name = "labelDate";
-            this.labelDate.Size = new System.Drawing.Size(150, 26);
+            this.labelDate.Size = new System.Drawing.Size(165, 32);
             this.labelDate.TabIndex = 8;
             this.labelDate.Text = "[Date]";
             this.labelDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // albumBindingSource
+            // 
+            this.albumBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.Album);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.DataBindings.Add(new System.Windows.Forms.Binding("Image", this.albumBindingSource, "ImageAlbum", true));
-            this.pictureBox1.Location = new System.Drawing.Point(64, 101);
+            this.pictureBox1.Location = new System.Drawing.Point(85, 124);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(164, 151);
+            this.pictureBox1.Size = new System.Drawing.Size(219, 186);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
@@ -72,9 +79,10 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             this.labelPlace.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.albumBindingSource, "Location", true));
             this.labelPlace.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.labelPlace.ForeColor = System.Drawing.Color.Black;
-            this.labelPlace.Location = new System.Drawing.Point(11, 300);
+            this.labelPlace.Location = new System.Drawing.Point(15, 369);
+            this.labelPlace.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPlace.Name = "labelPlace";
-            this.labelPlace.Size = new System.Drawing.Size(272, 27);
+            this.labelPlace.Size = new System.Drawing.Size(363, 33);
             this.labelPlace.TabIndex = 6;
             this.labelPlace.Text = "Place";
             this.labelPlace.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -85,16 +93,13 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             this.labelName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.albumBindingSource, "Name", true));
             this.labelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.labelName.ForeColor = System.Drawing.Color.Black;
-            this.labelName.Location = new System.Drawing.Point(13, 10);
+            this.labelName.Location = new System.Drawing.Point(17, 12);
+            this.labelName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(272, 80);
+            this.labelName.Size = new System.Drawing.Size(363, 98);
             this.labelName.TabIndex = 5;
             this.labelName.Text = "Album Name";
             this.labelName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // albumBindingSource
-            // 
-            this.albumBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.Album);
             // 
             // labelPicturesCounter
             // 
@@ -103,9 +108,10 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             this.labelPicturesCounter.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.albumBindingSource, "Count", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, "0 Pictures", "0 Pictures"));
             this.labelPicturesCounter.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.labelPicturesCounter.ForeColor = System.Drawing.Color.Black;
-            this.labelPicturesCounter.Location = new System.Drawing.Point(19, 351);
+            this.labelPicturesCounter.Location = new System.Drawing.Point(25, 432);
+            this.labelPicturesCounter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPicturesCounter.Name = "labelPicturesCounter";
-            this.labelPicturesCounter.Size = new System.Drawing.Size(264, 25);
+            this.labelPicturesCounter.Size = new System.Drawing.Size(352, 31);
             this.labelPicturesCounter.TabIndex = 10;
             this.labelPicturesCounter.Text = "[Pictures counter]";
             this.labelPicturesCounter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -116,18 +122,19 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             this.labelCreateDate.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.labelCreateDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.labelCreateDate.ForeColor = System.Drawing.Color.Black;
-            this.labelCreateDate.Location = new System.Drawing.Point(12, 325);
+            this.labelCreateDate.Location = new System.Drawing.Point(25, 400);
+            this.labelCreateDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCreateDate.Name = "labelCreateDate";
-            this.labelCreateDate.Size = new System.Drawing.Size(128, 26);
+            this.labelCreateDate.Size = new System.Drawing.Size(171, 32);
             this.labelCreateDate.TabIndex = 11;
             this.labelCreateDate.Text = "Create Date:";
             this.labelCreateDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormAlbum
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(297, 395);
+            this.ClientSize = new System.Drawing.Size(396, 486);
             this.Controls.Add(this.labelCreateDate);
             this.Controls.Add(this.labelPicturesCounter);
             this.Controls.Add(this.labelDate);
@@ -136,13 +143,14 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             this.Controls.Add(this.labelName);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormAlbum";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormAlbum";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.albumBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }

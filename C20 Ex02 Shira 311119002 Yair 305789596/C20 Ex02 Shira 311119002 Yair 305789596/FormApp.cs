@@ -126,26 +126,12 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         private void fetchAlbums()
         { // Action in other threads and data binding
             listBoxAlbums.Invoke(new Action(() => albumBindingSource.DataSource = m_LoggedInUser.Albums));
-            //listBoxAlbums.Invoke(new Action(() => listBoxAlbums.DisplayMember = "Name"));
-
-            foreach (Album album in m_LoggedInUser.Albums)
-            {
-                //listBoxAlbums.Invoke(new Action(() => listBoxAlbums.Items.Add(album)));
-
-                if (!string.IsNullOrEmpty(album.Location) && !string.IsNullOrEmpty(album.PictureAlbumURL))
-                { // album has picture and location
-                    LogicApp.sr_AlbumGame.Add(album);
-                    LogicApp.sr_AlbumsLocations.Add(album.Location);
-                }
-            }
 
             if (m_LoggedInUser.Albums.Count == 0)
             {
                 listBoxAlbums.Invoke(new Action(() => listBoxAlbums.Items.Add("No Albums to Show.")));
                 listBoxAlbums.Invoke(new Action(() => listBoxAlbums.Enabled = false));
             }
-
-            createAlbumGame();
         }
 
         private void fetchPosts()
@@ -278,20 +264,42 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             listBoxMatchingFriends.DisplayMember = "Name";
             listBoxMatchingFriends.Enabled = true;
 
+            new Thread(searchForMatchingFriends).Start();
+        }
+
+        private void searchForMatchingFriends()
+        {
+            disableDatingFeatureButtons();
             foreach (User friend in m_LoggedInUser.Friends)
             {
                 if (LogicApp.IsFriendMatchToUserRequests(friend))
                 {
-                    listBoxMatchingFriends.Items.Add(friend);
+                    listBoxMatchingFriends.Invoke(new Action(()=> listBoxMatchingFriends.Items.Add(friend)));
                     friend.ReFetch(DynamicWrapper.eLoadOptions.Full);
                 }
             }
 
             if (listBoxMatchingFriends.Items.Count == 0)
             {
-                listBoxMatchingFriends.Items.Add("No Matching Friends.");
-                listBoxMatchingFriends.Enabled = false;
+                listBoxMatchingFriends.Invoke(new Action(() => listBoxMatchingFriends.Items.Add("No Matching Friends.")));
+                listBoxMatchingFriends.Invoke(new Action(() => listBoxMatchingFriends.Enabled = false));
             }
+            enableDatingFeatureButtons();
+        }
+
+        private void enableDatingFeatureButtons()
+        {
+            listBoxAgeRange.Invoke(new Action(() => listBoxAgeRange.Enabled = true));
+            checkBoxMale.Invoke(new Action(() => checkBoxMale.Enabled = true));
+            checkBoxFemale.Invoke(new Action(() => checkBoxFemale.Enabled = true));
+        }
+
+        private void disableDatingFeatureButtons()
+        {
+            listBoxAgeRange.Invoke(new Action(() => listBoxAgeRange.Enabled = false));
+            buttonMatch.Invoke(new Action(() => buttonMatch.Enabled = false));
+            checkBoxMale.Invoke(new Action(() => checkBoxMale.Enabled = false));
+            checkBoxFemale.Invoke(new Action(() => checkBoxFemale.Enabled = false));
         }
 
         private void pictureBox_Click(object sender, EventArgs e)
@@ -344,7 +352,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             {                
                 if (listBoxPosts.SelectedItem != null)
                 {
-                    ProxyPost selectedPost =(ProxyPost)listBoxPosts.SelectedItem;
+                    ProxyPost selectedPost = listBoxPosts.SelectedItem as ProxyPost;
                     textBoxPostDate.Text = selectedPost.Date;
                     textBoxPostMsg.Text = selectedPost.Message;
                     LogicApp.LoadPicture(pictureBoxPost, selectedPost.PictureUrl);
@@ -429,6 +437,23 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             labelGamePoints.Text = string.Format("You earn {0} points in game", LogicApp.sr_FacadePictureGame.Points);
             LogicApp.ReplaceAlbumIndex();
             loadPictureBox(LogicApp.GetNewPictureUrl());
+        }
+
+        private void labelPics_Paint(object sender, PaintEventArgs e)
+        {
+            if(this.pictureBox1.Image == null && this.pictureBox1.BackColor != Color.White)
+            {
+                foreach (Album album in m_LoggedInUser.Albums)
+                {
+                    if (!string.IsNullOrEmpty(album.Location) && !string.IsNullOrEmpty(album.PictureAlbumURL))
+                    { // album has picture and location
+                        LogicApp.sr_AlbumGame.Add(album);
+                        LogicApp.sr_AlbumsLocations.Add(album.Location);
+                    }
+                }
+
+                createAlbumGame();
+            }
         }
     }
 }
