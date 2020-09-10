@@ -18,10 +18,10 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             m_User = i_SelectedFriend;
             this.Text = m_User.Name;
             this.labelName.Text = i_SelectedFriend.Name;
-            this.labelGender.Text = LogicApp.CheckPropertyStr(m_User.Gender.ToString());
-            this.labelBirthday.Text = LogicApp.CheckPropertyStr(m_User.Birthday);
-            this.labelCity.Text = LogicApp.CheckPropertyStr(m_User.Location.Name);
-            LogicApp.LoadPicture(pictureBox1, m_User.PictureNormalURL);
+            this.labelGender.Text = Utils.CheckPropertyStr(m_User.Gender.ToString());
+            this.labelBirthday.Text = Utils.CheckPropertyStr(m_User.Birthday);
+            this.labelCity.Text = Utils.CheckPropertyStr(m_User.Location.Name);
+            Utils.LoadPictureToPictureBox(pictureBox1, m_User.PictureNormalURL);
         }
     }
 }

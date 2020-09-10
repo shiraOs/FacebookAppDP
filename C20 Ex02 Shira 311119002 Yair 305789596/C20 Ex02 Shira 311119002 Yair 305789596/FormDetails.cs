@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace C20_Ex02_Shira_311119002_Yair_305789596
 {
-    public partial class FormDeatils : Form
+    public partial class FormDetails : Form
     {
         internal interface IFormDeatils
         {
@@ -14,9 +14,14 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             string ThirdDetailsLine { get; set; }
         }
 
-        internal FormDeatils()
+        internal FormDetails()
         {
             InitializeComponent();
+        }
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            pictureBox1.Image = null;
         }
 
         internal void BuildForm(IFormDeatils i_Form)

@@ -8,12 +8,12 @@ using System.Threading;
 
 namespace C20_Ex02_Shira_311119002_Yair_305789596
 {
+
     public partial class FormApp : Form
     {
-        public event Action PictureClick;
-
+        public event Action PictureGameClick;
         private readonly FormPictureGame r_PictureGameForm = new FormPictureGame();
-        private readonly FormDeatils r_FormDeatils = new FormDeatils();
+        private readonly FormDetails r_FormDeatils = new FormDetails();
         private readonly FormLogin r_LoginForm = new FormLogin();
       //  private readonly FormFriend r_FriendForm = new FormFriend();
    //     private readonly FormAlbum r_AlbumForm = new FormAlbum();
@@ -25,7 +25,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         public FormApp()
         {
             InitializeComponent();
-            this.Size = LogicApp.sr_SmallFormSize;
+            this.Size = AppSettings.sr_SmallFormSize;
             r_AppSettings = AppSettings.LoadFromFile();
             fetchSettingData();
             buildFeaturesSetting();
@@ -33,10 +33,8 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
         private void buildFeaturesSetting()
         {
-            PictureClick += LogicApp.CreateFacadePictureGame;
-            PictureClick += OnPictureClicked;
-            LogicApp.sr_FacadePictureGame.RightAnswerClicked += OnGamePictureRightAnswer;
-            LogicApp.RequiredAgeRange = LogicApp.eAgeRange.eNoChoice;
+            DatingFeature.ResetFeature();
+            PictureGameFeature.RightAnswerClicked += OnGamePictureRightAnswer;
         }
 
         private void login()
@@ -65,7 +63,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
         private void loginAndLoad()
         {
-            LoginResult result = FacebookService.Login(LogicApp.sr_AppID, LogicApp.sr_Permissions);
+            LoginResult result = FacebookService.Login(AppSettings.sr_AppID, AppSettings.sr_Permissions);
 
             if (!string.IsNullOrEmpty(result.AccessToken))
             {
@@ -75,25 +73,6 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             else
             {
                 MessageBox.Show(result.ErrorMessage);
-            }
-        }
-
-        private void loadPictureBox(string i_UrlPicture)
-        {
-            switch (LogicApp.PictureGameIndex)
-            {
-                case 0:
-                    pictureBox1.LoadAsync(i_UrlPicture);
-                    break;
-                case 1:
-                    pictureBox2.LoadAsync(i_UrlPicture);
-                    break;
-                case 2:
-                    pictureBox3.LoadAsync(i_UrlPicture);
-                    break;
-                case 3:
-                    pictureBox4.LoadAsync(i_UrlPicture);
-                    break;
             }
         }
 
@@ -121,7 +100,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         private void fetchPersonalDetails()
         { // Using data binding
             userBindingSource.DataSource = this.m_LoggedInUser;
-            textBoxGender.Text = LogicApp.CheckPropertyStr(m_LoggedInUser.Gender.ToString());
+            textBoxGender.Text = Utils.CheckPropertyStr(m_LoggedInUser.Gender.ToString());
         }
 
         private void fetchAlbums()
@@ -174,7 +153,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         private void createAlbumGame()
         {
             // setting the game if user have more then 4 albums with pic and loction
-            if (LogicApp.sr_AlbumsLocations.Count >= LogicApp.sr_NumOfAlbumsInGame)
+            if (PictureGameFeature.sr_AlbumsLocations.Count >= PictureGameFeature.sr_NumOfAlbumsInGame)
             {
                 setAlbumPictuersGame();
             }
@@ -202,9 +181,14 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         private void resetFeatures()
         {
             resetMatchFeature();
+            resetPicturesGame();
             resetPostDetailes();
-            LogicApp.sr_FacadePictureGame.Points = 0;
-            labelGamePoints.Text = string.Format("You earn {0} points in game", LogicApp.sr_FacadePictureGame.Points);
+        }
+
+        private void resetPicturesGame()
+        {
+            PictureGameFeature.ResetFeature();
+            labelGamePoints.Text = string.Format("You earn {0} points in game", FacadePictureGame.Points);
         }
 
         private void resetPostDetailes()
@@ -217,6 +201,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
         private void resetMatchFeature()
         {
+            DatingFeature.ResetFeature();
             listBoxAgeRange.ClearSelected();
             listBoxMatchingFriends.Items.Clear();
             listBoxMatchingFriends.ClearSelected();
@@ -235,7 +220,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
         private void setAlbumPictuersGame()
         {
-            LogicApp.ChooseRandomAlbums(out string url1, out string url2, out string url3, out string url4);
+            PictureGameFeature.ChooseRandomAlbums(out string url1, out string url2, out string url3, out string url4);
             pictureBox1.LoadAsync(url1);
             pictureBox2.LoadAsync(url2);
             pictureBox3.LoadAsync(url3);
@@ -244,15 +229,15 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
         private void buttonOpenFeature_Click(object sender, EventArgs e)
         {
-            if (!LogicApp.IsFeatureOpen(this.Size))
+            if (!AppSettings.IsFeatureOpen(this.Size))
             {
-                this.Size = LogicApp.sr_BigFormSize;
+                this.Size = AppSettings.sr_BigFormSize;
                 buttonOpenFeature.Text = "Hide Features";
                 this.Location = new System.Drawing.Point(this.Location.X, this.Location.Y - 200);
             }
             else
             {
-                this.Size = LogicApp.sr_SmallFormSize;
+                this.Size = AppSettings.sr_SmallFormSize;
                 buttonOpenFeature.Text = "Open Features";
                 resetFeatures();
                 this.Location = new System.Drawing.Point(this.Location.X, this.Location.Y + 200);
@@ -264,7 +249,6 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             listBoxMatchingFriends.Items.Clear();
             listBoxMatchingFriends.DisplayMember = "Name";
             listBoxMatchingFriends.Enabled = true;
-
             new Thread(searchForMatchingFriends).Start();
         }
 
@@ -273,7 +257,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             disableDatingFeatureButtons();
             foreach (User friend in m_LoggedInUser.Friends)
             {
-                if (LogicApp.IsFriendMatchToUserRequests(friend))
+                if (DatingFeature.IsFriendMatchToUserRequests(friend))
                 {
                     listBoxMatchingFriends.Invoke(new Action(()=> listBoxMatchingFriends.Items.Add(friend)));
                     friend.ReFetch(DynamicWrapper.eLoadOptions.Full);
@@ -303,11 +287,6 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             checkBoxFemale.Invoke(new Action(() => checkBoxFemale.Enabled = false));
         }
 
-        private void pictureBox_Click(object sender, EventArgs e)
-        {
-            LogicApp.PictureGameIndex = int.Parse((sender as PictureBox).Tag.ToString());
-            PictureClick.Invoke();
-        }
 
         private void buttonLogout_Click(object sender, EventArgs e)
         {
@@ -316,8 +295,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
         private void listBoxAgeRange_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LogicApp.RequiredAgeRange = (LogicApp.eAgeRange)listBoxAgeRange.SelectedIndex;
-
+            DatingFeature.RequiredAgeRange = (DatingFeature.eAgeRange)listBoxAgeRange.SelectedIndex;
             if (checkBoxMale.Checked || checkBoxFemale.Checked)
             {
                 buttonMatch.Enabled = true;
@@ -325,7 +303,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         }
 
         private void listBoxFriends_SelectedIndexChanged(object sender, EventArgs e)
-        { // Invoke for both cases- match friends and all friends
+        { // Invoke for both cases- match friends and all friends 
             ListBox listbox = sender as ListBox;
             showFriendForm(listbox.SelectedItem as User);
             listbox.ClearSelected();
@@ -349,14 +327,14 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
         private void listBoxPosts_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.Size.Equals(LogicApp.sr_BigFormSize))
+            if (this.Size.Equals(AppSettings.sr_BigFormSize))
             {                
                 if (listBoxPosts.SelectedItem != null)
                 {
                     ProxyPost selectedPost = listBoxPosts.SelectedItem as ProxyPost;
                     textBoxPostDate.Text = selectedPost.Date;
                     textBoxPostMsg.Text = selectedPost.Message;
-                    LogicApp.LoadPicture(pictureBoxPost, selectedPost.PictureUrl);
+                    Utils.LoadPictureToPictureBox(pictureBoxPost, selectedPost.PictureUrl);
                 }
 
             }
@@ -365,41 +343,35 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         private void checkBoxGender_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox currCheckBox = sender as CheckBox;
-
+            string requiredGender = currCheckBox.Text;
             if (currCheckBox.Checked)
             {
-                if (currCheckBox.Text.Equals("Male"))
+                if (requiredGender.Equals("Male") && currCheckBox.Checked)
                 {
+                    DatingFeature.RequiredGender = User.eGender.male;
                     checkBoxFemale.Checked = false;
-                    LogicApp.RequiredGender = User.eGender.male;
+                }
+                else if (requiredGender.Equals("Female") && currCheckBox.Checked)
+                {
+                    DatingFeature.RequiredGender = User.eGender.female;
+                    checkBoxMale.Checked = false;
                 }
                 else
                 {
-                    checkBoxMale.Checked = false;
-                    LogicApp.RequiredGender = User.eGender.female;
+                    buttonMatch.Enabled = false;
                 }
 
-                if (LogicApp.RequiredAgeRange != LogicApp.eAgeRange.eNoChoice)
+                if (DatingFeature.RequiredAgeRange != null)
                 {
                     buttonMatch.Enabled = true;
                 }
             }
-            else
-            {
-                buttonMatch.Enabled = false;
-            }
+       
         }
 
         private void checkBoxRememberMe_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBoxRememberMe.Checked)
-            {
-                buttonLogout.Enabled = false;
-            }
-            else
-            {
-                buttonLogout.Enabled = true;
-            }
+            buttonLogout.Enabled = !checkBoxRememberMe.Checked;
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -428,18 +400,31 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             base.OnShown(e);
         }
 
-        private void OnPictureClicked()
-        {
-            r_PictureGameForm.ShowDialog();
-        }
 
         private void OnGamePictureRightAnswer()
         {
-            labelGamePoints.Text = string.Format("You earn {0} points in game", LogicApp.sr_FacadePictureGame.Points);
-            LogicApp.ReplaceAlbumIndex();
-            loadPictureBox(LogicApp.GetNewPictureUrl());
+            labelGamePoints.Text = string.Format("You earn {0} points in game", FacadePictureGame.Points);
+            replacePictureBoxGame(PictureGameFeature.GetNewPictureUrl());
         }
 
+        private void replacePictureBoxGame(string i_UrlPicture)
+        {
+            switch (PictureGameFeature.m_PictureGameIndex)
+            {
+                case 0:
+                    pictureBox1.LoadAsync(i_UrlPicture);
+                    break;
+                case 1:
+                    pictureBox2.LoadAsync(i_UrlPicture);
+                    break;
+                case 2:
+                    pictureBox3.LoadAsync(i_UrlPicture);
+                    break;
+                case 3:
+                    pictureBox4.LoadAsync(i_UrlPicture);
+                    break;
+            }
+        }
         private void labelPics_Paint(object sender, PaintEventArgs e)
         {
             if(this.pictureBox1.Image == null && this.pictureBox1.BackColor != Color.White)
@@ -448,13 +433,20 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
                 {
                     if (!string.IsNullOrEmpty(album.Location) && !string.IsNullOrEmpty(album.PictureAlbumURL))
                     { // album has picture and location
-                        LogicApp.sr_AlbumGame.Add(album);
-                        LogicApp.sr_AlbumsLocations.Add(album.Location);
+                        PictureGameFeature.sr_AlbumGame.Add(album);
+                        PictureGameFeature.sr_AlbumsLocations.Add(album.Location);
                     }
                 }
 
                 createAlbumGame();
             }
         }
+
+        private void pictureBoxGame_Click(object sender, EventArgs e)
+        {
+            PictureGameFeature.BuildGame(int.Parse((sender as PictureBox).Tag.ToString()));
+            r_PictureGameForm.ShowDialog();
+        }
+
     }
 }

@@ -30,7 +30,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         {
             int albumIndex = 0;
 
-            for (int i = 0; i <r_AnswersCount; i++)
+            for (int i = 0; i < r_AnswersCount; i++)
             {
                 if (albumIndex.Equals(LogicApp.PictureGameIndex))
                 {
@@ -47,7 +47,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
         internal string EndGame(string i_AnswerText)
         {
-            string endGameMessage = string.Empty; 
+            string endGameMessage = string.Empty;
 
             if (i_AnswerText.Equals(m_RightAnswer))
             {

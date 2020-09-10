@@ -1,6 +1,6 @@
 ﻿namespace C20_Ex02_Shira_311119002_Yair_305789596
 {
-    public partial class FormDeatils
+    public partial class FormDetails
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDeatils));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDetails));
             this.labelTitleName = new System.Windows.Forms.Label();
             this.labelLine1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
