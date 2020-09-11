@@ -1,3 +1,4 @@
+using FacebookWrapper;
 using System;
 using System.Windows.Forms;
 
@@ -5,7 +6,10 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 {
     public partial class FormLogin : Form
     {
-        public event Action LoginClick;
+        public Func<LoginResult> LoginClick;
+        public LoginResult LoginResult { get; set; }
+        //public event Action LoginClick;
+
 
         public FormLogin()
         {
@@ -14,7 +18,14 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
-            LoginClick.Invoke();
+            try
+            {
+                LoginResult = LoginClick.Invoke();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
 
             if (this.checkBoxRememberMe.Checked)
             {

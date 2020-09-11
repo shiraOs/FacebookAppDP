@@ -40,13 +40,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdapterLoginFacebook.cs" />
     <Compile Include="AppSettings.cs" />
     <Compile Include="DatingFeature.cs" />
     <Compile Include="FacadePictureGame.cs" />
     <Compile Include="FBFormDetails.cs" />
     <Compile Include="FBIFormDetails.cs" />
     <Compile Include="PictureGameFeature.cs" />
-    <Compile Include="ProxyPost.cs" />
     <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>

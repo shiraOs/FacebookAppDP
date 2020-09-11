@@ -5,6 +5,7 @@ using System.Drawing;
 using FacebookWrapper;
 using FacebookWrapper.ObjectModel;
 using System.Threading;
+using System.Data;
 
 namespace C20_Ex02_Shira_311119002_Yair_305789596
 {
@@ -15,6 +16,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         private readonly FormDetails r_FormDeatils = new FormDetails();
         private readonly FormLogin r_LoginForm = new FormLogin();
         private readonly AppSettings r_AppSettings;
+        private readonly AdapterLoginFacebook r_LoginAdapter;
         private LoginResult m_LoginResult;
         private User m_LoggedInUser;
         private string m_AccessToken;
@@ -24,6 +26,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             InitializeComponent();
             this.Size = AppSettings.sr_SmallFormSize;
             r_AppSettings = AppSettings.LoadFromFile();
+            r_LoginAdapter = new AdapterLoginFacebook(r_AppSettings);
             fetchSettingData();
             buildFeaturesSetting();
         }
@@ -34,14 +37,19 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             PictureGameFeature.RightAnswerClicked += OnGamePictureRightAnswer;
         }
 
-        private void login()
+        private void userLogin()
         {
-            r_LoginForm.LoginClick += loginAndLoad;
+            r_LoginForm.LoginClick += r_LoginAdapter.Login;
             DialogResult result = r_LoginForm.ShowDialog();
+            m_LoginResult = r_LoginForm.LoginResult;
+            checkFormLoginDialogResult(result);
+        }
 
-            if (result != DialogResult.Cancel)
+        private void checkFormLoginDialogResult(DialogResult i_Result)
+        {
+            if (i_Result != DialogResult.Cancel)
             {
-                if (result == DialogResult.Yes)
+                if (i_Result == DialogResult.Yes)
                 {
                     this.checkBoxRememberMe.Checked = true;
                 }
@@ -49,27 +57,10 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
                 {
                     this.checkBoxRememberMe.Checked = false;
                 }
-
-                fetchUserData();
             }
             else
             {
                 this.Close();
-            }
-        }
-
-        private void loginAndLoad()
-        {
-            LoginResult result = FacebookService.Login(AppSettings.sr_AppID, AppSettings.sr_Permissions);
-
-            if (!string.IsNullOrEmpty(result.AccessToken))
-            {
-                m_AccessToken = result.AccessToken;
-                m_LoggedInUser = result.LoggedInUser;
-            }
-            else
-            {
-                MessageBox.Show(result.ErrorMessage);
             }
         }
 
@@ -112,18 +103,12 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         }
 
         private void fetchPosts()
-        { // Using DP Proxy
-            listBoxPosts.Invoke(new Action(() => listBoxPosts.DisplayMember = "Name"));
-
-            foreach (Post post in m_LoggedInUser.NewsFeed)
-            {
-                if (!string.IsNullOrEmpty(post.Name))
-                {
-                    listBoxPosts.Invoke(new Action(() => listBoxPosts.Items.Add(new ProxyPost(post))));
-                }
-            }
-
-            if (m_LoggedInUser.NewsFeed.Count == 0)
+        { // Action in other threads and data binding
+            
+            //listBoxPosts.Invoke(new Action(() => postBindingSource Filter = "Name LIKE ''"));;
+            listBoxPosts.Invoke(new Action(() => postBindingSource.DataSource = m_LoggedInUser.WallPosts));
+            
+            if (m_LoggedInUser.WallPosts.Count == 0)
             {
                 listBoxPosts.Invoke(new Action(() => listBoxPosts.Items.Add("No Posts to Show.")));
                 listBoxPosts.Invoke(new Action(() => listBoxPosts.Enabled = false));
@@ -328,10 +313,17 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             {                
                 if (listBoxPosts.SelectedItem != null)
                 {
-                    ProxyPost selectedPost = listBoxPosts.SelectedItem as ProxyPost;
-                    textBoxPostDate.Text = selectedPost.Date;
-                    textBoxPostMsg.Text = selectedPost.Message;
-                    Utils.LoadPictureToPictureBox(pictureBoxPost, selectedPost.PictureUrl);
+                    
+                    //ProxyPost selectedPost = listBoxPosts.SelectedItem as ProxyPost;
+                    //textBoxPostDate.Text = selectedPost.Date;
+                    //textBoxPostMsg.Text = selectedPost.Message;
+                    //pictureBoxPost.Image = selectedPost.PictureUrl;
+                    string picturUrl = (listBoxPosts.SelectedItem as Post).PictureURL;
+                    if (!string.IsNullOrEmpty(picturUrl))
+                    {
+                        pictureBoxPost.Load(picturUrl);
+                    }
+                    //Utils.LoadPictureToPictureBox(pictureBoxPost, selectedPost.PictureUrl);
                 }
 
             }
@@ -381,19 +373,16 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
         protected override void OnShown(EventArgs e)
         {
-            if (r_AppSettings.RememberUser
-                && !string.IsNullOrEmpty(m_AccessToken))
-            {
-                m_LoginResult = FacebookService.Connect(m_AccessToken);
-                m_LoggedInUser = m_LoginResult.LoggedInUser;
+            m_LoginResult = r_LoginAdapter.Connect();
             
-                fetchUserData();
-            }
-            else
+            if(m_LoginResult == null)
             {
-                login();
+                userLogin();
             }
 
+            m_AccessToken = m_LoginResult.AccessToken;
+            m_LoggedInUser = m_LoginResult.LoggedInUser;
+            fetchUserData();
             base.OnShown(e);
         }
 
@@ -424,19 +413,23 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         }
         private void labelPics_Paint(object sender, PaintEventArgs e)
         {
-            if(this.pictureBox1.Image == null && this.pictureBox1.BackColor != Color.White)
+            if(AppSettings.IsFeatureOpen(this.Size))
             {
-                foreach (Album album in m_LoggedInUser.Albums)
+                if (this.pictureBox1.Image == null && this.pictureBox1.BackColor != Color.White)
                 {
-                    if (!string.IsNullOrEmpty(album.Location) && !string.IsNullOrEmpty(album.PictureAlbumURL))
-                    { // album has picture and location
-                        PictureGameFeature.sr_AlbumGame.Add(album);
-                        PictureGameFeature.sr_AlbumsLocations.Add(album.Location);
+                    foreach (Album album in m_LoggedInUser.Albums)
+                    {
+                        if (!string.IsNullOrEmpty(album.Location) && !string.IsNullOrEmpty(album.PictureAlbumURL))
+                        { // album has picture and location
+                            PictureGameFeature.sr_AlbumGame.Add(album);
+                            PictureGameFeature.sr_AlbumsLocations.Add(album.Location);
+                        }
                     }
-                }
 
-                createAlbumGame();
+                    createAlbumGame();
+                }
             }
+      
         }
 
         private void pictureBoxGame_Click(object sender, EventArgs e)

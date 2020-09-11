@@ -88,6 +88,15 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             ((System.ComponentModel.ISupportInitialize)(this.postBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
+            // emailLabel
+            // 
+            emailLabel.AutoSize = true;
+            emailLabel.Location = new System.Drawing.Point(136, 92);
+            emailLabel.Name = "emailLabel";
+            emailLabel.Size = new System.Drawing.Size(35, 13);
+            emailLabel.TabIndex = 45;
+            emailLabel.Text = "Email:";
+            // 
             // pictureProfile
             // 
             this.pictureProfile.BackColor = System.Drawing.SystemColors.ScrollBar;
@@ -136,6 +145,8 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // 
             this.listBoxPosts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.listBoxPosts.Cursor = System.Windows.Forms.Cursors.Default;
+            this.listBoxPosts.DataSource = this.postBindingSource;
+            this.listBoxPosts.DisplayMember = "Name";
             this.listBoxPosts.FormattingEnabled = true;
             this.listBoxPosts.Location = new System.Drawing.Point(484, 41);
             this.listBoxPosts.Margin = new System.Windows.Forms.Padding(2);
@@ -296,7 +307,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             this.labelPics.AutoSize = true;
             this.labelPics.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
             this.labelPics.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(64)))), ((int)(((byte)(124)))));
-            this.labelPics.Location = new System.Drawing.Point(561, 288);
+            this.labelPics.Location = new System.Drawing.Point(561, 286);
             this.labelPics.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelPics.Name = "labelPics";
             this.labelPics.Size = new System.Drawing.Size(195, 25);
@@ -331,7 +342,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // 
             this.checkBoxRememberMe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkBoxRememberMe.AutoSize = true;
-            this.checkBoxRememberMe.Location = new System.Drawing.Point(22, 677);
+            this.checkBoxRememberMe.Location = new System.Drawing.Point(22, 1084);
             this.checkBoxRememberMe.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxRememberMe.Name = "checkBoxRememberMe";
             this.checkBoxRememberMe.Size = new System.Drawing.Size(95, 17);
@@ -343,7 +354,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // buttonLogout
             // 
             this.buttonLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonLogout.Location = new System.Drawing.Point(22, 640);
+            this.buttonLogout.Location = new System.Drawing.Point(22, 1047);
             this.buttonLogout.Name = "buttonLogout";
             this.buttonLogout.Size = new System.Drawing.Size(95, 32);
             this.buttonLogout.TabIndex = 26;
@@ -479,6 +490,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // textBoxPostMsg
             // 
             this.textBoxPostMsg.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxPostMsg.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.postBindingSource, "Message", true));
             this.textBoxPostMsg.Location = new System.Drawing.Point(290, 344);
             this.textBoxPostMsg.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxPostMsg.Multiline = true;
@@ -492,6 +504,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // textBoxPostDate
             // 
             this.textBoxPostDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxPostDate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.postBindingSource, "CreatedTime", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "d"));
             this.textBoxPostDate.Location = new System.Drawing.Point(290, 483);
             this.textBoxPostDate.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxPostDate.Multiline = true;
@@ -504,6 +517,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // pictureBoxPost
             // 
             this.pictureBoxPost.BackColor = System.Drawing.Color.Teal;
+            this.pictureBoxPost.DataBindings.Add(new System.Windows.Forms.Binding("Image", this.postBindingSource, "PictureURL", true));
             this.pictureBoxPost.Location = new System.Drawing.Point(290, 531);
             this.pictureBoxPost.Name = "pictureBoxPost";
             this.pictureBoxPost.Size = new System.Drawing.Size(161, 137);
@@ -553,15 +567,6 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // 
             this.postBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.Post);
             // 
-            // emailLabel
-            // 
-            emailLabel.AutoSize = true;
-            emailLabel.Location = new System.Drawing.Point(136, 92);
-            emailLabel.Name = "emailLabel";
-            emailLabel.Size = new System.Drawing.Size(35, 13);
-            emailLabel.TabIndex = 45;
-            emailLabel.Text = "Email:";
-            // 
             // emailTextBox
             // 
             this.emailTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "Email", true));
@@ -576,7 +581,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(795, 708);
+            this.ClientSize = new System.Drawing.Size(795, 1115);
             this.Controls.Add(emailLabel);
             this.Controls.Add(this.emailTextBox);
             this.Controls.Add(this.textBoxAbout);

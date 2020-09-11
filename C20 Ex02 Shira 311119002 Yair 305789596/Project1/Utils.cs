@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using System.Globalization;
-
+using System.IO;
+using System.Drawing;
 
 namespace C20_Ex02_Shira_311119002_Yair_305789596
 {
@@ -47,6 +48,17 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             }
 
             return age;
+        }
+
+        public static Image GetImageFromUrl(string i_Url)
+        {
+            using (System.Net.WebClient webClient = new System.Net.WebClient())
+            {
+                using (Stream stream = webClient.OpenRead(i_Url))
+                {
+                    return Image.FromStream(stream);
+                }
+            }
         }
     }
 }
