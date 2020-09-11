@@ -30,6 +30,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.Label emailLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormApp));
             this.pictureProfile = new System.Windows.Forms.PictureBox();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -74,6 +75,8 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             this.textBoxAbout = new System.Windows.Forms.TextBox();
             this.labelAbout = new System.Windows.Forms.Label();
             this.postBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.emailTextBox = new System.Windows.Forms.TextBox();
+            emailLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureProfile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.albumBindingSource)).BeginInit();
@@ -90,7 +93,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             this.pictureProfile.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.pictureProfile.DataBindings.Add(new System.Windows.Forms.Binding("Image", this.userBindingSource, "ImageNormal", true));
             this.pictureProfile.Location = new System.Drawing.Point(22, 13);
-            this.pictureProfile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureProfile.Margin = new System.Windows.Forms.Padding(2);
             this.pictureProfile.Name = "pictureProfile";
             this.pictureProfile.Size = new System.Drawing.Size(110, 105);
             this.pictureProfile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -106,7 +109,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             this.listBoxFriends.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.listBoxFriends.FormattingEnabled = true;
             this.listBoxFriends.Location = new System.Drawing.Point(339, 41);
-            this.listBoxFriends.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listBoxFriends.Margin = new System.Windows.Forms.Padding(2);
             this.listBoxFriends.Name = "listBoxFriends";
             this.listBoxFriends.Size = new System.Drawing.Size(127, 199);
             this.listBoxFriends.TabIndex = 3;
@@ -119,7 +122,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             this.listBoxAlbums.DisplayMember = "Name";
             this.listBoxAlbums.FormattingEnabled = true;
             this.listBoxAlbums.Location = new System.Drawing.Point(645, 41);
-            this.listBoxAlbums.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listBoxAlbums.Margin = new System.Windows.Forms.Padding(2);
             this.listBoxAlbums.Name = "listBoxAlbums";
             this.listBoxAlbums.Size = new System.Drawing.Size(130, 199);
             this.listBoxAlbums.TabIndex = 4;
@@ -135,7 +138,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             this.listBoxPosts.Cursor = System.Windows.Forms.Cursors.Default;
             this.listBoxPosts.FormattingEnabled = true;
             this.listBoxPosts.Location = new System.Drawing.Point(484, 41);
-            this.listBoxPosts.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listBoxPosts.Margin = new System.Windows.Forms.Padding(2);
             this.listBoxPosts.Name = "listBoxPosts";
             this.listBoxPosts.Size = new System.Drawing.Size(144, 199);
             this.listBoxPosts.TabIndex = 5;
@@ -144,7 +147,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // lableName
             // 
             this.lableName.AutoSize = true;
-            this.lableName.Location = new System.Drawing.Point(146, 25);
+            this.lableName.Location = new System.Drawing.Point(138, 16);
             this.lableName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lableName.Name = "lableName";
             this.lableName.Size = new System.Drawing.Size(38, 13);
@@ -154,8 +157,8 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // textBoxFirstName
             // 
             this.textBoxFirstName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "Name", true));
-            this.textBoxFirstName.Location = new System.Drawing.Point(215, 25);
-            this.textBoxFirstName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxFirstName.Location = new System.Drawing.Point(207, 16);
+            this.textBoxFirstName.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxFirstName.Name = "textBoxFirstName";
             this.textBoxFirstName.ReadOnly = true;
             this.textBoxFirstName.Size = new System.Drawing.Size(85, 20);
@@ -164,7 +167,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // labelGender
             // 
             this.labelGender.AutoSize = true;
-            this.labelGender.Location = new System.Drawing.Point(144, 57);
+            this.labelGender.Location = new System.Drawing.Point(136, 41);
             this.labelGender.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelGender.Name = "labelGender";
             this.labelGender.Size = new System.Drawing.Size(45, 13);
@@ -173,8 +176,8 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // 
             // textBoxGender
             // 
-            this.textBoxGender.Location = new System.Drawing.Point(215, 56);
-            this.textBoxGender.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxGender.Location = new System.Drawing.Point(207, 40);
+            this.textBoxGender.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxGender.Name = "textBoxGender";
             this.textBoxGender.ReadOnly = true;
             this.textBoxGender.Size = new System.Drawing.Size(85, 20);
@@ -184,7 +187,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Teal;
             this.pictureBox2.Location = new System.Drawing.Point(561, 463);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(90, 99);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -197,7 +200,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Teal;
             this.pictureBox1.Location = new System.Drawing.Point(560, 354);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(90, 99);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -210,7 +213,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.Teal;
             this.pictureBox3.Location = new System.Drawing.Point(666, 354);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(90, 99);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -223,7 +226,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // 
             this.pictureBox4.BackColor = System.Drawing.Color.Teal;
             this.pictureBox4.Location = new System.Drawing.Point(666, 463);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(90, 99);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -235,7 +238,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // labelBirthday
             // 
             this.labelBirthday.AutoSize = true;
-            this.labelBirthday.Location = new System.Drawing.Point(144, 89);
+            this.labelBirthday.Location = new System.Drawing.Point(136, 66);
             this.labelBirthday.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelBirthday.Name = "labelBirthday";
             this.labelBirthday.Size = new System.Drawing.Size(48, 13);
@@ -245,8 +248,8 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // textBoxBirthday
             // 
             this.textBoxBirthday.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "Birthday", true));
-            this.textBoxBirthday.Location = new System.Drawing.Point(215, 87);
-            this.textBoxBirthday.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxBirthday.Location = new System.Drawing.Point(207, 64);
+            this.textBoxBirthday.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxBirthday.Name = "textBoxBirthday";
             this.textBoxBirthday.ReadOnly = true;
             this.textBoxBirthday.Size = new System.Drawing.Size(85, 20);
@@ -328,8 +331,8 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // 
             this.checkBoxRememberMe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkBoxRememberMe.AutoSize = true;
-            this.checkBoxRememberMe.Location = new System.Drawing.Point(22, 655);
-            this.checkBoxRememberMe.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBoxRememberMe.Location = new System.Drawing.Point(22, 677);
+            this.checkBoxRememberMe.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxRememberMe.Name = "checkBoxRememberMe";
             this.checkBoxRememberMe.Size = new System.Drawing.Size(95, 17);
             this.checkBoxRememberMe.TabIndex = 25;
@@ -340,7 +343,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // buttonLogout
             // 
             this.buttonLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonLogout.Location = new System.Drawing.Point(22, 618);
+            this.buttonLogout.Location = new System.Drawing.Point(22, 640);
             this.buttonLogout.Name = "buttonLogout";
             this.buttonLogout.Size = new System.Drawing.Size(95, 32);
             this.buttonLogout.TabIndex = 26;
@@ -433,7 +436,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // 
             this.buttonOpenFeature.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.buttonOpenFeature.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.buttonOpenFeature.Location = new System.Drawing.Point(22, 169);
+            this.buttonOpenFeature.Location = new System.Drawing.Point(22, 160);
             this.buttonOpenFeature.Name = "buttonOpenFeature";
             this.buttonOpenFeature.Size = new System.Drawing.Size(188, 57);
             this.buttonOpenFeature.TabIndex = 35;
@@ -477,7 +480,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // 
             this.textBoxPostMsg.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxPostMsg.Location = new System.Drawing.Point(290, 344);
-            this.textBoxPostMsg.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxPostMsg.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxPostMsg.Multiline = true;
             this.textBoxPostMsg.Name = "textBoxPostMsg";
             this.textBoxPostMsg.ReadOnly = true;
@@ -490,7 +493,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // 
             this.textBoxPostDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxPostDate.Location = new System.Drawing.Point(290, 483);
-            this.textBoxPostDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxPostDate.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxPostDate.Multiline = true;
             this.textBoxPostDate.Name = "textBoxPostDate";
             this.textBoxPostDate.ReadOnly = true;
@@ -530,17 +533,16 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // textBoxAbout
             // 
             this.textBoxAbout.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "About", true));
-            this.textBoxAbout.Location = new System.Drawing.Point(71, 136);
-            this.textBoxAbout.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxAbout.Location = new System.Drawing.Point(71, 122);
+            this.textBoxAbout.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxAbout.Name = "textBoxAbout";
-            this.textBoxAbout.ReadOnly = true;
-            this.textBoxAbout.Size = new System.Drawing.Size(229, 20);
+            this.textBoxAbout.Size = new System.Drawing.Size(242, 20);
             this.textBoxAbout.TabIndex = 45;
             // 
             // labelAbout
             // 
             this.labelAbout.AutoSize = true;
-            this.labelAbout.Location = new System.Drawing.Point(19, 138);
+            this.labelAbout.Location = new System.Drawing.Point(19, 124);
             this.labelAbout.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelAbout.Name = "labelAbout";
             this.labelAbout.Size = new System.Drawing.Size(38, 13);
@@ -551,12 +553,32 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // 
             this.postBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.Post);
             // 
+            // emailLabel
+            // 
+            emailLabel.AutoSize = true;
+            emailLabel.Location = new System.Drawing.Point(136, 92);
+            emailLabel.Name = "emailLabel";
+            emailLabel.Size = new System.Drawing.Size(35, 13);
+            emailLabel.TabIndex = 45;
+            emailLabel.Text = "Email:";
+            // 
+            // emailTextBox
+            // 
+            this.emailTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "Email", true));
+            this.emailTextBox.Location = new System.Drawing.Point(188, 89);
+            this.emailTextBox.Name = "emailTextBox";
+            this.emailTextBox.ReadOnly = true;
+            this.emailTextBox.Size = new System.Drawing.Size(125, 20);
+            this.emailTextBox.TabIndex = 46;
+            // 
             // FormApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(795, 686);
+            this.ClientSize = new System.Drawing.Size(795, 708);
+            this.Controls.Add(emailLabel);
+            this.Controls.Add(this.emailTextBox);
             this.Controls.Add(this.textBoxAbout);
             this.Controls.Add(this.labelAbout);
             this.Controls.Add(this.listBoxPosts);
@@ -600,7 +622,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "FormApp";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -663,5 +685,6 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         private System.Windows.Forms.Label labelAbout;
         private System.Windows.Forms.BindingSource albumBindingSource;
         private System.Windows.Forms.BindingSource postBindingSource;
+        private System.Windows.Forms.TextBox emailTextBox;
     }
 }

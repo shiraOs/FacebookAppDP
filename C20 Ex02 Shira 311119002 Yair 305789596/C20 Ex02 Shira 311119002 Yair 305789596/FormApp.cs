@@ -11,12 +11,9 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
     public partial class FormApp : Form
     {
-        public event Action PictureGameClick;
         private readonly FormPictureGame r_PictureGameForm = new FormPictureGame();
         private readonly FormDetails r_FormDeatils = new FormDetails();
         private readonly FormLogin r_LoginForm = new FormLogin();
-      //  private readonly FormFriend r_FriendForm = new FormFriend();
-   //     private readonly FormAlbum r_AlbumForm = new FormAlbum();
         private readonly AppSettings r_AppSettings;
         private LoginResult m_LoginResult;
         private User m_LoggedInUser;
@@ -213,7 +210,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         {
             if (i_SelectedFriend != null)
             {
-                r_FormDeatils.BuildForm(new IFormFriend (i_SelectedFriend));
+                r_FormDeatils.BuildForm(new IFormFriend(), i_SelectedFriend);
                 r_FormDeatils.ShowDialog();
             }
         }
@@ -321,7 +318,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
         private void showAlbumForm(Album o_SelectedAlbum)
         {
-            r_FormDeatils.BuildForm(new IFormAlbum(o_SelectedAlbum));
+            r_FormDeatils.BuildForm(new IFormAlbum(), o_SelectedAlbum);
             r_FormDeatils.ShowDialog();
         }
 

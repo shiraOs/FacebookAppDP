@@ -53,12 +53,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormAlbum.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormAlbum.Designer.cs">
-      <DependentUpon>FormAlbum.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormApp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,12 +64,6 @@
     </Compile>
     <Compile Include="FormDetails.Designer.cs">
       <DependentUpon>FormDetails.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormFriend.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormFriend.Designer.cs">
-      <DependentUpon>FormFriend.cs</DependentUpon>
     </Compile>
     <Compile Include="FormLogin.cs">
       <SubType>Form</SubType>
@@ -89,21 +77,13 @@
     <Compile Include="FormPictureGame.Designer.cs">
       <DependentUpon>FormPictureGame.cs</DependentUpon>
     </Compile>
-    <Compile Include="IFormAlbum.cs" />
-    <Compile Include="IFormFriend.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormAlbum.resx">
-      <DependentUpon>FormAlbum.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormApp.resx">
       <DependentUpon>FormApp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDetails.resx">
       <DependentUpon>FormDetails.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormFriend.resx">
-      <DependentUpon>FormFriend.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>

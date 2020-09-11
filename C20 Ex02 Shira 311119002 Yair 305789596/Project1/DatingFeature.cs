@@ -1,6 +1,5 @@
 using System;
 using FacebookWrapper.ObjectModel;
-using System.Globalization;
 
 namespace C20_Ex02_Shira_311119002_Yair_305789596
 {
@@ -26,7 +25,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         public static bool IsFriendMatchToUserRequests(User i_Friend)
         {
             bool isMatch = false;
-            int age = getUserAge(i_Friend.Birthday);
+            int age = Utils.GetUserAge(i_Friend.Birthday);
 
             if(RequiredAgeRange == null || RequiredGender == null)
             {
@@ -48,23 +47,6 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         {
             return i_Age >= i_Min && i_Age <= i_Max;
         } 
-
-        private static int getUserAge(string i_Birthday)
-        {
-            CultureInfo provider = CultureInfo.InvariantCulture;
-            string format = "d";
-            DateTime birthdayDate = DateTime.ParseExact(i_Birthday, format, provider);
-            DateTime todayDate = DateTime.Today;
-            int age = todayDate.Year - birthdayDate.Year;
-
-            if (birthdayDate.Date > todayDate.AddYears(-age))
-            {
-                age--;
-            }
-
-            return age;
-        }
-
 
         private static bool isAgeInRequiredAgeRange(int o_Age, eAgeRange? i_ChosenAgeRange)
         {

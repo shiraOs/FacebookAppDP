@@ -1,7 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using System.Globalization;
+
 
 namespace C20_Ex02_Shira_311119002_Yair_305789596
 {
@@ -30,6 +32,21 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             {
                 currPictureBox.Image = null;
             }
+        }
+        public static int GetUserAge(string i_Birthday)
+        {
+            CultureInfo provider = CultureInfo.InvariantCulture;
+            string format = "d";
+            DateTime birthdayDate = DateTime.ParseExact(i_Birthday, format, provider);
+            DateTime todayDate = DateTime.Today;
+            int age = todayDate.Year - birthdayDate.Year;
+
+            if (birthdayDate.Date > todayDate.AddYears(-age))
+            {
+                age--;
+            }
+
+            return age;
         }
     }
 }

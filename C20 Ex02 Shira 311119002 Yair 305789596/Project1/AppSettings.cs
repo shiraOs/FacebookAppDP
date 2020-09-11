@@ -9,7 +9,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
     {
         private static readonly string sr_Path = AppDomain.CurrentDomain.BaseDirectory + @"\appSettings.xml";
         public static readonly Size sr_BigFormSize = new Size(815, 725);
-        public static readonly Size sr_SmallFormSize = new Size(815, 300);
+        public static readonly Size sr_SmallFormSize = new Size(815, 320);
         public static readonly string sr_AppID = "1163211064078938";
         public static readonly string[] sr_Permissions =
         {

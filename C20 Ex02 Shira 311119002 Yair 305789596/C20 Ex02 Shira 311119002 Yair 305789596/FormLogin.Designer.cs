@@ -37,6 +37,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // 
             // buttonLogin
             // 
+            this.buttonLogin.Cursor = System.Windows.Forms.Cursors.Default;
             this.buttonLogin.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonLogin.Location = new System.Drawing.Point(35, 11);
             this.buttonLogin.Margin = new System.Windows.Forms.Padding(2);
@@ -45,12 +46,12 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             this.buttonLogin.TabIndex = 1;
             this.buttonLogin.Text = "Log In";
             this.buttonLogin.UseVisualStyleBackColor = true;
-            this.buttonLogin.UseWaitCursor = true;
             this.buttonLogin.Click += new System.EventHandler(this.buttonLogin_Click);
             // 
             // checkBoxRememberMe
             // 
             this.checkBoxRememberMe.AutoSize = true;
+            this.checkBoxRememberMe.Cursor = System.Windows.Forms.Cursors.Default;
             this.checkBoxRememberMe.Location = new System.Drawing.Point(35, 49);
             this.checkBoxRememberMe.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxRememberMe.Name = "checkBoxRememberMe";
@@ -58,7 +59,6 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             this.checkBoxRememberMe.TabIndex = 2;
             this.checkBoxRememberMe.Text = "Remember Me";
             this.checkBoxRememberMe.UseVisualStyleBackColor = true;
-            this.checkBoxRememberMe.UseWaitCursor = true;
             // 
             // buttonCancel
             // 
@@ -71,7 +71,6 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             this.buttonCancel.TabIndex = 3;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
-            this.buttonCancel.UseWaitCursor = true;
             // 
             // FormLogin
             // 
