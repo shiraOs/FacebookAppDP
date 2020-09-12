@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using FacebookWrapper.ObjectModel;
-
 
 namespace C20_Ex02_Shira_311119002_Yair_305789596
 {

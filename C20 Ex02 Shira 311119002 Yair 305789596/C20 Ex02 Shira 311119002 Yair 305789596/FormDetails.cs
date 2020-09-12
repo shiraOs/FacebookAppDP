@@ -12,6 +12,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         {
             InitializeComponent();
         }
+        
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
@@ -22,7 +23,6 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         {
             m_FormDetails = i_Form;
             m_Details = i_Form.CreateForm(i_Object);
-
         }
 
         protected override void OnShown(EventArgs e)

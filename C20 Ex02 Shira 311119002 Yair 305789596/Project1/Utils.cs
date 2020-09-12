@@ -34,6 +34,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
                 currPictureBox.Image = null;
             }
         }
+
         public static int GetUserAge(string i_Birthday)
         {
             CultureInfo provider = CultureInfo.InvariantCulture;

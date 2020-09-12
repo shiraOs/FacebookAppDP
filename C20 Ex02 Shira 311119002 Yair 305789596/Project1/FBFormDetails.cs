@@ -1,24 +1,24 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using FacebookWrapper.ObjectModel;
-
 
 namespace C20_Ex02_Shira_311119002_Yair_305789596
 {
     public abstract class Details
     {
         public string TitleName { get; set; }
+        
         public string PictureURL { get; set; }
+        
         public string FirstDetailsLine { get; set; }
+        
         public string SecondDetailsLine { get; set; }
+
         public string ThirdDetailsLine { get; set; }
     }
 
     public class FriendDetails : Details
     {
         private User m_SelectedFriend;
+
         public FriendDetails(User i_SelectedFriend)
         {
             m_SelectedFriend = i_SelectedFriend;
@@ -46,6 +46,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
     public class AlbumDetails : Details
     {
         private Album m_SelectedAlbum;
+
         public AlbumDetails(Album i_SelectedAlbum)
         {
             m_SelectedAlbum = i_SelectedAlbum;
@@ -69,5 +70,4 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             return res;
         }
     }
-
 }

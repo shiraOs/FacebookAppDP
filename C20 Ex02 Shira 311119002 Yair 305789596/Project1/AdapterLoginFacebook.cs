@@ -24,6 +24,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             {
                 m_LoginResult = FacebookService.Connect(r_AppSettings.LastAccessToken);
             }
+
             return m_LoginResult;
         }
 
@@ -38,6 +39,5 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
             return m_LoginResult;
         }
-
     }
 }

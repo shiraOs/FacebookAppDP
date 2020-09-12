@@ -1,15 +1,14 @@
-using FacebookWrapper;
 using System;
 using System.Windows.Forms;
+using FacebookWrapper;
 
 namespace C20_Ex02_Shira_311119002_Yair_305789596
 {
     public partial class FormLogin : Form
     {
         public Func<LoginResult> LoginClick;
-        public LoginResult LoginResult { get; set; }
-        //public event Action LoginClick;
 
+        public LoginResult LoginResult { get; set; }
 
         public FormLogin()
         {

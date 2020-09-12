@@ -1,15 +1,12 @@
 using System;
-using System.Collections.Generic;
+using System.Threading;
 using System.Windows.Forms;
 using System.Drawing;
 using FacebookWrapper;
 using FacebookWrapper.ObjectModel;
-using System.Threading;
-using System.Data;
 
 namespace C20_Ex02_Shira_311119002_Yair_305789596
 {
-
     public partial class FormApp : Form
     {
         private readonly FormPictureGame r_PictureGameForm = new FormPictureGame();
@@ -66,7 +63,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
         private void logoutCompleted()
         {
-            //FacebookWrapper.logout isn't working properly //
+            // FacebookWrapper.logout isn't working properly //
             MessageBox.Show("Logout Complete");
             this.Close();
         }
@@ -105,7 +102,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         private void fetchPosts()
         { // Action in other threads and data binding
             
-            //listBoxPosts.Invoke(new Action(() => postBindingSource Filter = "Name LIKE ''"));;
+            // listBoxPosts.Invoke(new Action(() => postBindingSource Filter = "Name LIKE ''"));;
             listBoxPosts.Invoke(new Action(() => postBindingSource.DataSource = m_LoggedInUser.WallPosts));
             
             if (m_LoggedInUser.WallPosts.Count == 0)
@@ -241,7 +238,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             {
                 if (DatingFeature.IsFriendMatchToUserRequests(friend))
                 {
-                    listBoxMatchingFriends.Invoke(new Action(()=> listBoxMatchingFriends.Items.Add(friend)));
+                    listBoxMatchingFriends.Invoke(new Action(() => listBoxMatchingFriends.Items.Add(friend)));
                     friend.ReFetch(DynamicWrapper.eLoadOptions.Full);
                 }
             }
@@ -251,6 +248,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
                 listBoxMatchingFriends.Invoke(new Action(() => listBoxMatchingFriends.Items.Add("No Matching Friends.")));
                 listBoxMatchingFriends.Invoke(new Action(() => listBoxMatchingFriends.Enabled = false));
             }
+
             enableDatingFeatureButtons();
         }
 
@@ -268,7 +266,6 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             checkBoxMale.Invoke(new Action(() => checkBoxMale.Enabled = false));
             checkBoxFemale.Invoke(new Action(() => checkBoxFemale.Enabled = false));
         }
-
 
         private void buttonLogout_Click(object sender, EventArgs e)
         {
@@ -313,19 +310,16 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             {                
                 if (listBoxPosts.SelectedItem != null)
                 {
-                    
-                    //ProxyPost selectedPost = listBoxPosts.SelectedItem as ProxyPost;
-                    //textBoxPostDate.Text = selectedPost.Date;
-                    //textBoxPostMsg.Text = selectedPost.Message;
-                    //pictureBoxPost.Image = selectedPost.PictureUrl;
+                    // ProxyPost selectedPost = listBoxPosts.SelectedItem as ProxyPost;
+                    // textBoxPostDate.Text = selectedPost.Date;
+                    // textBoxPostMsg.Text = selectedPost.Message;
+                    // pictureBoxPost.Image = selectedPost.PictureUrl;
                     string picturUrl = (listBoxPosts.SelectedItem as Post).PictureURL;
                     if (!string.IsNullOrEmpty(picturUrl))
                     {
                         pictureBoxPost.Load(picturUrl);
                     }
-                    //Utils.LoadPictureToPictureBox(pictureBoxPost, selectedPost.PictureUrl);
                 }
-
             }
         }
 
@@ -355,9 +349,8 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
                     buttonMatch.Enabled = true;
                 }
             }
-       
         }
-
+        
         private void checkBoxRememberMe_CheckedChanged(object sender, EventArgs e)
         {
             buttonLogout.Enabled = !checkBoxRememberMe.Checked;
@@ -386,7 +379,6 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             base.OnShown(e);
         }
 
-
         private void OnGamePictureRightAnswer()
         {
             labelGamePoints.Text = string.Format("You earn {0} points in game", FacadePictureGame.Points);
@@ -411,6 +403,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
                     break;
             }
         }
+
         private void labelPics_Paint(object sender, PaintEventArgs e)
         {
             if(AppSettings.IsFeatureOpen(this.Size))
@@ -429,7 +422,6 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
                     createAlbumGame();
                 }
             }
-      
         }
 
         private void pictureBoxGame_Click(object sender, EventArgs e)
@@ -437,6 +429,5 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             PictureGameFeature.BuildGame(int.Parse((sender as PictureBox).Tag.ToString()));
             r_PictureGameForm.ShowDialog();
         }
-
     }
 }

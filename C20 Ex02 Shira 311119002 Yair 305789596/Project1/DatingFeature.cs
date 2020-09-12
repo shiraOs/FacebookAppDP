@@ -13,7 +13,9 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             eThirtyTilFourty,
             eFourtyPlus
         }
+
         public static User.eGender? RequiredGender { get; set; }
+
         public static eAgeRange? RequiredAgeRange { get; set; }
 
         public static void ResetFeature()
@@ -73,7 +75,5 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
             return inRange;
         }
-
-
     }
 }

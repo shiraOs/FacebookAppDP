@@ -1,6 +1,5 @@
 using System;
 
-
 namespace C20_Ex02_Shira_311119002_Yair_305789596
 {
     public static class FacadePictureGame
@@ -69,13 +68,13 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
                 if (PictureGameFeature.CheckUserAnswer())
                 {
-                    answerMsg = string.Format("RIGHT ANSWER!!! :)){0}The picture was taken in {1}",
-                        Environment.NewLine, PictureGameFeature.m_RightAnswer);
+                    answerMsg = string.Format("RIGHT ANSWER!!! :)){0}The picture was taken in {1}", Environment.NewLine, PictureGameFeature.m_RightAnswer);
                 }
                 else
                 {
                     answerMsg = string.Format("WORNG ANSWER! :( {0}You can try again!", Environment.NewLine);
                 }
+
                 return answerMsg;
             }
         }

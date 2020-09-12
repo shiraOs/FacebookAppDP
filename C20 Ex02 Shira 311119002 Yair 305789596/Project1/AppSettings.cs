@@ -21,9 +21,15 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
                 "user_photos",
                 "user_posts"
         };
+      
         public bool RememberUser { get; set; }
 
         public string LastAccessToken { get; set; }
+      
+        public static bool IsFeatureOpen(Size i_FormSize)
+        {
+            return i_FormSize == sr_BigFormSize;
+        }
 
         public AppSettings()
         {
@@ -62,11 +68,6 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
                     serializer.Serialize(stream, this);
                 }
             }
-        }
-
-        public static bool IsFeatureOpen(Size i_FormSize)
-        {
-            return i_FormSize == sr_BigFormSize;
         }
     }
 }

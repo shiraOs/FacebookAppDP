@@ -126,7 +126,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
                 if (!m_RightAnswer.Equals(m_Answer[i]))
                 {
-                    m_Answer[i] = (sr_AlbumGame[sr_AlbumIndexers[albumIndex]].Location);
+                    m_Answer[i] = sr_AlbumGame[sr_AlbumIndexers[albumIndex]].Location;
                     albumIndex++;
                 }
             }
