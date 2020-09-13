@@ -5,18 +5,39 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 {
     public static class FacadePictureGame
     {
-        private static string m_FirstPictureURL;
-        private static string m_SecondPictureURL;
-        private static string m_ThirdPictureURL;
-        private static string m_FourthPictureURL;
+        internal static string m_FirstPictureURL;
+        internal static string m_SecondPictureURL;
+        internal static string m_ThirdPictureURL;
+        internal static string m_FourthPictureURL;
 
-        public static string FirstPictureURL => m_FirstPictureURL;  // DID WE LEARN???
-
-        public static string SecondPictureURL => m_SecondPictureURL;
-
-        public static string ThirdPictureURL => m_ThirdPictureURL;
-
-        public static string FourthPictureURL => m_FourthPictureURL;
+        public static string FirstPictureURL
+        {
+            get
+            {
+                return m_FirstPictureURL;
+            }
+        }
+        public static string SecondPictureURL
+        {
+            get
+            {
+                return m_FirstPictureURL;
+            }
+        }
+        public static string ThirdPictureURL
+        {
+            get
+            {
+                return m_FirstPictureURL;
+            }
+        }
+        public static string FourthPictureURL
+        {
+            get
+            {
+                return m_FirstPictureURL;
+            }
+        }
 
         public static string FirstAnswer
         {
@@ -136,7 +157,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             PictureGameFeature.CreateAlbumsListWithLocationAndPicture(i_Albums);
             if (IsFeatureAvailable)
             {
-                PictureGameFeature.ChooseRandomAlbums(out m_FirstPictureURL, out m_SecondPictureURL, out m_ThirdPictureURL, out m_FourthPictureURL);
+                PictureGameFeature.ChooseRandomAlbums(out m_FirstPictureURL, out m_SecondPictureURL, out m_ThirdPictureURL, out m_FourthPictureURL)                    
             }
         }
 

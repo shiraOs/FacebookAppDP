@@ -6,7 +6,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
     public partial class FormDetails : Form
     {
         private Details m_Details;
-        private IFormDeatils m_FormDetails;
+        private IFormDetails m_FormDetails;
 
         internal FormDetails()
         {
@@ -19,7 +19,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             pictureBox1.Image = null;
         }
 
-        internal void BuildForm(IFormDeatils i_Form, object i_Object)
+        internal void BuildForm(IFormDetails i_Form, object i_Object)
         {
             m_FormDetails = i_Form;
             m_Details = i_Form.CreateForm(i_Object);

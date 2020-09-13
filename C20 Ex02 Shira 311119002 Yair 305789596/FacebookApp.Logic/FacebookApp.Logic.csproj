@@ -42,10 +42,14 @@
   <ItemGroup>
     <Compile Include="AdapterLoginFacebook.cs" />
     <Compile Include="AppSettings.cs" />
+    <Compile Include="DetailsAlbum.cs" />
+    <Compile Include="IFormFriend.cs" />
     <Compile Include="DatingFeature.cs" />
     <Compile Include="FacadePictureGame.cs" />
-    <Compile Include="FBFormDetails.cs" />
-    <Compile Include="FBIFormDetails.cs" />
+    <Compile Include="Details.cs" />
+    <Compile Include="IFormDetails.cs" />
+    <Compile Include="DetailsFriend.cs" />
+    <Compile Include="IFormAlbum.cs" />
     <Compile Include="PictureGameFeature.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils.cs" />
