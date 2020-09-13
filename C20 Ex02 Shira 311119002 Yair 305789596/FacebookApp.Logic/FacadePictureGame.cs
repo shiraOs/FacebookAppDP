@@ -5,42 +5,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 {
     public static class FacadePictureGame
     {
-        internal static string m_FirstPictureURL;
-        internal static string m_SecondPictureURL;
-        internal static string m_ThirdPictureURL;
-        internal static string m_FourthPictureURL;
-
-        public static string FirstPictureURL
-        {
-            get
-            {
-                return m_FirstPictureURL;
-            }
-        }
-
-        public static string SecondPictureURL
-        {
-            get
-            {
-                return m_SecondPictureURL;
-            }
-        }
-
-        public static string ThirdPictureURL
-        {
-            get
-            {
-                return m_ThirdPictureURL;
-            }
-        }
-
-        public static string FourthPictureURL
-        {
-            get
-            {
-                return m_FourthPictureURL;
-            }
-        }
+        internal static string[] m_PicturesURLsArray = new string[PictureGameFeature.sr_NumOfAlbumsInGame];
 
         public static string FirstAnswer
         {
@@ -100,14 +65,8 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
         public static bool IsRightAnswer()
         {
-            bool result = false;
-            if (PictureGameFeature.CheckUserAnswer())
-            {
-                result = true;
-                PictureGameFeature.m_GamePoints++;
-            }
-
-            return result;
+            PictureGameFeature.UpdatePoints();
+            return PictureGameFeature.CheckUserAnswer();
         }
 
         public static void ReplaceRightAnswerPictureURL()
@@ -117,16 +76,16 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             switch(PictureGameFeature.m_PictureGameIndex)
             {
                 case 0:
-                    m_FirstPictureURL = newPictureURL;
+                    m_PicturesURLsArray[0] = newPictureURL;
                     break;
                 case 1:
-                    m_SecondPictureURL = newPictureURL;
+                    m_PicturesURLsArray[1] = newPictureURL;
                     break;
                 case 2:
-                    m_ThirdPictureURL = newPictureURL;
+                    m_PicturesURLsArray[2] = newPictureURL;
                     break;
                 case 3:
-                    m_FourthPictureURL = newPictureURL;
+                    m_PicturesURLsArray[3] = newPictureURL;
                     break;
             }
         }
@@ -160,7 +119,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             PictureGameFeature.CreateAlbumsListWithLocationAndPicture(i_Albums);
             if (IsFeatureAvailable)
             {
-                PictureGameFeature.ChooseRandomAlbums(out m_FirstPictureURL, out m_SecondPictureURL, out m_ThirdPictureURL, out m_FourthPictureURL);                    
+                PictureGameFeature.ChooseRandomAlbums(out m_PicturesURLsArray[0], out m_PicturesURLsArray[1], out m_PicturesURLsArray[2], out m_PicturesURLsArray[3]);                    
             }
         }
 
@@ -169,7 +128,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             get
             {
                 bool result = false;
-                if (PictureGameFeature.sr_AlbumsLocations.Count >= PictureGameFeature.sr_NumOfAlbumsInGame)
+                if (PictureGameFeature.sr_AlbumGame.Count >= PictureGameFeature.sr_NumOfAlbumsInGame)
                 {
                     result = true;
                 }
@@ -191,8 +150,18 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             PictureGameFeature.m_GamePoints = 0;
             if(IsFeatureAvailable)
             {
-                PictureGameFeature.ChooseRandomAlbums(out m_FirstPictureURL, out m_SecondPictureURL, out m_ThirdPictureURL, out m_FourthPictureURL);
+                PictureGameFeature.ChooseRandomAlbums(out m_PicturesURLsArray[0], out m_PicturesURLsArray[1], out m_PicturesURLsArray[2], out m_PicturesURLsArray[3]);
             }
+        }
+
+        public static string GetPicUrlByIndex(int i_Index)
+        {
+            if(i_Index > PictureGameFeature.sr_NumOfAlbumsInGame)
+            {
+                throw new Exception(string.Format("your Index is out of range. The game as only {0} pictures", PictureGameFeature.sr_NumOfAlbumsInGame));
+            }
+
+            return m_PicturesURLsArray[i_Index];
         }
     }
 }

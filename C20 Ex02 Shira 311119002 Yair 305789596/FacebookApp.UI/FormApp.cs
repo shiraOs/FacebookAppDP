@@ -191,10 +191,10 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
         private void setAlbumPictuersGame()
         {
-            pictureBox1.LoadAsync(FacadePictureGame.FirstPictureURL);
-            pictureBox2.LoadAsync(FacadePictureGame.SecondPictureURL);
-            pictureBox3.LoadAsync(FacadePictureGame.ThirdPictureURL);
-            pictureBox4.LoadAsync(FacadePictureGame.FourthPictureURL);
+            pictureBox1.LoadAsync(FacadePictureGame.GetPicUrlByIndex(0));
+            pictureBox2.LoadAsync(FacadePictureGame.GetPicUrlByIndex(1));
+            pictureBox3.LoadAsync(FacadePictureGame.GetPicUrlByIndex(2));
+            pictureBox4.LoadAsync(FacadePictureGame.GetPicUrlByIndex(3));
         }
 
         private void buttonOpenFeature_Click(object sender, EventArgs e)
@@ -374,16 +374,16 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             switch (FacadePictureGame.PictureGameAlbumIndex)
             {
                 case 0:
-                    pictureBox1.LoadAsync(FacadePictureGame.FirstPictureURL);
+                    pictureBox1.LoadAsync(FacadePictureGame.GetPicUrlByIndex(0));
                     break;
                 case 1:
-                    pictureBox2.LoadAsync(FacadePictureGame.SecondPictureURL);
+                    pictureBox2.LoadAsync(FacadePictureGame.GetPicUrlByIndex(1));
                     break;
                 case 2:
-                    pictureBox3.LoadAsync(FacadePictureGame.ThirdPictureURL);
+                    pictureBox3.LoadAsync(FacadePictureGame.GetPicUrlByIndex(2));
                     break;
                 case 3:
-                    pictureBox4.LoadAsync(FacadePictureGame.FourthPictureURL);
+                    pictureBox4.LoadAsync(FacadePictureGame.GetPicUrlByIndex(3));
                     break;
             }
         }

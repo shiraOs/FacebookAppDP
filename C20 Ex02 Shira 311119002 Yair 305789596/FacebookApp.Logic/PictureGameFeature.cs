@@ -8,7 +8,6 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
     {
         internal static readonly List<Album> sr_AlbumGame = new List<Album>();
         internal static readonly List<int> sr_AlbumIndexers = new List<int>();
-        internal static readonly List<string> sr_AlbumsLocations = new List<string>();
         internal static readonly int sr_NumOfAlbumsInGame = 4;
         internal static readonly int r_AnswersCount = 4;
         internal static int m_GamePoints = 0;
@@ -26,7 +25,6 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
                 if (!string.IsNullOrEmpty(album.Location) && !string.IsNullOrEmpty(album.PictureAlbumURL))
                 { // album has picture and location
                     PictureGameFeature.sr_AlbumGame.Add(album);
-                    PictureGameFeature.sr_AlbumsLocations.Add(album.Location);
                 }
             }
         }
@@ -79,12 +77,20 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             return GetPictureUrl();
         }
 
+        internal static void UpdatePoints()
+        {
+           if(CheckUserAnswer())
+            {
+                m_GamePoints++;
+            }
+        }
         internal static bool CheckUserAnswer()
         {
             bool result = false;
             if (m_UserAnswer.Equals(m_RightAnswer))
             {
                 result = true;
+                m_GamePoints++;
             }
 
             return result;
