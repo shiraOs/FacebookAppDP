@@ -100,11 +100,22 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
         private void fetchPosts()
         { // Action in other threads and data binding
-            
+
             // listBoxPosts.Invoke(new Action(() => postBindingSource Filter = "Name LIKE ''"));;
-            listBoxPosts.Invoke(new Action(() => postBindingSource.DataSource = m_LoggedInUser.WallPosts));
-            
-            if (m_LoggedInUser.WallPosts.Count == 0)
+            //listBoxPosts.Invoke(new Action(() => postBindingSource.DataSource = m_LoggedInUser.WallPosts));
+
+            listBoxPosts.Invoke(new Action(() => listBoxPosts.DisplayMember = "Name"));
+
+            foreach (Post post in m_LoggedInUser.NewsFeed)
+            {
+                if (!string.IsNullOrEmpty(post.Name))
+                {
+                    listBoxPosts.Invoke(new Action(() => listBoxPosts.Items.Add(new AdapterPost() { Adoptee = post })));
+                }
+            }
+
+
+            if (m_LoggedInUser.NewsFeed.Count == 0)
             {
                 listBoxPosts.Invoke(new Action(() => listBoxPosts.Items.Add("No Posts to Show.")));
                 listBoxPosts.Invoke(new Action(() => listBoxPosts.Enabled = false));
