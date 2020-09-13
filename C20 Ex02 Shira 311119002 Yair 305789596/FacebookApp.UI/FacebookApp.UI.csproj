@@ -7,7 +7,7 @@
     <ProjectGuid>{271C14CE-6F2E-4C35-A0FA-5AB5E9DC8A9A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>C20_Ex02_Shira_311119002_Yair_305789596</RootNamespace>
-    <AssemblyName>C20 Ex02 Shira 311119002 Yair 305789596</AssemblyName>
+    <AssemblyName>FacebookApp.UI</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -121,7 +121,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Project1\FacebookApp.Logic.csproj">
+    <ProjectReference Include="..\FacebookApp.Logic\FacebookApp.Logic.csproj">
       <Project>{08dddb2f-da53-47e1-a0f6-4a6762710790}</Project>
       <Name>FacebookApp.Logic</Name>
     </ProjectReference>
