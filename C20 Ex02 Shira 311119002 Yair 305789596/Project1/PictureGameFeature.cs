@@ -4,24 +4,35 @@ using FacebookWrapper.ObjectModel;
 
 namespace C20_Ex02_Shira_311119002_Yair_305789596
 {
-    public static class PictureGameFeature
+    internal static class PictureGameFeature
     {
-        public static event Action RightAnswerClicked;
-
-        public static readonly List<Album> sr_AlbumGame = new List<Album>();
+        internal static readonly List<Album> sr_AlbumGame = new List<Album>();
         internal static readonly List<int> sr_AlbumIndexers = new List<int>();
-        public static readonly List<string> sr_AlbumsLocations = new List<string>();
-        public static readonly int sr_NumOfAlbumsInGame = 4;
+        internal static readonly List<string> sr_AlbumsLocations = new List<string>();
+        internal static readonly int sr_NumOfAlbumsInGame = 4;
         internal static readonly int r_AnswersCount = 4;
         internal static int m_GamePoints = 0;
-        public static int m_PictureGameIndex;
+        internal static int m_PictureGameIndex;
         internal static int m_RightAnswerIndex;
         internal static Random s_Rnd = new Random();
         internal static string m_UserAnswer;
         internal static string m_RightAnswer;
         internal static string[] m_Answer;
 
-        public static void BuildGame(int i_IndexAlbum)
+
+        internal static void CreateAlbumsListWithLocationAndPicture(FacebookObjectCollection<Album> i_Albums)
+        {
+            foreach (Album album in i_Albums)
+            {
+                if (!string.IsNullOrEmpty(album.Location) && !string.IsNullOrEmpty(album.PictureAlbumURL))
+                { // album has picture and location
+                    PictureGameFeature.sr_AlbumGame.Add(album);
+                    PictureGameFeature.sr_AlbumsLocations.Add(album.Location);
+                }
+            }
+        }
+
+        internal static void BuildGame(int i_IndexAlbum)
         {
             m_PictureGameIndex = i_IndexAlbum;
             m_RightAnswerIndex = s_Rnd.Next(0, 4);
@@ -31,13 +42,9 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             placeAnswers();
         }
 
-        public static void ResetFeature()
+        internal static void ChooseRandomAlbums(out string o_Url1, out string o_Url2, out string o_Url3, out string o_Url4)
         {
-            m_GamePoints = 0;
-        }
-
-        public static void ChooseRandomAlbums(out string o_Url1, out string o_Url2, out string o_Url3, out string o_Url4)
-        {
+            sr_AlbumIndexers.Clear();
             for (int i = 0; i < sr_NumOfAlbumsInGame; i++)
             {
                 getRandomIndex(out int index);
@@ -48,6 +55,40 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             o_Url2 = sr_AlbumGame[sr_AlbumIndexers[1]].PictureAlbumURL;
             o_Url3 = sr_AlbumGame[sr_AlbumIndexers[2]].PictureAlbumURL;
             o_Url4 = sr_AlbumGame[sr_AlbumIndexers[3]].PictureAlbumURL;
+        }
+
+        internal static void ReplaceAlbumIndex()
+        {
+            getRandomIndex(out int index);
+            sr_AlbumIndexers[m_PictureGameIndex] = index;
+        }
+
+        internal static Album GetAlbum()
+        {
+            return sr_AlbumGame[sr_AlbumIndexers[m_PictureGameIndex]];
+        }
+
+        internal static string GetPictureUrl()
+        {
+            return sr_AlbumGame[sr_AlbumIndexers[m_PictureGameIndex]].PictureAlbumURL;
+        }
+
+        internal static string GetNewPictureUrl()
+        {
+            getRandomIndex(out int index);
+            sr_AlbumIndexers[m_PictureGameIndex] = index;
+            return GetPictureUrl();
+        }
+
+        internal static bool CheckUserAnswer()
+        {
+            bool result = false;
+            if (m_UserAnswer.Equals(m_RightAnswer))
+            {
+                result = true;
+            }
+
+            return result;
         }
 
         private static void getRandomIndex(out int o_Index)
@@ -74,42 +115,6 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
                 }
             }
 
-            return result;
-        }
-
-        public static void ReplaceAlbumIndex()
-        {
-            getRandomIndex(out int index);
-            sr_AlbumIndexers[m_PictureGameIndex] = index;
-        }
-
-        internal static Album GetAlbum()
-        {
-            return sr_AlbumGame[sr_AlbumIndexers[m_PictureGameIndex]];
-        }
-
-        internal static string GetPictureUrl()
-        {
-            return sr_AlbumGame[sr_AlbumIndexers[m_PictureGameIndex]].PictureAlbumURL;
-        }
-
-        public static string GetNewPictureUrl()
-        {
-            getRandomIndex(out int index);
-            sr_AlbumIndexers[m_PictureGameIndex] = index;
-            return GetPictureUrl();
-        }
-
-        internal static bool CheckUserAnswer()
-        {
-            bool result = false;
-            if (m_UserAnswer.Equals(m_RightAnswer))
-            {
-                result = true;
-                m_GamePoints++;
-                RightAnswerClicked.Invoke();
-            }
- 
             return result;
         }
 

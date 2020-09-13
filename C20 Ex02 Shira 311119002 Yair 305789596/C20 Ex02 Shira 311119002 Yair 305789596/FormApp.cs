@@ -25,13 +25,12 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             r_AppSettings = AppSettings.LoadFromFile();
             r_LoginAdapter = new AdapterLoginFacebook(r_AppSettings);
             fetchSettingData();
-            buildFeaturesSetting();
         }
 
         private void buildFeaturesSetting()
         {
             DatingFeature.ResetFeature();
-            PictureGameFeature.RightAnswerClicked += OnGamePictureRightAnswer;
+            FacadePictureGame.CreatePicturesGameFeature(m_LoggedInUser.Albums);
         }
 
         private void userLogin()
@@ -129,20 +128,8 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             }
         }
 
-        private void createAlbumGame()
-        {
-            // setting the game if user have more then 4 albums with pic and loction
-            if (PictureGameFeature.sr_AlbumsLocations.Count >= PictureGameFeature.sr_NumOfAlbumsInGame)
-            {
-                setAlbumPictuersGame();
-            }
-            else
-            {
-                abortAlbumGame();
-            }
-        }
 
-        private void abortAlbumGame()
+        private void abortAlbumGame() /// DELETE
         { // Action in other threads
             labelSubAlbumGame.Invoke(new Action(() => labelSubAlbumGame.Text = "Cannot load Game!"));
             labelError.Invoke(new Action(() => labelError.Text = "You should have at least 4 albums with location"));
@@ -166,8 +153,11 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
         private void resetPicturesGame()
         {
-            PictureGameFeature.ResetFeature();
-            labelGamePoints.Text = string.Format("You earn {0} points in game", FacadePictureGame.Points);
+            if(FacadePictureGame.IsFeatureAvailable)
+            {
+                FacadePictureGame.ResetFeature();
+
+            }
         }
 
         private void resetPostDetailes()
@@ -199,11 +189,10 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
         private void setAlbumPictuersGame()
         {
-            PictureGameFeature.ChooseRandomAlbums(out string url1, out string url2, out string url3, out string url4);
-            pictureBox1.LoadAsync(url1);
-            pictureBox2.LoadAsync(url2);
-            pictureBox3.LoadAsync(url3);
-            pictureBox4.LoadAsync(url4);
+            pictureBox1.LoadAsync(FacadePictureGame.FirstPictureURL);
+            pictureBox2.LoadAsync(FacadePictureGame.SecondPictureURL);
+            pictureBox3.LoadAsync(FacadePictureGame.ThirdPictureURL);
+            pictureBox4.LoadAsync(FacadePictureGame.FourthPictureURL);
         }
 
         private void buttonOpenFeature_Click(object sender, EventArgs e)
@@ -376,30 +365,26 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             m_AccessToken = m_LoginResult.AccessToken;
             m_LoggedInUser = m_LoginResult.LoggedInUser;
             fetchUserData();
+            buildFeaturesSetting();
             base.OnShown(e);
         }
 
-        private void OnGamePictureRightAnswer()
-        {
-            labelGamePoints.Text = string.Format("You earn {0} points in game", FacadePictureGame.Points);
-            replacePictureBoxGame(PictureGameFeature.GetNewPictureUrl());
-        }
 
-        private void replacePictureBoxGame(string i_UrlPicture)
+        private void replacePictureBoxGame()
         {
-            switch (PictureGameFeature.m_PictureGameIndex)
+            switch (FacadePictureGame.PictureGameAlbumIndex)
             {
                 case 0:
-                    pictureBox1.LoadAsync(i_UrlPicture);
+                    pictureBox1.LoadAsync(FacadePictureGame.FirstPictureURL);
                     break;
                 case 1:
-                    pictureBox2.LoadAsync(i_UrlPicture);
+                    pictureBox2.LoadAsync(FacadePictureGame.SecondPictureURL);
                     break;
                 case 2:
-                    pictureBox3.LoadAsync(i_UrlPicture);
+                    pictureBox3.LoadAsync(FacadePictureGame.ThirdPictureURL);
                     break;
                 case 3:
-                    pictureBox4.LoadAsync(i_UrlPicture);
+                    pictureBox4.LoadAsync(FacadePictureGame.FourthPictureURL);
                     break;
             }
         }
@@ -408,26 +393,27 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         {
             if(AppSettings.IsFeatureOpen(this.Size))
             {
-                if (this.pictureBox1.Image == null && this.pictureBox1.BackColor != Color.White)
+                if(FacadePictureGame.IsFeatureAvailable)
+                { // setting the game if user have more then 4 albums with pic and loction
+                    setAlbumPictuersGame();
+                }
+                else
                 {
-                    foreach (Album album in m_LoggedInUser.Albums)
-                    {
-                        if (!string.IsNullOrEmpty(album.Location) && !string.IsNullOrEmpty(album.PictureAlbumURL))
-                        { // album has picture and location
-                            PictureGameFeature.sr_AlbumGame.Add(album);
-                            PictureGameFeature.sr_AlbumsLocations.Add(album.Location);
-                        }
-                    }
-
-                    createAlbumGame();
+                    abortAlbumGame();
                 }
             }
         }
 
         private void pictureBoxGame_Click(object sender, EventArgs e)
         {
-            PictureGameFeature.BuildGame(int.Parse((sender as PictureBox).Tag.ToString()));
-            r_PictureGameForm.ShowDialog();
+            FacadePictureGame.BuildGame(int.Parse((sender as PictureBox).Tag.ToString()));
+            DialogResult res = r_PictureGameForm.ShowDialog();
+            if(res == DialogResult.Yes)
+            {
+                FacadePictureGame.ReplaceRightAnswerPictureURL();
+                replacePictureBoxGame();
+            }
+            labelGamePoints.Text = string.Format("You earn {0} points in game", FacadePictureGame.Points);
         }
     }
 }
