@@ -74,7 +74,6 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             this.labelError = new System.Windows.Forms.Label();
             this.textBoxAbout = new System.Windows.Forms.TextBox();
             this.labelAbout = new System.Windows.Forms.Label();
-            this.postBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.emailTextBox = new System.Windows.Forms.TextBox();
             emailLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureProfile)).BeginInit();
@@ -85,7 +84,6 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPost)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.postBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // emailLabel
@@ -145,8 +143,6 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // 
             this.listBoxPosts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.listBoxPosts.Cursor = System.Windows.Forms.Cursors.Default;
-            this.listBoxPosts.DataSource = this.postBindingSource;
-            this.listBoxPosts.DisplayMember = "Name";
             this.listBoxPosts.FormattingEnabled = true;
             this.listBoxPosts.Location = new System.Drawing.Point(484, 41);
             this.listBoxPosts.Margin = new System.Windows.Forms.Padding(2);
@@ -342,7 +338,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // 
             this.checkBoxRememberMe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkBoxRememberMe.AutoSize = true;
-            this.checkBoxRememberMe.Location = new System.Drawing.Point(22, 1084);
+            this.checkBoxRememberMe.Location = new System.Drawing.Point(11, 1033);
             this.checkBoxRememberMe.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxRememberMe.Name = "checkBoxRememberMe";
             this.checkBoxRememberMe.Size = new System.Drawing.Size(95, 17);
@@ -354,7 +350,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // buttonLogout
             // 
             this.buttonLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonLogout.Location = new System.Drawing.Point(22, 1047);
+            this.buttonLogout.Location = new System.Drawing.Point(11, 996);
             this.buttonLogout.Name = "buttonLogout";
             this.buttonLogout.Size = new System.Drawing.Size(95, 32);
             this.buttonLogout.TabIndex = 26;
@@ -490,7 +486,6 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // textBoxPostMsg
             // 
             this.textBoxPostMsg.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxPostMsg.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.postBindingSource, "Message", true));
             this.textBoxPostMsg.Location = new System.Drawing.Point(290, 344);
             this.textBoxPostMsg.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxPostMsg.Multiline = true;
@@ -504,7 +499,6 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // textBoxPostDate
             // 
             this.textBoxPostDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxPostDate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.postBindingSource, "CreatedTime", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "d"));
             this.textBoxPostDate.Location = new System.Drawing.Point(290, 483);
             this.textBoxPostDate.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxPostDate.Multiline = true;
@@ -517,7 +511,6 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             // pictureBoxPost
             // 
             this.pictureBoxPost.BackColor = System.Drawing.Color.Teal;
-            this.pictureBoxPost.DataBindings.Add(new System.Windows.Forms.Binding("Image", this.postBindingSource, "PictureURL", true));
             this.pictureBoxPost.Location = new System.Drawing.Point(290, 531);
             this.pictureBoxPost.Name = "pictureBoxPost";
             this.pictureBoxPost.Size = new System.Drawing.Size(161, 137);
@@ -563,10 +556,6 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             this.labelAbout.TabIndex = 44;
             this.labelAbout.Text = "About:";
             // 
-            // postBindingSource
-            // 
-            this.postBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.Post);
-            // 
             // emailTextBox
             // 
             this.emailTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "Email", true));
@@ -581,7 +570,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(795, 1115);
+            this.ClientSize = new System.Drawing.Size(795, 1061);
             this.Controls.Add(emailLabel);
             this.Controls.Add(this.emailTextBox);
             this.Controls.Add(this.textBoxAbout);
@@ -640,7 +629,6 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPost)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.postBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -689,7 +677,6 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         private System.Windows.Forms.TextBox textBoxAbout;
         private System.Windows.Forms.Label labelAbout;
         private System.Windows.Forms.BindingSource albumBindingSource;
-        private System.Windows.Forms.BindingSource postBindingSource;
         private System.Windows.Forms.TextBox emailTextBox;
     }
 }

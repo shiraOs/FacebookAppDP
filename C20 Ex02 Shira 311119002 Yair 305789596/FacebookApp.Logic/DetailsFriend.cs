@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using FacebookWrapper.ObjectModel;
-using System.Text;
 
 namespace C20_Ex02_Shira_311119002_Yair_305789596
 {

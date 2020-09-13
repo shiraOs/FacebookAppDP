@@ -10,6 +10,8 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 {
     public static class Utils
     {
+        public static string m_DefultPictureUrl = "https://longsshotokan.com/wp-content/uploads/2017/04/default-image.jpg";
+
         public static string CheckPropertyStr(string i_Property)
         {
             string checkedProperty = string.Empty;

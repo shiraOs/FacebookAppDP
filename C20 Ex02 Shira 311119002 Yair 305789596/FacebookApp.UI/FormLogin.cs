@@ -6,7 +6,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 {
     public partial class FormLogin : Form
     {
-        public Func<LoginResult> LoginClick;
+        public Func<string, string[], LoginResult> LoginClick;
 
         public LoginResult LoginResult { get; set; }
 
@@ -17,15 +17,13 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
-            try
-            {
-                LoginResult = LoginClick.Invoke();
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message);
-            }
+            LoginResult = LoginClick.Invoke(AppSettings.sr_AppID, AppSettings.sr_Permissions);
 
+            if (string.IsNullOrEmpty(LoginResult.AccessToken))
+            {
+                MessageBox.Show(LoginResult.ErrorMessage);
+            }
+       
             if (this.checkBoxRememberMe.Checked)
             {
                 this.DialogResult = DialogResult.Yes;

@@ -17,25 +17,28 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
                 return m_FirstPictureURL;
             }
         }
+
         public static string SecondPictureURL
         {
             get
             {
-                return m_FirstPictureURL;
+                return m_SecondPictureURL;
             }
         }
+
         public static string ThirdPictureURL
         {
             get
             {
-                return m_FirstPictureURL;
+                return m_ThirdPictureURL;
             }
         }
+
         public static string FourthPictureURL
         {
             get
             {
-                return m_FirstPictureURL;
+                return m_FourthPictureURL;
             }
         }
 
@@ -157,7 +160,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             PictureGameFeature.CreateAlbumsListWithLocationAndPicture(i_Albums);
             if (IsFeatureAvailable)
             {
-                PictureGameFeature.ChooseRandomAlbums(out m_FirstPictureURL, out m_SecondPictureURL, out m_ThirdPictureURL, out m_FourthPictureURL)                    
+                PictureGameFeature.ChooseRandomAlbums(out m_FirstPictureURL, out m_SecondPictureURL, out m_ThirdPictureURL, out m_FourthPictureURL);                    
             }
         }
 

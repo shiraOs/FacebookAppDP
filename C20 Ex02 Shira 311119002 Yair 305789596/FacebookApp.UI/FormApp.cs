@@ -13,7 +13,6 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         private readonly FormDetails r_FormDeatils = new FormDetails();
         private readonly FormLogin r_LoginForm = new FormLogin();
         private readonly AppSettings r_AppSettings;
-        private readonly AdapterLoginFacebook r_LoginAdapter;
         private LoginResult m_LoginResult;
         private User m_LoggedInUser;
         private string m_AccessToken;
@@ -23,7 +22,6 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             InitializeComponent();
             this.Size = AppSettings.sr_SmallFormSize;
             r_AppSettings = AppSettings.LoadFromFile();
-            r_LoginAdapter = new AdapterLoginFacebook(r_AppSettings);
             fetchSettingData();
         }
 
@@ -35,7 +33,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
         private void userLogin()
         {
-            r_LoginForm.LoginClick += r_LoginAdapter.Login;
+            r_LoginForm.LoginClick += FacebookService.Login;
             DialogResult result = r_LoginForm.ShowDialog();
             m_LoginResult = r_LoginForm.LoginResult;
             checkFormLoginDialogResult(result);
@@ -100,20 +98,15 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
         private void fetchPosts()
         { // Action in other threads and data binding
-
-            // listBoxPosts.Invoke(new Action(() => postBindingSource Filter = "Name LIKE ''"));;
-            //listBoxPosts.Invoke(new Action(() => postBindingSource.DataSource = m_LoggedInUser.WallPosts));
-
             listBoxPosts.Invoke(new Action(() => listBoxPosts.DisplayMember = "Name"));
 
             foreach (Post post in m_LoggedInUser.NewsFeed)
             {
                 if (!string.IsNullOrEmpty(post.Name))
                 {
-                    listBoxPosts.Invoke(new Action(() => listBoxPosts.Items.Add(new AdapterPost() { Adoptee = post })));
+                    listBoxPosts.Invoke(new Action(() => listBoxPosts.Items.Add(new AdapterPost { Post = post })));
                 }
             }
-
 
             if (m_LoggedInUser.NewsFeed.Count == 0)
             {
@@ -308,15 +301,10 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             {                
                 if (listBoxPosts.SelectedItem != null)
                 {
-                    // ProxyPost selectedPost = listBoxPosts.SelectedItem as ProxyPost;
-                    // textBoxPostDate.Text = selectedPost.Date;
-                    // textBoxPostMsg.Text = selectedPost.Message;
-                    // pictureBoxPost.Image = selectedPost.PictureUrl;
-                    string picturUrl = (listBoxPosts.SelectedItem as Post).PictureURL;
-                    if (!string.IsNullOrEmpty(picturUrl))
-                    {
-                        pictureBoxPost.Load(picturUrl);
-                    }
+                    AdapterPost selectedPost = listBoxPosts.SelectedItem as AdapterPost;
+                    textBoxPostDate.Text = Convert.ToDateTime(selectedPost.CreatedTime).ToShortDateString();
+                    textBoxPostMsg.Text = selectedPost.Description;
+                    pictureBoxPost.LoadAsync(selectedPost.PictureURL);
                 }
             }
         }
@@ -364,9 +352,12 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
         protected override void OnShown(EventArgs e)
         {
-            m_LoginResult = r_LoginAdapter.Connect();
-            
-            if(m_LoginResult == null)
+            if (r_AppSettings.RememberUser
+                && !string.IsNullOrEmpty(r_AppSettings.LastAccessToken))
+            {
+                m_LoginResult = FacebookService.Connect(r_AppSettings.LastAccessToken);
+            }
+            else
             {
                 userLogin();
             }

@@ -1,26 +1,91 @@
-using FacebookWrapper.ObjectModel;
 using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+using FacebookWrapper.ObjectModel;
 
 namespace C20_Ex02_Shira_311119002_Yair_305789596
 {
-    interface IPostDetails
+    public interface IPresentDetails
     {
-        string PostName { get; set; }
-        string PostDescription { get; set; }
-        DateTime PostCreateTime { get; set; }
-        Image PostPicture { get; set; }
+        string Name { get; }
 
+        string Description { get; }
+
+        string PictureURL { get; }
+
+        DateTime? CreatedTime { get; }
     }
-    public class AdapterPost : IPostDetails
+
+    public class AdapterPost : IPresentDetails
     {
-        public Post Adoptee { get; set; }
-        public string PostName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string PostDescription { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public DateTime PostCreateTime { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public Image PostPicture { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Post Post { get; set; }
+
+        private string m_Description;
+        private string m_PictureURL;
+        private DateTime? m_CreatedTime;
+
+        public string Name
+        {
+            get
+            {
+                return Post.Name;
+            }
+        }
+
+        public string Description
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(m_Description))
+                {
+                    m_Description = Utils.CheckPropertyStr(Post.Message);
+                    if (string.IsNullOrEmpty(m_Description))
+                    {
+                        m_Description = Utils.CheckPropertyStr(Post.Description);
+                    }
+
+                    if (string.IsNullOrEmpty(m_Description))
+                    {
+                        m_Description = Utils.CheckPropertyStr(Post.Name);
+                    }
+                }
+
+                return m_Description;
+            }
+        }
+
+        public DateTime? CreatedTime
+        {
+            get
+            {
+                if (m_CreatedTime == null)
+                {
+                    if (Post.CreatedTime != null)
+                    {
+                        m_CreatedTime = Convert.ToDateTime(Post.CreatedTime).Date;
+                    }
+                }
+
+                return m_CreatedTime;
+            }
+        }
+
+        public string PictureURL
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(m_PictureURL))
+                {
+                    if (!string.IsNullOrEmpty(Post.PictureURL))
+                    {
+                        m_PictureURL = Post.PictureURL;
+                    }
+                    else
+                    {
+                        m_PictureURL = Utils.m_DefultPictureUrl;
+                    }
+                }
+
+                return m_PictureURL;
+            }
+        }
     }
 }
