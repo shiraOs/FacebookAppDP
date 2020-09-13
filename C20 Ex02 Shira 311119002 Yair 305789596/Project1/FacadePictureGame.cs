@@ -1,7 +1,6 @@
 using System;
 using FacebookWrapper.ObjectModel;
 
-
 namespace C20_Ex02_Shira_311119002_Yair_305789596
 {
     public static class FacadePictureGame
@@ -12,8 +11,11 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         private static string m_FourthPictureURL;
 
         public static string FirstPictureURL => m_FirstPictureURL;  // DID WE LEARN???
+
         public static string SecondPictureURL => m_SecondPictureURL;
+
         public static string ThirdPictureURL => m_ThirdPictureURL;
+
         public static string FourthPictureURL => m_FourthPictureURL;
 
         public static string FirstAnswer
@@ -64,7 +66,6 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             }
         }
 
-
         public static string UserAnswer
         {
             set
@@ -81,6 +82,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
                 result = true;
                 PictureGameFeature.m_GamePoints++;
             }
+
             return result;
         }
 
@@ -147,6 +149,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
                 {
                     result = true;
                 }
+
                 return result;
             }
         }
@@ -168,6 +171,4 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             }
         }
     }
-
-
 }

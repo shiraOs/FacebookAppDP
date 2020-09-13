@@ -128,7 +128,6 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             }
         }
 
-
         private void abortAlbumGame() /// DELETE
         { // Action in other threads
             labelSubAlbumGame.Invoke(new Action(() => labelSubAlbumGame.Text = "Cannot load Game!"));
@@ -156,7 +155,6 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             if(FacadePictureGame.IsFeatureAvailable)
             {
                 FacadePictureGame.ResetFeature();
-
             }
         }
 
@@ -369,7 +367,6 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             base.OnShown(e);
         }
 
-
         private void replacePictureBoxGame()
         {
             switch (FacadePictureGame.PictureGameAlbumIndex)
@@ -413,6 +410,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
                 FacadePictureGame.ReplaceRightAnswerPictureURL();
                 replacePictureBoxGame();
             }
+
             labelGamePoints.Text = string.Format("You earn {0} points in game", FacadePictureGame.Points);
         }
     }

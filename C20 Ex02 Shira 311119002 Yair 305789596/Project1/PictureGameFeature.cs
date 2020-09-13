@@ -19,7 +19,6 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         internal static string m_RightAnswer;
         internal static string[] m_Answer;
 
-
         internal static void CreateAlbumsListWithLocationAndPicture(FacebookObjectCollection<Album> i_Albums)
         {
             foreach (Album album in i_Albums)

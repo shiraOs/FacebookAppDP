@@ -33,6 +33,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             {
                 this.DialogResult = DialogResult.No;
             }
+
             this.Close();
         }
     }

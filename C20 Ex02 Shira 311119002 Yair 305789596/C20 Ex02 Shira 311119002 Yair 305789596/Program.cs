@@ -1,12 +1,10 @@
 using System;
 using System.Windows.Forms;
 
+// Access modifatior to all the classes and the methods //
+
 namespace C20_Ex02_Shira_311119002_Yair_305789596
 {
-    // Access modifatior to all the classes and the methods
-    // StyleCop
-    // To think about pattern Factory methods
-
     public static class Program
     {
         /// <summary>
