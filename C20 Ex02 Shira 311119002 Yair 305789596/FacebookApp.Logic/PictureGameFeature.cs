@@ -16,7 +16,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         internal static Random s_Rnd = new Random();
         internal static string m_UserAnswer;
         internal static string m_RightAnswer;
-        internal static string[] m_Answer;
+        internal static string[] m_Answers;
 
         internal static void CreateAlbumsListWithLocationAndPicture(FacebookObjectCollection<Album> i_Albums)
         {
@@ -29,13 +29,13 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             }
         }
 
-        internal static void BuildGame(int i_IndexAlbum)
+        internal static void InitPictureGameDetails(int i_IndexAlbum)
         {
             m_PictureGameIndex = i_IndexAlbum;
             m_RightAnswerIndex = s_Rnd.Next(0, 4);
             m_RightAnswer = GetAlbum().Location;
-            m_Answer = new string[r_AnswersCount];
-            m_Answer[m_RightAnswerIndex] = m_RightAnswer;
+            m_Answers = new string[r_AnswersCount];
+            m_Answers[m_RightAnswerIndex] = m_RightAnswer;
             placeAnswers();
         }
 
@@ -134,9 +134,9 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
                     albumIndex++;
                 }
 
-                if (!m_RightAnswer.Equals(m_Answer[i]))
+                if (!m_RightAnswer.Equals(m_Answers[i]))
                 {
-                    m_Answer[i] = sr_AlbumGame[sr_AlbumIndexers[albumIndex]].Location;
+                    m_Answers[i] = sr_AlbumGame[sr_AlbumIndexers[albumIndex]].Location;
                     albumIndex++;
                 }
             }

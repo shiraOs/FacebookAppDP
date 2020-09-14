@@ -10,7 +10,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
     public partial class FormApp : Form
     {
         private readonly FormPictureGame r_PictureGameForm = new FormPictureGame();
-        private readonly FormDetails r_FormDetails = new FormDetails();
+        private readonly FormDetails r_FormDeatils = new FormDetails();
         private readonly FormLogin r_LoginForm = new FormLogin();
         private readonly AppSettings r_AppSettings;
         private LoginResult m_LoginResult;
@@ -132,7 +132,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             }
         }
 
-        private void abortAlbumGame() /// DELETE
+        private void abortAlbumGame()
         { // Action in other threads
             labelSubAlbumGame.Invoke(new Action(() => labelSubAlbumGame.Text = "Cannot load Game!"));
             labelError.Invoke(new Action(() => labelError.Text = "You should have at least 4 albums with location"));
@@ -184,8 +184,8 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         {
             if (i_SelectedFriend != null)
             {
-                r_FormDetails.BuildForm(new IFormFriend(), i_SelectedFriend);
-                r_FormDetails.ShowDialog();
+                r_FormDeatils.BuildForm(new IFormFriend(), i_SelectedFriend);
+                r_FormDeatils.ShowDialog();
             }
         }
 
@@ -291,8 +291,8 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
         private void showAlbumForm(Album o_SelectedAlbum)
         {
-            r_FormDetails.BuildForm(new IFormAlbum(), o_SelectedAlbum);
-            r_FormDetails.ShowDialog();
+            r_FormDeatils.BuildForm(new IFormAlbum(), o_SelectedAlbum);
+            r_FormDeatils.ShowDialog();
         }
 
         private void listBoxPosts_SelectedIndexChanged(object sender, EventArgs e)
@@ -405,7 +405,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
         private void pictureBoxGame_Click(object sender, EventArgs e)
         {
-            FacadePictureGame.BuildGame(int.Parse((sender as PictureBox).Tag.ToString()));
+            FacadePictureGame.InitPictureGameDetails(int.Parse((sender as PictureBox).Tag.ToString()));
             DialogResult res = r_PictureGameForm.ShowDialog();
             if(res == DialogResult.Yes)
             {

@@ -11,7 +11,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         {
             get
             {
-                return PictureGameFeature.m_Answer[0];
+                return PictureGameFeature.m_Answers[0];
             }
         }
 
@@ -19,7 +19,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         {
             get
             {
-                return PictureGameFeature.m_Answer[1];
+                return PictureGameFeature.m_Answers[1];
             }
         }
 
@@ -27,7 +27,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         {
             get
             {
-                return PictureGameFeature.m_Answer[2];
+                return PictureGameFeature.m_Answers[2];
             }
         }
 
@@ -35,7 +35,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         {
             get
             {
-                return PictureGameFeature.m_Answer[3];
+                return PictureGameFeature.m_Answers[3];
             }
         }
 
@@ -109,9 +109,9 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             }
         }
 
-        public static void BuildGame(int i_IndexAlbum)
+        public static void InitPictureGameDetails(int i_IndexAlbum)
         {
-            PictureGameFeature.BuildGame(i_IndexAlbum);
+            PictureGameFeature.InitPictureGameDetails(i_IndexAlbum);
         }
 
         public static void CreatePicturesGameFeature(FacebookObjectCollection<Album> i_Albums)
