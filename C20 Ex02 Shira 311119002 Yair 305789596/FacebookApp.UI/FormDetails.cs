@@ -27,6 +27,11 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
         protected override void OnShown(EventArgs e)
         {
+            loadDetails();
+        }
+
+        private void loadDetails()
+        {
             this.Text = m_Details.TitleName;
             this.labelTitleName.Text = m_Details.TitleName;
             this.pictureBox1.LoadAsync(m_Details.PictureURL);

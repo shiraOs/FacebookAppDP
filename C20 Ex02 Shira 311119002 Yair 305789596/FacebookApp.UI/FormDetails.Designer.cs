@@ -1,4 +1,4 @@
-﻿namespace C20_Ex02_Shira_311119002_Yair_305789596
+namespace C20_Ex02_Shira_311119002_Yair_305789596
 {
     public partial class FormDetails
     {
@@ -102,7 +102,7 @@
             this.labelLine3.Text = "Third Line";
             this.labelLine3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // FormDeatils
+            // FormDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -118,7 +118,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FormDeatils";
+            this.Name = "FormDetails";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TitleName";

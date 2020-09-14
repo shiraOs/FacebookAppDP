@@ -16,7 +16,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
     public class AdapterPost : IPresentDetails
     {
-        public Post Post { get; set; }
+        public Post Adoptee { get; set; }
 
         private string m_Description;
         private string m_PictureURL;
@@ -26,7 +26,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         {
             get
             {
-                return Post.Name;
+                return Adoptee.Name;
             }
         }
 
@@ -36,15 +36,15 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             {
                 if (string.IsNullOrEmpty(m_Description))
                 {
-                    m_Description = Utils.CheckPropertyStr(Post.Message);
+                    m_Description = Utils.CheckPropertyStr(Adoptee.Message);
                     if (string.IsNullOrEmpty(m_Description))
                     {
-                        m_Description = Utils.CheckPropertyStr(Post.Description);
+                        m_Description = Utils.CheckPropertyStr(Adoptee.Description);
                     }
 
                     if (string.IsNullOrEmpty(m_Description))
                     {
-                        m_Description = Utils.CheckPropertyStr(Post.Name);
+                        m_Description = Utils.CheckPropertyStr(Adoptee.Name);
                     }
                 }
 
@@ -58,9 +58,9 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             {
                 if (m_CreatedTime == null)
                 {
-                    if (Post.CreatedTime != null)
+                    if (Adoptee.CreatedTime != null)
                     {
-                        m_CreatedTime = Convert.ToDateTime(Post.CreatedTime).Date;
+                        m_CreatedTime = Convert.ToDateTime(Adoptee.CreatedTime).Date;
                     }
                 }
 
@@ -74,13 +74,13 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             {
                 if (string.IsNullOrEmpty(m_PictureURL))
                 {
-                    if (!string.IsNullOrEmpty(Post.PictureURL))
+                    if (!string.IsNullOrEmpty(Adoptee.PictureURL))
                     {
-                        m_PictureURL = Post.PictureURL;
+                        m_PictureURL = Adoptee.PictureURL;
                     }
                     else
                     {
-                        m_PictureURL = Utils.m_DefultPictureUrl;
+                        m_PictureURL = Utils.m_DefaultPictureUrl;
                     }
                 }
 

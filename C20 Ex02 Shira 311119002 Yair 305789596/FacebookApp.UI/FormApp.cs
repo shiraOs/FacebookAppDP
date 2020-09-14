@@ -10,7 +10,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
     public partial class FormApp : Form
     {
         private readonly FormPictureGame r_PictureGameForm = new FormPictureGame();
-        private readonly FormDetails r_FormDeatils = new FormDetails();
+        private readonly FormDetails r_FormDetails = new FormDetails();
         private readonly FormLogin r_LoginForm = new FormLogin();
         private readonly AppSettings r_AppSettings;
         private LoginResult m_LoginResult;
@@ -104,7 +104,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             {
                 if (!string.IsNullOrEmpty(post.Name))
                 {
-                    listBoxPosts.Invoke(new Action(() => listBoxPosts.Items.Add(new AdapterPost { Post = post })));
+                    listBoxPosts.Invoke(new Action(() => listBoxPosts.Items.Add(new AdapterPost { Adoptee = post })));
                 }
             }
 
@@ -184,8 +184,8 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         {
             if (i_SelectedFriend != null)
             {
-                r_FormDeatils.BuildForm(new IFormFriend(), i_SelectedFriend);
-                r_FormDeatils.ShowDialog();
+                r_FormDetails.BuildForm(new IFormFriend(), i_SelectedFriend);
+                r_FormDetails.ShowDialog();
             }
         }
 
@@ -291,8 +291,8 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
         private void showAlbumForm(Album o_SelectedAlbum)
         {
-            r_FormDeatils.BuildForm(new IFormAlbum(), o_SelectedAlbum);
-            r_FormDeatils.ShowDialog();
+            r_FormDetails.BuildForm(new IFormAlbum(), o_SelectedAlbum);
+            r_FormDetails.ShowDialog();
         }
 
         private void listBoxPosts_SelectedIndexChanged(object sender, EventArgs e)
