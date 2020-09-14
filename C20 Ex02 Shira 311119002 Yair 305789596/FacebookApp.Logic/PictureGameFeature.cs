@@ -9,14 +9,14 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         internal static readonly List<Album> sr_AlbumGame = new List<Album>();
         internal static readonly List<int> sr_AlbumIndexers = new List<int>();
         internal static readonly int sr_NumOfAlbumsInGame = 4;
-        internal static readonly int r_AnswersCount = 4;
-        internal static int m_GamePoints = 0;
-        internal static int m_PictureGameIndex;
-        internal static int m_RightAnswerIndex;
+        internal static readonly int sr_AnswersCount = 4;
+        internal static int s_GamePoints = 0;
+        internal static int s_PictureGameIndex;
+        internal static int s_RightAnswerIndex;
         internal static Random s_Rnd = new Random();
-        internal static string m_UserAnswer;
-        internal static string m_RightAnswer;
-        internal static string[] m_Answers;
+        internal static string s_UserAnswer;
+        internal static string s_RightAnswer;
+        internal static string[] s_Answers;
 
         internal static void CreateAlbumsListWithLocationAndPicture(FacebookObjectCollection<Album> i_Albums)
         {
@@ -24,24 +24,25 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             {
                 if (!string.IsNullOrEmpty(album.Location) && !string.IsNullOrEmpty(album.PictureAlbumURL))
                 { // album has picture and location
-                    PictureGameFeature.sr_AlbumGame.Add(album);
+                     sr_AlbumGame.Add(album);
                 }
             }
         }
 
         internal static void InitPictureGameDetails(int i_IndexAlbum)
         {
-            m_PictureGameIndex = i_IndexAlbum;
-            m_RightAnswerIndex = s_Rnd.Next(0, 4);
-            m_RightAnswer = GetAlbum().Location;
-            m_Answers = new string[r_AnswersCount];
-            m_Answers[m_RightAnswerIndex] = m_RightAnswer;
+            s_PictureGameIndex = i_IndexAlbum;
+            s_RightAnswerIndex = s_Rnd.Next(0, 4);
+            s_RightAnswer = GetCurrentAlbum().Location;
+            s_Answers = new string[sr_AnswersCount];
+            s_Answers[s_RightAnswerIndex] = s_RightAnswer;
             placeAnswers();
         }
 
         internal static void ChooseRandomAlbums(out string o_Url1, out string o_Url2, out string o_Url3, out string o_Url4)
         {
             sr_AlbumIndexers.Clear();
+
             for (int i = 0; i < sr_NumOfAlbumsInGame; i++)
             {
                 getRandomIndex(out int index);
@@ -54,26 +55,21 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             o_Url4 = sr_AlbumGame[sr_AlbumIndexers[3]].PictureAlbumURL;
         }
 
-        internal static void ReplaceAlbumIndex()
+        internal static Album GetCurrentAlbum()
         {
-            getRandomIndex(out int index);
-            sr_AlbumIndexers[m_PictureGameIndex] = index;
-        }
-
-        internal static Album GetAlbum()
-        {
-            return sr_AlbumGame[sr_AlbumIndexers[m_PictureGameIndex]];
+            return sr_AlbumGame[sr_AlbumIndexers[s_PictureGameIndex]];
         }
 
         internal static string GetPictureUrl()
         {
-            return sr_AlbumGame[sr_AlbumIndexers[m_PictureGameIndex]].PictureAlbumURL;
+            return sr_AlbumGame[sr_AlbumIndexers[s_PictureGameIndex]].PictureAlbumURL;
         }
 
         internal static string GetNewPictureUrl()
         {
             getRandomIndex(out int index);
-            sr_AlbumIndexers[m_PictureGameIndex] = index;
+            sr_AlbumIndexers[s_PictureGameIndex] = index;
+
             return GetPictureUrl();
         }
 
@@ -81,16 +77,17 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         {
            if(CheckUserAnswer())
             {
-                m_GamePoints++;
+                s_GamePoints++;
             }
         }
+
         internal static bool CheckUserAnswer()
         {
             bool result = false;
-            if (m_UserAnswer.Equals(m_RightAnswer))
+
+            if (s_UserAnswer.Equals(s_RightAnswer))
             {
                 result = true;
-                m_GamePoints++;
             }
 
             return result;
@@ -127,16 +124,16 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         {
             int albumIndex = 0;
 
-            for (int i = 0; i < r_AnswersCount; i++)
+            for (int i = 0; i < sr_AnswersCount; i++)
             {
-                if (albumIndex.Equals(m_PictureGameIndex))
+                if (albumIndex.Equals(s_PictureGameIndex))
                 {
                     albumIndex++;
                 }
 
-                if (!m_RightAnswer.Equals(m_Answers[i]))
+                if (!s_RightAnswer.Equals(s_Answers[i]))
                 {
-                    m_Answers[i] = sr_AlbumGame[sr_AlbumIndexers[albumIndex]].Location;
+                    s_Answers[i] = sr_AlbumGame[sr_AlbumIndexers[albumIndex]].Location;
                     albumIndex++;
                 }
             }

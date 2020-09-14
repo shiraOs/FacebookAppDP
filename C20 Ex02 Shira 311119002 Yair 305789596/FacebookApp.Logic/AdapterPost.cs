@@ -80,7 +80,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
                     }
                     else
                     {
-                        m_PictureURL = Utils.m_DefaultPictureUrl;
+                        m_PictureURL = Utils.s_DefaultPictureUrl;
                     }
                 }
 

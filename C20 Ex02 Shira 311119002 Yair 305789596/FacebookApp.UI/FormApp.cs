@@ -81,6 +81,8 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
         private void fetchPersonalDetails()
         { // Using data binding
+          // About detail not available but you can change the field
+          // Gender is not option in data binding for User
             userBindingSource.DataSource = this.m_LoggedInUser;
             textBoxGender.Text = Utils.CheckPropertyStr(m_LoggedInUser.Gender.ToString());
         }
@@ -134,6 +136,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
         private void abortAlbumGame()
         { // Action in other threads
+          // If user doesn't have at least 4 albums with location and picture
             labelSubAlbumGame.Invoke(new Action(() => labelSubAlbumGame.Text = "Cannot load Game!"));
             labelError.Invoke(new Action(() => labelError.Text = "You should have at least 4 albums with location"));
             labelGamePoints.Invoke(new Action(() => labelGamePoints.ForeColor = Color.White));
@@ -289,10 +292,13 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             listBoxAlbums.ClearSelected();
         }
 
-        private void showAlbumForm(Album o_SelectedAlbum)
+        private void showAlbumForm(Album i_SelectedAlbum)
         {
-            r_FormDeatils.BuildForm(new IFormAlbum(), o_SelectedAlbum);
-            r_FormDeatils.ShowDialog();
+            if(i_SelectedAlbum != null)
+            {
+                r_FormDeatils.BuildForm(new IFormAlbum(), i_SelectedAlbum);
+                r_FormDeatils.ShowDialog();
+            }
         }
 
         private void listBoxPosts_SelectedIndexChanged(object sender, EventArgs e)
@@ -313,6 +319,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         {
             CheckBox currCheckBox = sender as CheckBox;
             string requiredGender = currCheckBox.Text;
+
             if (currCheckBox.Checked)
             {
                 if (requiredGender.Equals("Male") && currCheckBox.Checked)
@@ -344,13 +351,24 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
+            disposeApp();
             base.OnFormClosing(e);
+        }
+
+        protected override void OnShown(EventArgs e)
+        {
+            initApp();
+            base.OnShown(e);
+        }
+
+        private void disposeApp()
+        {
             r_AppSettings.RememberUser = this.checkBoxRememberMe.Checked;
             r_AppSettings.LastAccessToken = m_AccessToken;
             r_AppSettings.SaveToFile();
         }
 
-        protected override void OnShown(EventArgs e)
+        private void initApp()
         {
             if (r_AppSettings.RememberUser
                 && !string.IsNullOrEmpty(r_AppSettings.LastAccessToken))
@@ -366,7 +384,6 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             m_LoggedInUser = m_LoginResult.LoggedInUser;
             fetchUserData();
             buildFeaturesSetting();
-            base.OnShown(e);
         }
 
         private void replacePictureBoxGame()
@@ -407,6 +424,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         {
             FacadePictureGame.InitPictureGameDetails(int.Parse((sender as PictureBox).Tag.ToString()));
             DialogResult res = r_PictureGameForm.ShowDialog();
+
             if(res == DialogResult.Yes)
             {
                 FacadePictureGame.ReplaceRightAnswerPictureURL();
