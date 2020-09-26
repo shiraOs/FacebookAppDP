@@ -5,7 +5,7 @@ using System.Drawing;
 using FacebookWrapper;
 using FacebookWrapper.ObjectModel;
 
-namespace C20_Ex02_Shira_311119002_Yair_305789596
+namespace C20_Ex03_Shira_311119002_Yair_305789596
 {
     public partial class FormApp : Form
     {
@@ -27,7 +27,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
         private void buildFeaturesSetting()
         {
-            DatingFeature.ResetFeature();
+            DatingFeature.CreateOrResetFeature();
             FacadePictureGame.CreatePicturesGameFeature(m_LoggedInUser.Albums);
         }
 
@@ -175,7 +175,7 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
         private void resetMatchFeature()
         {
-            DatingFeature.ResetFeature();
+            DatingFeature.CreateOrResetFeature();
             listBoxAgeRange.ClearSelected();
             listBoxMatchingFriends.Items.Clear();
             listBoxMatchingFriends.ClearSelected();
@@ -269,10 +269,11 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
         private void listBoxAgeRange_SelectedIndexChanged(object sender, EventArgs e)
         {
             DatingFeature.RequiredAgeRange = (DatingFeature.eAgeRange)listBoxAgeRange.SelectedIndex;
-            if (checkBoxMale.Checked || checkBoxFemale.Checked)
-            {
-                buttonMatch.Enabled = true;
-            }
+            buttonMatch.Enabled = true;
+
+            //if (checkBoxMale.Checked || checkBoxFemale.Checked)
+            //{
+            //}
         }
 
         private void listBoxFriends_SelectedIndexChanged(object sender, EventArgs e)
@@ -326,22 +327,25 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
                 {
                     DatingFeature.RequiredGender = User.eGender.male;
                     checkBoxFemale.Checked = false;
+                    buttonMatch.Enabled = true;
                 }
                 else if (requiredGender.Equals("Female") && currCheckBox.Checked)
                 {
                     DatingFeature.RequiredGender = User.eGender.female;
                     checkBoxMale.Checked = false;
+                    buttonMatch.Enabled = true;
                 }
-                else
+       
+            }
+            else
+            {
+                if (DatingFeature.RequiredAgeRange == null)
                 {
                     buttonMatch.Enabled = false;
                 }
-
-                if (DatingFeature.RequiredAgeRange != null)
-                {
-                    buttonMatch.Enabled = true;
-                }
+                DatingFeature.RequiredGender = null;
             }
+
         }
         
         private void checkBoxRememberMe_CheckedChanged(object sender, EventArgs e)

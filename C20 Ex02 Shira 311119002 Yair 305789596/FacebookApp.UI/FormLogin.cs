@@ -2,7 +2,7 @@ using System;
 using System.Windows.Forms;
 using FacebookWrapper;
 
-namespace C20_Ex02_Shira_311119002_Yair_305789596
+namespace C20_Ex03_Shira_311119002_Yair_305789596
 {
     public partial class FormLogin : Form
     {

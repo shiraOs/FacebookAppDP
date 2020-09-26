@@ -1,10 +1,20 @@
 using System;
+using System.Collections.Generic;
 using FacebookWrapper.ObjectModel;
 
-namespace C20_Ex02_Shira_311119002_Yair_305789596
+namespace C20_Ex03_Shira_311119002_Yair_305789596
 {
+
     public static class DatingFeature
     {
+        private static readonly List<Func<User, bool>> MacthStrategies = new List<Func<User,bool>>();
+        private static User.eGender? m_RequiredGender;
+        private static eAgeRange? m_RequiredAgeRange;
+
+        internal static void addStrategy(Func<User,bool> i_StrategyToAdd)
+        {
+            MacthStrategies.Add(i_StrategyToAdd);
+        }
         public enum eAgeRange
         {
             eFiftheenTilEighteen,
@@ -14,31 +24,72 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
             eFourtyPlus
         }
 
-        public static User.eGender? RequiredGender { get; set; }
-
-        public static eAgeRange? RequiredAgeRange { get; set; }
-
-        public static void ResetFeature()
+        public static User.eGender? RequiredGender 
+        { 
+            get
+            {
+                return m_RequiredGender;
+            }
+            set
+            {
+                if(m_RequiredGender == null)
+                {
+                    MacthStrategies.Add(matchByGender);
+                }
+                m_RequiredGender = value;
+                if(m_RequiredGender == null)
+                {
+                    MacthStrategies.Remove(matchByGender);
+                }
+            }
+        }
+        public static eAgeRange? RequiredAgeRange
         {
-            RequiredAgeRange = null;
-            RequiredGender = null;
+            get
+            {
+                return m_RequiredAgeRange;
+            }
+            set
+            {
+                if (m_RequiredAgeRange == null)
+                {
+                    MacthStrategies.Add(matchByAge);
+                }
+                m_RequiredAgeRange = value;
+                if (m_RequiredGender == null)
+                {
+                    MacthStrategies.Remove(matchByAge);
+                }
+            }
+        }
+
+        static DatingFeature()
+        {
+            CreateOrResetFeature();
+        }
+
+        public static void CreateOrResetFeature()
+        {
+            MacthStrategies.Clear();
+            m_RequiredGender = null;
+            m_RequiredAgeRange = null;
         }
 
         public static bool IsFriendMatchToUserRequests(User i_Friend)
         {
             bool isMatch = false;
-            int age = Utils.GetUserAge(i_Friend.Birthday);
 
-            if(RequiredAgeRange == null || RequiredGender == null)
+            if (isFriendSingle(i_Friend))
             {
-                throw new Exception("Required Age or Required Gender is missing");
-            }
+                isMatch = true;
 
-            if (i_Friend.Gender.Equals(RequiredGender) && isAgeInRequiredAgeRange(age, RequiredAgeRange))
-            {
-                if (i_Friend.RelationshipStatus.Equals(User.eRelationshipStatus.Single) || i_Friend.RelationshipStatus.Equals(User.eRelationshipStatus.None))
+                foreach (Func<User,bool> strategy in MacthStrategies)
                 {
-                    isMatch = true;
+                    if(strategy.Invoke(i_Friend) == false)
+                    {
+                        isMatch = false;
+                        break;
+                    }
                 }
             }
 
@@ -75,5 +126,26 @@ namespace C20_Ex02_Shira_311119002_Yair_305789596
 
             return inRange;
         }
+        private static bool matchByGender(User i_Friend)
+        {
+            if (RequiredGender == null)
+            {
+                return true;
+            }
+            return i_Friend.Gender.Equals(RequiredGender);
+        }
+        private static bool matchByAge(User i_Friend)
+        { 
+            if(RequiredAgeRange == null)
+            {
+                return true;
+            }
+            return isAgeInRequiredAgeRange(Utils.GetUserAge(i_Friend.Birthday), RequiredAgeRange);
+        }
+        private static bool isFriendSingle(User i_Friend)
+        {
+            return i_Friend.RelationshipStatus.Equals(User.eRelationshipStatus.Single) || i_Friend.RelationshipStatus.Equals(User.eRelationshipStatus.None);
+        }
+
     }
 }

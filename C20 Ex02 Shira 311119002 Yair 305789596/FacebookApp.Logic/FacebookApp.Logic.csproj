@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{08DDDB2F-DA53-47E1-A0F6-4A6762710790}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>C20_Ex02_Shira_311119002_Yair_305789596</RootNamespace>
+    <RootNamespace>C20_Ex03_Shira_311119002_Yair_305789596</RootNamespace>
     <AssemblyName>FacebookApp.Logic</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
