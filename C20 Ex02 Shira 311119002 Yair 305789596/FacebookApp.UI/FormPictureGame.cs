@@ -12,20 +12,22 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 
         protected override void OnShown(EventArgs e)
         {
-            pictureBox1.LoadAsync(FacadePictureGame.GamePictureUrl);
-            buttonAnswer1.Text = FacadePictureGame.FirstAnswer;
-            buttonAnswer2.Text = FacadePictureGame.SecondAnswer;
-            buttonAnswer3.Text = FacadePictureGame.ThirdAnswer;
-            buttonAnswer4.Text = FacadePictureGame.ForthAnswer;
+            labelAlbumName.Text = VMPictureGame.AlbumName;
+            labelQuestion.Text = VMPictureGame.QuestionGame;
+            pictureBox1.LoadAsync(VMPictureGame.GamePictureUrl);
+            buttonAnswer1.Text = VMPictureGame.FirstAnswer;
+            buttonAnswer2.Text = VMPictureGame.SecondAnswer;
+            buttonAnswer3.Text = VMPictureGame.ThirdAnswer;
+            buttonAnswer4.Text = VMPictureGame.ForthAnswer;
             base.OnShown(e);
         }
 
         private void buttonAnswer_Click(object sender, EventArgs e)
         {
             Button button = sender as Button;
-            FacadePictureGame.UserAnswer = button.Text;
-            MessageBox.Show(FacadePictureGame.AnswerMessageGame);
-            if(FacadePictureGame.IsRightAnswer())
+            VMPictureGame.UserAnswer = button.Text;
+            MessageBox.Show(VMPictureGame.AnswerMessageGame);
+            if(VMPictureGame.IsRightAnswer())
             {
                 this.DialogResult = DialogResult.Yes;
             }

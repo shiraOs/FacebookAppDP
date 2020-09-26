@@ -75,6 +75,8 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             this.textBoxAbout = new System.Windows.Forms.TextBox();
             this.labelAbout = new System.Windows.Forms.Label();
             this.emailTextBox = new System.Windows.Forms.TextBox();
+            this.buttonGameLocation = new System.Windows.Forms.Button();
+            this.buttonGameNumbers = new System.Windows.Forms.Button();
             emailLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureProfile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
@@ -193,7 +195,8 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Teal;
-            this.pictureBox2.Location = new System.Drawing.Point(561, 463);
+            this.pictureBox2.Enabled = false;
+            this.pictureBox2.Location = new System.Drawing.Point(561, 528);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(90, 99);
@@ -206,7 +209,8 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Teal;
-            this.pictureBox1.Location = new System.Drawing.Point(560, 354);
+            this.pictureBox1.Enabled = false;
+            this.pictureBox1.Location = new System.Drawing.Point(560, 419);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(90, 99);
@@ -219,7 +223,8 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             // pictureBox3
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.Teal;
-            this.pictureBox3.Location = new System.Drawing.Point(666, 354);
+            this.pictureBox3.Enabled = false;
+            this.pictureBox3.Location = new System.Drawing.Point(666, 419);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(90, 99);
@@ -232,7 +237,8 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             // pictureBox4
             // 
             this.pictureBox4.BackColor = System.Drawing.Color.Teal;
-            this.pictureBox4.Location = new System.Drawing.Point(666, 463);
+            this.pictureBox4.Enabled = false;
+            this.pictureBox4.Location = new System.Drawing.Point(666, 528);
             this.pictureBox4.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(90, 99);
@@ -315,7 +321,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             // 
             this.labelSubAlbumGame.AutoSize = true;
             this.labelSubAlbumGame.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.labelSubAlbumGame.Location = new System.Drawing.Point(585, 326);
+            this.labelSubAlbumGame.Location = new System.Drawing.Point(585, 385);
             this.labelSubAlbumGame.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelSubAlbumGame.Name = "labelSubAlbumGame";
             this.labelSubAlbumGame.Size = new System.Drawing.Size(150, 16);
@@ -327,7 +333,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             this.labelGamePoints.AutoSize = true;
             this.labelGamePoints.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.labelGamePoints.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.labelGamePoints.Location = new System.Drawing.Point(580, 572);
+            this.labelGamePoints.Location = new System.Drawing.Point(585, 641);
             this.labelGamePoints.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelGamePoints.Name = "labelGamePoints";
             this.labelGamePoints.Size = new System.Drawing.Size(162, 16);
@@ -565,12 +571,34 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             this.emailTextBox.Size = new System.Drawing.Size(125, 20);
             this.emailTextBox.TabIndex = 46;
             // 
+            // buttonGameLocation
+            // 
+            this.buttonGameLocation.Location = new System.Drawing.Point(565, 319);
+            this.buttonGameLocation.Name = "buttonGameLocation";
+            this.buttonGameLocation.Size = new System.Drawing.Size(190, 23);
+            this.buttonGameLocation.TabIndex = 47;
+            this.buttonGameLocation.Text = "Locations Game";
+            this.buttonGameLocation.UseVisualStyleBackColor = true;
+            this.buttonGameLocation.Click += new System.EventHandler(this.buttonGameOption_Click);
+            // 
+            // buttonGameNumbers
+            // 
+            this.buttonGameNumbers.Location = new System.Drawing.Point(565, 351);
+            this.buttonGameNumbers.Name = "buttonGameNumbers";
+            this.buttonGameNumbers.Size = new System.Drawing.Size(190, 23);
+            this.buttonGameNumbers.TabIndex = 48;
+            this.buttonGameNumbers.Text = "Numbers Game";
+            this.buttonGameNumbers.UseVisualStyleBackColor = true;
+            this.buttonGameNumbers.Click += new System.EventHandler(this.buttonGameOption_Click);
+            // 
             // FormApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(795, 1061);
+            this.ClientSize = new System.Drawing.Size(795, 845);
+            this.Controls.Add(this.buttonGameNumbers);
+            this.Controls.Add(this.buttonGameLocation);
             this.Controls.Add(emailLabel);
             this.Controls.Add(this.emailTextBox);
             this.Controls.Add(this.textBoxAbout);
@@ -678,5 +706,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
         private System.Windows.Forms.Label labelAbout;
         private System.Windows.Forms.BindingSource albumBindingSource;
         private System.Windows.Forms.TextBox emailTextBox;
+        private System.Windows.Forms.Button buttonGameLocation;
+        private System.Windows.Forms.Button buttonGameNumbers;
     }
 }

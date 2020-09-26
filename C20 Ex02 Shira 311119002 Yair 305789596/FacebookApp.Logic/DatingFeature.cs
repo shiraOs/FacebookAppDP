@@ -4,16 +4,16 @@ using FacebookWrapper.ObjectModel;
 
 namespace C20_Ex03_Shira_311119002_Yair_305789596
 {
-
+    // Maybe to change class to Singelton
     public static class DatingFeature
     {
-        private static readonly List<Func<User, bool>> MacthStrategies = new List<Func<User,bool>>();
+        private static readonly List<Func<User, bool>> r_MatchStrategies = new List<Func<User,bool>>();
         private static User.eGender? m_RequiredGender;
         private static eAgeRange? m_RequiredAgeRange;
 
         internal static void addStrategy(Func<User,bool> i_StrategyToAdd)
         {
-            MacthStrategies.Add(i_StrategyToAdd);
+            r_MatchStrategies.Add(i_StrategyToAdd);
         }
         public enum eAgeRange
         {
@@ -34,12 +34,12 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             {
                 if(m_RequiredGender == null)
                 {
-                    MacthStrategies.Add(matchByGender);
+                    r_MatchStrategies.Add(matchByGender);
                 }
                 m_RequiredGender = value;
                 if(m_RequiredGender == null)
                 {
-                    MacthStrategies.Remove(matchByGender);
+                    r_MatchStrategies.Remove(matchByGender);
                 }
             }
         }
@@ -53,12 +53,12 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             {
                 if (m_RequiredAgeRange == null)
                 {
-                    MacthStrategies.Add(matchByAge);
+                    r_MatchStrategies.Add(matchByAge);
                 }
                 m_RequiredAgeRange = value;
                 if (m_RequiredGender == null)
                 {
-                    MacthStrategies.Remove(matchByAge);
+                    r_MatchStrategies.Remove(matchByAge);
                 }
             }
         }
@@ -70,7 +70,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 
         public static void CreateOrResetFeature()
         {
-            MacthStrategies.Clear();
+            r_MatchStrategies.Clear();
             m_RequiredGender = null;
             m_RequiredAgeRange = null;
         }
@@ -83,7 +83,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             {
                 isMatch = true;
 
-                foreach (Func<User,bool> strategy in MacthStrategies)
+                foreach (Func<User,bool> strategy in r_MatchStrategies)
                 {
                     if(strategy.Invoke(i_Friend) == false)
                     {

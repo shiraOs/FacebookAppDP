@@ -22,13 +22,22 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             InitializeComponent();
             this.Size = AppSettings.sr_SmallFormSize;
             r_AppSettings = AppSettings.LoadFromFile();
+            initPictureBox();
             fetchSettingData();
+        }
+
+        private void initPictureBox()
+        {
+
+            pictureBox1.LoadAsync(Utils.s_DefaultPictureUrl);
+            pictureBox2.LoadAsync(Utils.s_DefaultPictureUrl);
+            pictureBox3.LoadAsync(Utils.s_DefaultPictureUrl);
+            pictureBox4.LoadAsync(Utils.s_DefaultPictureUrl);
         }
 
         private void buildFeaturesSetting()
         {
             DatingFeature.CreateOrResetFeature();
-            FacadePictureGame.CreatePicturesGameFeature(m_LoggedInUser.Albums);
         }
 
         private void userLogin()
@@ -159,9 +168,9 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 
         private void resetPicturesGame()
         {
-            if(FacadePictureGame.IsFeatureAvailable)
+            if(VMPicutresBoard.IsFeatureAvailable)
             {
-                FacadePictureGame.ResetFeature();
+                VMPicutresBoard.ResetFeature();
             }
         }
 
@@ -194,10 +203,10 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 
         private void setAlbumPictuersGame()
         {
-            pictureBox1.LoadAsync(FacadePictureGame.GetPicUrlByIndex(0));
-            pictureBox2.LoadAsync(FacadePictureGame.GetPicUrlByIndex(1));
-            pictureBox3.LoadAsync(FacadePictureGame.GetPicUrlByIndex(2));
-            pictureBox4.LoadAsync(FacadePictureGame.GetPicUrlByIndex(3));
+            pictureBox1.LoadAsync(VMPicutresBoard.GetPicUrlByIndex(0));
+            pictureBox2.LoadAsync(VMPicutresBoard.GetPicUrlByIndex(1));
+            pictureBox3.LoadAsync(VMPicutresBoard.GetPicUrlByIndex(2));
+            pictureBox4.LoadAsync(VMPicutresBoard.GetPicUrlByIndex(3));
         }
 
         private void buttonOpenFeature_Click(object sender, EventArgs e)
@@ -392,50 +401,80 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 
         private void replacePictureBoxGame()
         {
-            switch (FacadePictureGame.PictureGameAlbumIndex)
+            switch (VMPicutresBoard.PictureGameAlbumIndex)
             {
                 case 0:
-                    pictureBox1.LoadAsync(FacadePictureGame.GetPicUrlByIndex(0));
+                    pictureBox1.LoadAsync(VMPicutresBoard.GetPicUrlByIndex(0));
                     break;
                 case 1:
-                    pictureBox2.LoadAsync(FacadePictureGame.GetPicUrlByIndex(1));
+                    pictureBox2.LoadAsync(VMPicutresBoard.GetPicUrlByIndex(1));
                     break;
                 case 2:
-                    pictureBox3.LoadAsync(FacadePictureGame.GetPicUrlByIndex(2));
+                    pictureBox3.LoadAsync(VMPicutresBoard.GetPicUrlByIndex(2));
                     break;
                 case 3:
-                    pictureBox4.LoadAsync(FacadePictureGame.GetPicUrlByIndex(3));
+                    pictureBox4.LoadAsync(VMPicutresBoard.GetPicUrlByIndex(3));
                     break;
             }
         }
 
         private void labelPics_Paint(object sender, PaintEventArgs e)
         {
-            if(AppSettings.IsFeatureOpen(this.Size))
-            {
-                if(FacadePictureGame.IsFeatureAvailable)
-                { // setting the game if user have more then 4 albums with pic and loction
-                    setAlbumPictuersGame();
-                }
-                else
-                {
-                    abortAlbumGame();
-                }
+             if(AppSettings.IsFeatureOpen(this.Size))
+             {
+                setPictureBoxsAndLablesForGame();
             }
+        }
+        
+        private void setPictureBoxsAndLablesForGame()
+        {
+            if (VMPicutresBoard.IsFeatureAvailable)
+            { // setting the game if user have more then 4 albums with pic and loction
+                setAlbumPictuersGame();
+                enablePicturesBox();
+            }
+            else if (PictureGameFeature.GameType != PictureGameFeature.eGameType.eGameNotSet)
+            {
+                abortAlbumGame();
+            }
+        }
+
+        private void enablePicturesBox()
+        {
+            pictureBox1.Enabled = true;
+            pictureBox2.Enabled = true;
+            pictureBox3.Enabled = true;
+            pictureBox4.Enabled = true;
         }
 
         private void pictureBoxGame_Click(object sender, EventArgs e)
         {
-            FacadePictureGame.InitPictureGameDetails(int.Parse((sender as PictureBox).Tag.ToString()));
+            VMPicutresBoard.InitPictureGameDetails(int.Parse((sender as PictureBox).Tag.ToString()));
             DialogResult res = r_PictureGameForm.ShowDialog();
 
             if(res == DialogResult.Yes)
             {
-                FacadePictureGame.ReplaceRightAnswerPictureURL();
+                VMPicutresBoard.ReplaceRightAnswerPictureURL();
                 replacePictureBoxGame();
             }
 
-            labelGamePoints.Text = string.Format("You earn {0} points in game", FacadePictureGame.Points);
+            labelGamePoints.Text = string.Format("You earn {0} points in game", VMPicutresBoard.Points);
+        }
+
+        private void buttonGameOption_Click(object sender, EventArgs e)
+        {
+            Button currBtn = sender as Button;
+            PictureGameFeature.eGameType typeGame;
+            if(currBtn.Equals(buttonGameLocation))
+            {
+                typeGame = PictureGameFeature.eGameType.eGameLocation;
+            }
+            else
+            {
+                typeGame = PictureGameFeature.eGameType.eGamePictureNum;
+            }
+            VMPicutresBoard.CreatePicturesGameFeature(m_LoggedInUser.Albums, typeGame);
+            setPictureBoxsAndLablesForGame();
         }
     }
 }

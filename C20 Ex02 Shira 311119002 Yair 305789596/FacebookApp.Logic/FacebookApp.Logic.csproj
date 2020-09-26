@@ -43,9 +43,12 @@
     <Compile Include="AdapterPost.cs" />
     <Compile Include="AppSettings.cs" />
     <Compile Include="DetailsAlbum.cs" />
+    <Compile Include="ICommand.cs" />
+    <Compile Include="ICommandGameByLocation.cs" />
+    <Compile Include="ICommandGameByNumbers.cs" />
     <Compile Include="IFormFriend.cs" />
     <Compile Include="DatingFeature.cs" />
-    <Compile Include="FacadePictureGame.cs" />
+    <Compile Include="VMPicutresBoard.cs" />
     <Compile Include="Details.cs" />
     <Compile Include="IFormDetails.cs" />
     <Compile Include="DetailsFriend.cs" />
@@ -53,6 +56,7 @@
     <Compile Include="PictureGameFeature.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils.cs" />
+    <Compile Include="VMPictureGame.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Facebook">
