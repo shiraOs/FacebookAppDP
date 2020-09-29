@@ -28,7 +28,6 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 
         private void initPictureBox()
         {
-
             pictureBox1.LoadAsync(Utils.s_DefaultPictureUrl);
             pictureBox2.LoadAsync(Utils.s_DefaultPictureUrl);
             pictureBox3.LoadAsync(Utils.s_DefaultPictureUrl);
@@ -280,9 +279,9 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             DatingFeature.RequiredAgeRange = (DatingFeature.eAgeRange)listBoxAgeRange.SelectedIndex;
             buttonMatch.Enabled = true;
 
-            //if (checkBoxMale.Checked || checkBoxFemale.Checked)
-            //{
-            //}
+            // if (checkBoxMale.Checked || checkBoxFemale.Checked)
+            // {
+            // }
         }
 
         private void listBoxFriends_SelectedIndexChanged(object sender, EventArgs e)
@@ -326,7 +325,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
         }
 
         private void checkBoxGender_CheckedChanged(object sender, EventArgs e)
-        {
+        { // Rewrite THIS FUNCTION
             CheckBox currCheckBox = sender as CheckBox;
             string requiredGender = currCheckBox.Text;
 
@@ -344,7 +343,6 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
                     checkBoxMale.Checked = false;
                     buttonMatch.Enabled = true;
                 }
-       
             }
             else
             {
@@ -352,9 +350,9 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
                 {
                     buttonMatch.Enabled = false;
                 }
+
                 DatingFeature.RequiredGender = null;
             }
-
         }
         
         private void checkBoxRememberMe_CheckedChanged(object sender, EventArgs e)
@@ -473,6 +471,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             {
                 typeGame = PictureGameFeature.eGameType.eGamePictureNum;
             }
+
             VMPicutresBoard.CreatePicturesGameFeature(m_LoggedInUser.Albums, typeGame);
             setPictureBoxsAndLablesForGame();
         }

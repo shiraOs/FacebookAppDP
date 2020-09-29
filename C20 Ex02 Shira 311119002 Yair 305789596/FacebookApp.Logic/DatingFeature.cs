@@ -7,14 +7,15 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
     // Maybe to change class to Singelton
     public static class DatingFeature
     {
-        private static readonly List<Func<User, bool>> r_MatchStrategies = new List<Func<User,bool>>();
+        private static readonly List<Func<User, bool>> r_MatchStrategies = new List<Func<User, bool>>();
         private static User.eGender? m_RequiredGender;
         private static eAgeRange? m_RequiredAgeRange;
 
-        internal static void addStrategy(Func<User,bool> i_StrategyToAdd)
+        internal static void addStrategy(Func<User, bool> i_StrategyToAdd)
         {
             r_MatchStrategies.Add(i_StrategyToAdd);
         }
+
         public enum eAgeRange
         {
             eFiftheenTilEighteen,
@@ -30,12 +31,14 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             {
                 return m_RequiredGender;
             }
+
             set
             {
                 if(m_RequiredGender == null)
                 {
                     r_MatchStrategies.Add(matchByGender);
                 }
+
                 m_RequiredGender = value;
                 if(m_RequiredGender == null)
                 {
@@ -43,18 +46,21 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
                 }
             }
         }
+
         public static eAgeRange? RequiredAgeRange
         {
             get
             {
                 return m_RequiredAgeRange;
             }
+
             set
             {
                 if (m_RequiredAgeRange == null)
                 {
                     r_MatchStrategies.Add(matchByAge);
                 }
+
                 m_RequiredAgeRange = value;
                 if (m_RequiredGender == null)
                 {
@@ -82,8 +88,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             if (isFriendSingle(i_Friend))
             {
                 isMatch = true;
-
-                foreach (Func<User,bool> strategy in r_MatchStrategies)
+                foreach (Func<User, bool> strategy in r_MatchStrategies)
                 {
                     if(strategy.Invoke(i_Friend) == false)
                     {
@@ -126,26 +131,30 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 
             return inRange;
         }
+
         private static bool matchByGender(User i_Friend)
         {
             if (RequiredGender == null)
             {
                 return true;
             }
+
             return i_Friend.Gender.Equals(RequiredGender);
         }
+
         private static bool matchByAge(User i_Friend)
         { 
             if(RequiredAgeRange == null)
             {
                 return true;
             }
+
             return isAgeInRequiredAgeRange(Utils.GetUserAge(i_Friend.Birthday), RequiredAgeRange);
         }
+
         private static bool isFriendSingle(User i_Friend)
         {
             return i_Friend.RelationshipStatus.Equals(User.eRelationshipStatus.Single) || i_Friend.RelationshipStatus.Equals(User.eRelationshipStatus.None);
         }
-
     }
 }

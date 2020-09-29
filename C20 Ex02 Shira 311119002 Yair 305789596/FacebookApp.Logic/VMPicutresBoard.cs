@@ -1,12 +1,12 @@
-using FacebookWrapper.ObjectModel;
 using System;
+using FacebookWrapper.ObjectModel;
 
 namespace C20_Ex03_Shira_311119002_Yair_305789596
 {
     public static class VMPicutresBoard
     {
-
         private static string[] m_PicturesURLsArray = new string[PictureGameFeature.sr_MinNumOfAlbumsInGame];
+
         public static string GetPicUrlByIndex(int i_Index)
         {
             if (i_Index > PictureGameFeature.sr_MinNumOfAlbumsInGame)
@@ -32,8 +32,6 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
                 return PictureGameFeature.IsFeatureAvailable();
             }
         }
-  
-
 
         public static int PictureGameAlbumIndex
         {
@@ -71,7 +69,6 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 
         public static void CreatePicturesGameFeature(FacebookObjectCollection<Album> o_Albums, PictureGameFeature.eGameType i_TypeGame)
         {
-
             PictureGameFeature.CreateGame(o_Albums, i_TypeGame);
             if (IsFeatureAvailable)
             {
@@ -88,7 +85,5 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
                 PictureGameFeature.ChooseRandomAlbums(out m_PicturesURLsArray[0], out m_PicturesURLsArray[1], out m_PicturesURLsArray[2], out m_PicturesURLsArray[3]);
             }
         }
-
-
     }
 }

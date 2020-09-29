@@ -14,6 +14,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
                return PictureGameFeature.GetCurrentAlbum().Name;
             }
         }
+
         public static string QuestionGame
         {
             get
@@ -27,6 +28,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
                 {
                     title = string.Format("How many pictures in album?");
                 }
+
                 return title;
             }
         }
@@ -67,7 +69,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
         {
             get
             {
-                return PictureGameFeature.GetPictureUrl() ;
+                return PictureGameFeature.GetPictureUrl();
             }
         }
 
@@ -98,13 +100,10 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             }
         }
 
-
-
         public static bool IsRightAnswer()
         {
             PictureGameFeature.UpdatePoints();
             return PictureGameFeature.CheckUserAnswer();
         }
-
     }
 }

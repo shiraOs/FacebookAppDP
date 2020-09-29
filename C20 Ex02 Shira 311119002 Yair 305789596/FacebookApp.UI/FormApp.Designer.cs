@@ -344,7 +344,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             // 
             this.checkBoxRememberMe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkBoxRememberMe.AutoSize = true;
-            this.checkBoxRememberMe.Location = new System.Drawing.Point(11, 1033);
+            this.checkBoxRememberMe.Location = new System.Drawing.Point(11, 818);
             this.checkBoxRememberMe.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxRememberMe.Name = "checkBoxRememberMe";
             this.checkBoxRememberMe.Size = new System.Drawing.Size(95, 17);
@@ -356,7 +356,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             // buttonLogout
             // 
             this.buttonLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonLogout.Location = new System.Drawing.Point(11, 996);
+            this.buttonLogout.Location = new System.Drawing.Point(11, 780);
             this.buttonLogout.Name = "buttonLogout";
             this.buttonLogout.Size = new System.Drawing.Size(95, 32);
             this.buttonLogout.TabIndex = 26;

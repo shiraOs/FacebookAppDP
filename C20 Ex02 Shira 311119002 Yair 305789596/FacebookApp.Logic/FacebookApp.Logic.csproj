@@ -43,7 +43,7 @@
     <Compile Include="AdapterPost.cs" />
     <Compile Include="AppSettings.cs" />
     <Compile Include="DetailsAlbum.cs" />
-    <Compile Include="ICommand.cs" />
+    <Compile Include="ICommandGame.cs" />
     <Compile Include="ICommandGameByLocation.cs" />
     <Compile Include="ICommandGameByNumbers.cs" />
     <Compile Include="IFormFriend.cs" />
