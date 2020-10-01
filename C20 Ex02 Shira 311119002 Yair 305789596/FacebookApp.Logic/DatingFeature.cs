@@ -62,7 +62,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
                 }
 
                 m_RequiredAgeRange = value;
-                if (m_RequiredGender == null)
+                if (m_RequiredAgeRange == null)
                 {
                     r_MatchStrategies.Remove(matchByAge);
                 }

@@ -278,10 +278,6 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
         {
             DatingFeature.RequiredAgeRange = (DatingFeature.eAgeRange)listBoxAgeRange.SelectedIndex;
             buttonMatch.Enabled = true;
-
-            // if (checkBoxMale.Checked || checkBoxFemale.Checked)
-            // {
-            // }
         }
 
         private void listBoxFriends_SelectedIndexChanged(object sender, EventArgs e)
@@ -333,14 +329,14 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             {
                 if (requiredGender.Equals("Male") && currCheckBox.Checked)
                 {
-                    DatingFeature.RequiredGender = User.eGender.male;
                     checkBoxFemale.Checked = false;
+                    DatingFeature.RequiredGender = User.eGender.male;
                     buttonMatch.Enabled = true;
                 }
                 else if (requiredGender.Equals("Female") && currCheckBox.Checked)
                 {
-                    DatingFeature.RequiredGender = User.eGender.female;
                     checkBoxMale.Checked = false;
+                    DatingFeature.RequiredGender = User.eGender.female;
                     buttonMatch.Enabled = true;
                 }
             }
@@ -350,8 +346,10 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
                 {
                     buttonMatch.Enabled = false;
                 }
-
-                DatingFeature.RequiredGender = null;
+                if (checkBoxMale.Checked == false && checkBoxMale.Checked == false)
+                {
+                    DatingFeature.RequiredGender = null;
+                }
             }
         }
         

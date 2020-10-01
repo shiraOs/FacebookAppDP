@@ -89,7 +89,15 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 
                 if (PictureGameFeature.CheckUserAnswer())
                 {
-                    answerMsg = string.Format("RIGHT ANSWER!!! :)){0}The picture was taken in {1}", Environment.NewLine, PictureGameFeature.RightAnswer);
+                    answerMsg = string.Format("RIGHT ANSWER!!! :)){0}", Environment.NewLine);
+                    if (PictureGameFeature.GameType == PictureGameFeature.eGameType.eGameLocation)
+                    {
+                        answerMsg += string.Format("The picture was taken in {0}", PictureGameFeature.RightAnswer);
+                    }
+                    else
+                    {
+                        answerMsg += string.Format("There are {0} pictures in the album", PictureGameFeature.RightAnswer);
+                    }
                 }
                 else
                 {
