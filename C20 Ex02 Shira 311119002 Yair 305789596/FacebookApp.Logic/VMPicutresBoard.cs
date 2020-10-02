@@ -67,9 +67,9 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             PictureGameFeature.InitPictureGameDetails(o_IndexAlbum);
         }
 
-        public static void CreatePicturesGameFeature(FacebookObjectCollection<Album> o_Albums, PictureGameFeature.eGameType i_TypeGame)
+        public static void CreatePicturesGameFeature(FacebookObjectCollection<Album> o_Albums, PictureGameFeature.eGameType o_TypeGame)
         {
-            PictureGameFeature.CreateGame(o_Albums, i_TypeGame);
+            PictureGameFeature.CreateGame(o_Albums, o_TypeGame);
             if (IsFeatureAvailable)
             {
                 PictureGameFeature.ChooseRandomAlbums(out m_PicturesURLsArray[0], out m_PicturesURLsArray[1], out m_PicturesURLsArray[2], out m_PicturesURLsArray[3]);                    

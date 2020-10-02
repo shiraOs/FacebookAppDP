@@ -48,6 +48,10 @@
     <Compile Include="ICommandGameByNumbers.cs" />
     <Compile Include="IFormFriend.cs" />
     <Compile Include="DatingFeature.cs" />
+    <Compile Include="ISortableItem.cs" />
+    <Compile Include="SortListBox.cs" />
+    <Compile Include="SortListByDate.cs" />
+    <Compile Include="SortListByName.cs" />
     <Compile Include="VMPicutresBoard.cs" />
     <Compile Include="Details.cs" />
     <Compile Include="IFormDetails.cs" />

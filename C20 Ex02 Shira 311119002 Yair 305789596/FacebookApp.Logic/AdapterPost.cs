@@ -14,7 +14,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
         DateTime? CreatedTime { get; }
     }
 
-    public class AdapterPost : IPresentDetails
+    public class AdapterPost : IPresentDetails, ISortableItem
     {
         public Post Adoptee { get; set; }
 

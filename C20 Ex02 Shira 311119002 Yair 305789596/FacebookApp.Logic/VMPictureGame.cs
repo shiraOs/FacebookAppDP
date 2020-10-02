@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace C20_Ex03_Shira_311119002_Yair_305789596
 {
@@ -26,7 +23,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
                 }
                 else if (PictureGameFeature.GameType == PictureGameFeature.eGameType.eGamePictureNum)
                 {
-                    title = string.Format("How many pictures in album?");
+                    title ="How many pictures in album?";
                 }
 
                 return title;

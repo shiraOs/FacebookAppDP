@@ -17,6 +17,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
         private User m_LoggedInUser;
         private string m_AccessToken;
 
+
         public FormApp()
         {
             InitializeComponent();
@@ -51,14 +52,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
         {
             if (i_Result != DialogResult.Cancel)
             {
-                if (i_Result == DialogResult.Yes)
-                {
-                    this.checkBoxRememberMe.Checked = true;
-                }
-                else
-                {
-                    this.checkBoxRememberMe.Checked = false;
-                }
+                this.checkBoxRememberMe.Checked = i_Result == DialogResult.Yes ? true : false;
             }
             else
             {
@@ -145,6 +139,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
         private void abortAlbumGame()
         { // Action in other threads
           // If user doesn't have at least 4 albums with location and picture
+            bool pictureBoxState = false;
             labelSubAlbumGame.Invoke(new Action(() => labelSubAlbumGame.Text = "Cannot load Game!"));
             labelError.Invoke(new Action(() => labelError.Text = "You should have at least 4 albums with location"));
             labelGamePoints.Invoke(new Action(() => labelGamePoints.ForeColor = Color.White));
@@ -152,10 +147,15 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             pictureBox2.BackColor = Color.White;
             pictureBox3.BackColor = Color.White;
             pictureBox4.BackColor = Color.White;
-            pictureBox1.Invoke(new Action(() => pictureBox1.Enabled = false));
-            pictureBox2.Invoke(new Action(() => pictureBox2.Enabled = false));
-            pictureBox3.Invoke(new Action(() => pictureBox3.Enabled = false));
-            pictureBox4.Invoke(new Action(() => pictureBox4.Enabled = false));
+            setPictureBoxsState(pictureBoxState);
+        }
+
+        private void setPictureBoxsState(bool pictureBoxState)
+        {
+            pictureBox1.Invoke(new Action(() => pictureBox1.Enabled = pictureBoxState));
+            pictureBox2.Invoke(new Action(() => pictureBox2.Enabled = pictureBoxState));
+            pictureBox3.Invoke(new Action(() => pictureBox3.Enabled = pictureBoxState));
+            pictureBox4.Invoke(new Action(() => pictureBox4.Enabled = pictureBoxState));
         }
 
         private void resetFeatures()
@@ -167,7 +167,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 
         private void resetPicturesGame()
         {
-            if(VMPicutresBoard.IsFeatureAvailable)
+            if (VMPicutresBoard.IsFeatureAvailable)
             {
                 VMPicutresBoard.ResetFeature();
             }
@@ -202,6 +202,9 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 
         private void setAlbumPictuersGame()
         {
+            labelSubAlbumGame.Invoke(new Action(() => labelSubAlbumGame.Text = "Press the picture to play"));
+            labelError.Invoke(new Action(() => labelError.Text = ""));
+            labelGamePoints.Invoke(new Action(() => labelGamePoints.ForeColor = Color.Black));
             pictureBox1.LoadAsync(VMPicutresBoard.GetPicUrlByIndex(0));
             pictureBox2.LoadAsync(VMPicutresBoard.GetPicUrlByIndex(1));
             pictureBox3.LoadAsync(VMPicutresBoard.GetPicUrlByIndex(2));
@@ -235,7 +238,8 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 
         private void searchForMatchingFriends()
         {
-            disableDatingFeatureButtons();
+            bool state = false;
+            setStateDatingFeatureButtons(state);
             foreach (User friend in m_LoggedInUser.Friends)
             {
                 if (DatingFeature.IsFriendMatchToUserRequests(friend))
@@ -250,23 +254,19 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
                 listBoxMatchingFriends.Invoke(new Action(() => listBoxMatchingFriends.Items.Add("No Matching Friends.")));
                 listBoxMatchingFriends.Invoke(new Action(() => listBoxMatchingFriends.Enabled = false));
             }
-
-            enableDatingFeatureButtons();
+            setStateDatingFeatureButtons(!state);
         }
 
-        private void enableDatingFeatureButtons()
-        {
-            listBoxAgeRange.Invoke(new Action(() => listBoxAgeRange.Enabled = true));
-            checkBoxMale.Invoke(new Action(() => checkBoxMale.Enabled = true));
-            checkBoxFemale.Invoke(new Action(() => checkBoxFemale.Enabled = true));
-        }
 
-        private void disableDatingFeatureButtons()
+        private void setStateDatingFeatureButtons(bool i_State)
         {
-            listBoxAgeRange.Invoke(new Action(() => listBoxAgeRange.Enabled = false));
-            buttonMatch.Invoke(new Action(() => buttonMatch.Enabled = false));
-            checkBoxMale.Invoke(new Action(() => checkBoxMale.Enabled = false));
-            checkBoxFemale.Invoke(new Action(() => checkBoxFemale.Enabled = false));
+            listBoxAgeRange.Invoke(new Action(() => listBoxAgeRange.Enabled = i_State));
+            checkBoxMale.Invoke(new Action(() => checkBoxMale.Enabled = i_State));
+            checkBoxFemale.Invoke(new Action(() => checkBoxFemale.Enabled = i_State));
+            if (i_State == false)
+            {
+                buttonMatch.Invoke(new Action(() => buttonMatch.Enabled = i_State));
+            }
         }
 
         private void buttonLogout_Click(object sender, EventArgs e)
@@ -276,8 +276,31 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 
         private void listBoxAgeRange_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DatingFeature.RequiredAgeRange = (DatingFeature.eAgeRange)listBoxAgeRange.SelectedIndex;
-            buttonMatch.Enabled = true;
+            DatingFeature.eAgeRange? ageRange;
+            if (DatingFeature.RequiredAgeRange != (DatingFeature.eAgeRange)listBoxAgeRange.SelectedIndex)
+            {
+                ageRange = (DatingFeature.eAgeRange)listBoxAgeRange.SelectedIndex;
+            }
+            else
+            {
+                ageRange = null;
+                listBoxAgeRange.ClearSelected();
+   
+            }
+            DatingFeature.RequiredAgeRange = ageRange;
+            setButtonMatchState();
+        }
+
+        private void setButtonMatchState()
+        {
+            if (DatingFeature.RequiredAgeRange != null || DatingFeature.RequiredGender != null)
+            {
+                buttonMatch.Enabled = true;
+            }
+            else
+            {
+                buttonMatch.Enabled = false;
+            }
         }
 
         private void listBoxFriends_SelectedIndexChanged(object sender, EventArgs e)
@@ -321,36 +344,24 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
         }
 
         private void checkBoxGender_CheckedChanged(object sender, EventArgs e)
-        { // Rewrite THIS FUNCTION
+        { 
             CheckBox currCheckBox = sender as CheckBox;
             string requiredGender = currCheckBox.Text;
 
             if (currCheckBox.Checked)
             {
-                if (requiredGender.Equals("Male") && currCheckBox.Checked)
-                {
-                    checkBoxFemale.Checked = false;
-                    DatingFeature.RequiredGender = User.eGender.male;
-                    buttonMatch.Enabled = true;
-                }
-                else if (requiredGender.Equals("Female") && currCheckBox.Checked)
-                {
-                    checkBoxMale.Checked = false;
-                    DatingFeature.RequiredGender = User.eGender.female;
-                    buttonMatch.Enabled = true;
-                }
+                DatingFeature.RequiredGender = DatingFeature.ParseGender(requiredGender);
+                checkBoxFemale.Checked = requiredGender.Equals("Female");
+                checkBoxMale.Checked = requiredGender.Equals("Male");
             }
             else
             {
-                if (DatingFeature.RequiredAgeRange == null)
-                {
-                    buttonMatch.Enabled = false;
-                }
-                if (checkBoxMale.Checked == false && checkBoxMale.Checked == false)
+                if (checkBoxFemale.Checked == false && checkBoxMale.Checked == false)
                 {
                     DatingFeature.RequiredGender = null;
                 }
             }
+            setButtonMatchState();
         }
         
         private void checkBoxRememberMe_CheckedChanged(object sender, EventArgs e)
@@ -426,21 +437,14 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
         {
             if (VMPicutresBoard.IsFeatureAvailable)
             { // setting the game if user have more then 4 albums with pic and loction
+                bool pictureboxState = true;
                 setAlbumPictuersGame();
-                enablePicturesBox();
+                setPictureBoxsState(pictureboxState);
             }
             else if (PictureGameFeature.GameType != PictureGameFeature.eGameType.eGameNotSet)
             {
                 abortAlbumGame();
             }
-        }
-
-        private void enablePicturesBox()
-        {
-            pictureBox1.Enabled = true;
-            pictureBox2.Enabled = true;
-            pictureBox3.Enabled = true;
-            pictureBox4.Enabled = true;
         }
 
         private void pictureBoxGame_Click(object sender, EventArgs e)
@@ -472,6 +476,23 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 
             VMPicutresBoard.CreatePicturesGameFeature(m_LoggedInUser.Albums, typeGame);
             setPictureBoxsAndLablesForGame();
+        }
+
+        private void radioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton currRadio = sender as RadioButton;
+            if(currRadio.Checked)
+            {
+                if (currRadio.Text.Equals("Date"))
+                {
+                    new SortListByDate(listBoxPosts).Sort();
+                }
+
+                if (currRadio.Text.Equals("Name"))
+                {
+                    new SortListByName(listBoxPosts).Sort();
+                }
+            }
         }
     }
 }

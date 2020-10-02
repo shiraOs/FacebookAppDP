@@ -17,9 +17,9 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             AlbumsIndexerList = new List<int>();
         }
 
-        public void ExecuteGame(FacebookObjectCollection<Album> o_Albums)
+        public void ExecuteGame(FacebookObjectCollection<Album> i_Albums)
         {
-            foreach (Album album in o_Albums)
+            foreach (Album album in i_Albums)
             {
                 if ((album.Count > 0) && !string.IsNullOrEmpty(album.PictureAlbumURL))
                 { // album has picture and location
@@ -33,9 +33,9 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             RightAnswer = i_Album.Count.ToString();
         }
 
-        public string GetAnswer(int albumIndex)
+        public string GetAnswer(int i_AlbumIndex)
         {
-            return AlbumsGameList[AlbumsIndexerList[albumIndex]].Count.ToString();
+            return AlbumsGameList[AlbumsIndexerList[i_AlbumIndex]].Count.ToString();
         }
     }
 }

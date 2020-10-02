@@ -5,7 +5,7 @@ using FacebookWrapper.ObjectModel;
 namespace C20_Ex03_Shira_311119002_Yair_305789596
 {
     public static class PictureGameFeature
-    { // SINGILTON (?)
+    { 
         public enum eGameType
         {
             eGameNotSet,
@@ -15,7 +15,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 
         public static eGameType GameType { get; set; }
 
-        internal static ICommandGame Command { get; set; }
+        private static ICommandGame Command { get; set; }
 
         internal static int s_GamePoints = 0;
         internal static readonly int sr_MinNumOfAlbumsInGame = 4;
@@ -75,9 +75,9 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             o_Url4 = Command.AlbumsGameList[Command.AlbumsIndexerList[3]].PictureAlbumURL;
         }
 
-        internal static void CreateGame(FacebookObjectCollection<Album> o_Albums, eGameType i_TypeGame)
+        internal static void CreateGame(FacebookObjectCollection<Album> o_Albums, eGameType o_TypeGame)
         {
-            SetGameTypeAndCommand(i_TypeGame);
+            SetGameTypeAndCommand(o_TypeGame);
             Command.ExecuteGame(o_Albums);
         }
 

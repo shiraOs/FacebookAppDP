@@ -156,5 +156,21 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
         {
             return i_Friend.RelationshipStatus.Equals(User.eRelationshipStatus.Single) || i_Friend.RelationshipStatus.Equals(User.eRelationshipStatus.None);
         }
+
+
+        public static User.eGender? ParseGender(string i_Text)
+        {
+            User.eGender? result = null;
+            if (i_Text.Equals("Male"))
+            {
+                result = User.eGender.male;
+
+            }
+            if (i_Text.Equals("Female"))
+            {
+                result = User.eGender.female;
+            }
+            return result;
+        }
     }
 }

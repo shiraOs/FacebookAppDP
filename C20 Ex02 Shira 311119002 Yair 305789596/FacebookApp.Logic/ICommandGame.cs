@@ -11,10 +11,10 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 
         string RightAnswer { get; }
 
-        void ExecuteGame(FacebookObjectCollection<Album> o_Albums);
+        void ExecuteGame(FacebookObjectCollection<Album> i_Albums);
 
         void InitGame(Album i_Album);
 
-        string GetAnswer(int albumIndex);
+        string GetAnswer(int i_AlbumIndex);
     }
 }

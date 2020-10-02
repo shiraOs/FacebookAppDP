@@ -11,7 +11,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
         }
 
         protected override void OnShown(EventArgs e)
-        { // DATA BINDING INSTEAD CODE 
+        { 
             labelAlbumName.Text = VMPictureGame.AlbumName;
             labelQuestion.Text = VMPictureGame.QuestionGame;
             pictureBox1.LoadAsync(VMPictureGame.GamePictureUrl);
