@@ -4,17 +4,11 @@ using FacebookWrapper.ObjectModel;
 
 namespace C20_Ex03_Shira_311119002_Yair_305789596
 {
-    // Maybe to change class to Singelton
     public static class DatingFeature
     {
         private static readonly List<Func<User, bool>> r_MatchStrategies = new List<Func<User, bool>>();
         private static User.eGender? m_RequiredGender;
         private static eAgeRange? m_RequiredAgeRange;
-
-        internal static void addStrategy(Func<User, bool> i_StrategyToAdd)
-        {
-            r_MatchStrategies.Add(i_StrategyToAdd);
-        }
 
         public enum eAgeRange
         {
@@ -69,12 +63,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             }
         }
 
-        static DatingFeature()
-        {
-            CreateOrResetFeature();
-        }
-
-        public static void CreateOrResetFeature()
+        public static void RestartFeature()
         {
             r_MatchStrategies.Clear();
             m_RequiredGender = null;
