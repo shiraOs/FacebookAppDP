@@ -37,7 +37,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 
         private void buildFeaturesSetting()
         {
-            DatingFeature.CreateOrResetFeature();
+            DatingFeature.RestartFeature();
         }
 
         private void userLogin()
@@ -187,7 +187,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 
         private void resetMatchFeature()
         {
-            DatingFeature.CreateOrResetFeature();
+            DatingFeature.RestartFeature();
             listBoxAgeRange.ClearSelected();
             listBoxMatchingFriends.Items.Clear();
             listBoxMatchingFriends.ClearSelected();
