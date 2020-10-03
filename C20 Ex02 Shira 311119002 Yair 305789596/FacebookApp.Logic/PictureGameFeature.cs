@@ -26,7 +26,6 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 
         private static ICommandGame Command { get; set; }
 
-
         internal static string UserAnswer { get; set; }
 
         internal static string RightAnswer

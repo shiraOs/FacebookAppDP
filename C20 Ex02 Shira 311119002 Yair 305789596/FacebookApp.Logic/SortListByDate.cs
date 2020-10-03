@@ -8,9 +8,9 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
         {
             m_List = i_List;
         }
-        public override bool SwapMethod(object i_Item1, object i_Item2)
+        public override bool SwapMethod(ISortableItem i_Item1, ISortableItem i_Item2)
         {
-            return (i_Item1 as ISortableItem).CreatedTime < (i_Item2 as ISortableItem).CreatedTime;
+            return i_Item1.CreatedTime < i_Item2.CreatedTime;
         }
     }
 }

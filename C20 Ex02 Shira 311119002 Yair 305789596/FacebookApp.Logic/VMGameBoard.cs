@@ -81,7 +81,6 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             PictureGameFeature.Reset();
         }
 
-
         public static void SetTypeGame(string i_Text)
         {
             if (i_Text.Contains("Location"))
