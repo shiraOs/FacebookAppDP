@@ -94,10 +94,9 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             // emailLabel
             // 
             emailLabel.AutoSize = true;
-            emailLabel.Location = new System.Drawing.Point(181, 113);
-            emailLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            emailLabel.Location = new System.Drawing.Point(136, 92);
             emailLabel.Name = "emailLabel";
-            emailLabel.Size = new System.Drawing.Size(46, 17);
+            emailLabel.Size = new System.Drawing.Size(35, 13);
             emailLabel.TabIndex = 45;
             emailLabel.Text = "Email:";
             // 
@@ -105,10 +104,10 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             // 
             this.pictureProfile.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.pictureProfile.DataBindings.Add(new System.Windows.Forms.Binding("Image", this.userBindingSource, "ImageNormal", true));
-            this.pictureProfile.Location = new System.Drawing.Point(29, 16);
-            this.pictureProfile.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureProfile.Location = new System.Drawing.Point(22, 13);
+            this.pictureProfile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureProfile.Name = "pictureProfile";
-            this.pictureProfile.Size = new System.Drawing.Size(147, 129);
+            this.pictureProfile.Size = new System.Drawing.Size(110, 105);
             this.pictureProfile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureProfile.TabIndex = 2;
             this.pictureProfile.TabStop = false;
@@ -121,11 +120,10 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             // 
             this.listBoxFriends.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.listBoxFriends.FormattingEnabled = true;
-            this.listBoxFriends.ItemHeight = 16;
-            this.listBoxFriends.Location = new System.Drawing.Point(452, 50);
-            this.listBoxFriends.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.listBoxFriends.Location = new System.Drawing.Point(339, 41);
+            this.listBoxFriends.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.listBoxFriends.Name = "listBoxFriends";
-            this.listBoxFriends.Size = new System.Drawing.Size(168, 244);
+            this.listBoxFriends.Size = new System.Drawing.Size(127, 199);
             this.listBoxFriends.TabIndex = 3;
             this.listBoxFriends.SelectedIndexChanged += new System.EventHandler(this.listBoxFriends_SelectedIndexChanged);
             // 
@@ -135,11 +133,10 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             this.listBoxAlbums.DataSource = this.albumBindingSource;
             this.listBoxAlbums.DisplayMember = "Name";
             this.listBoxAlbums.FormattingEnabled = true;
-            this.listBoxAlbums.ItemHeight = 16;
-            this.listBoxAlbums.Location = new System.Drawing.Point(860, 50);
-            this.listBoxAlbums.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.listBoxAlbums.Location = new System.Drawing.Point(645, 41);
+            this.listBoxAlbums.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.listBoxAlbums.Name = "listBoxAlbums";
-            this.listBoxAlbums.Size = new System.Drawing.Size(172, 244);
+            this.listBoxAlbums.Size = new System.Drawing.Size(130, 199);
             this.listBoxAlbums.TabIndex = 4;
             this.listBoxAlbums.SelectedIndexChanged += new System.EventHandler(this.listBoxAlbums_SelectedIndexChanged);
             // 
@@ -152,59 +149,60 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             this.listBoxPosts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.listBoxPosts.Cursor = System.Windows.Forms.Cursors.Default;
             this.listBoxPosts.FormattingEnabled = true;
-            this.listBoxPosts.ItemHeight = 16;
-            this.listBoxPosts.Location = new System.Drawing.Point(645, 50);
-            this.listBoxPosts.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.listBoxPosts.Location = new System.Drawing.Point(484, 41);
+            this.listBoxPosts.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.listBoxPosts.Name = "listBoxPosts";
-            this.listBoxPosts.Size = new System.Drawing.Size(191, 244);
+            this.listBoxPosts.Size = new System.Drawing.Size(144, 199);
             this.listBoxPosts.TabIndex = 5;
             this.listBoxPosts.SelectedIndexChanged += new System.EventHandler(this.listBoxPosts_SelectedIndexChanged);
             // 
             // lableName
             // 
             this.lableName.AutoSize = true;
-            this.lableName.Location = new System.Drawing.Point(184, 20);
+            this.lableName.Location = new System.Drawing.Point(138, 16);
+            this.lableName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lableName.Name = "lableName";
-            this.lableName.Size = new System.Drawing.Size(49, 17);
+            this.lableName.Size = new System.Drawing.Size(38, 13);
             this.lableName.TabIndex = 6;
             this.lableName.Text = "Name:";
             // 
             // textBoxFirstName
             // 
             this.textBoxFirstName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "Name", true));
-            this.textBoxFirstName.Location = new System.Drawing.Point(276, 20);
-            this.textBoxFirstName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxFirstName.Location = new System.Drawing.Point(207, 16);
+            this.textBoxFirstName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxFirstName.Name = "textBoxFirstName";
             this.textBoxFirstName.ReadOnly = true;
-            this.textBoxFirstName.Size = new System.Drawing.Size(112, 22);
+            this.textBoxFirstName.Size = new System.Drawing.Size(85, 20);
             this.textBoxFirstName.TabIndex = 7;
             // 
             // labelGender
             // 
             this.labelGender.AutoSize = true;
-            this.labelGender.Location = new System.Drawing.Point(181, 50);
+            this.labelGender.Location = new System.Drawing.Point(136, 41);
+            this.labelGender.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelGender.Name = "labelGender";
-            this.labelGender.Size = new System.Drawing.Size(60, 17);
+            this.labelGender.Size = new System.Drawing.Size(45, 13);
             this.labelGender.TabIndex = 8;
             this.labelGender.Text = "Gender:";
             // 
             // textBoxGender
             // 
-            this.textBoxGender.Location = new System.Drawing.Point(276, 49);
-            this.textBoxGender.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxGender.Location = new System.Drawing.Point(207, 40);
+            this.textBoxGender.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxGender.Name = "textBoxGender";
             this.textBoxGender.ReadOnly = true;
-            this.textBoxGender.Size = new System.Drawing.Size(112, 22);
+            this.textBoxGender.Size = new System.Drawing.Size(85, 20);
             this.textBoxGender.TabIndex = 9;
             // 
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Teal;
             this.pictureBox2.Enabled = false;
-            this.pictureBox2.Location = new System.Drawing.Point(748, 650);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox2.Location = new System.Drawing.Point(561, 528);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(120, 122);
+            this.pictureBox2.Size = new System.Drawing.Size(90, 99);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 11;
             this.pictureBox2.TabStop = false;
@@ -215,10 +213,10 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Teal;
             this.pictureBox1.Enabled = false;
-            this.pictureBox1.Location = new System.Drawing.Point(747, 516);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox1.Location = new System.Drawing.Point(560, 419);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(120, 122);
+            this.pictureBox1.Size = new System.Drawing.Size(90, 99);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 12;
             this.pictureBox1.TabStop = false;
@@ -229,10 +227,10 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.Teal;
             this.pictureBox3.Enabled = false;
-            this.pictureBox3.Location = new System.Drawing.Point(888, 516);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox3.Location = new System.Drawing.Point(666, 419);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(120, 122);
+            this.pictureBox3.Size = new System.Drawing.Size(90, 99);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 13;
             this.pictureBox3.TabStop = false;
@@ -243,10 +241,10 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             // 
             this.pictureBox4.BackColor = System.Drawing.Color.Teal;
             this.pictureBox4.Enabled = false;
-            this.pictureBox4.Location = new System.Drawing.Point(888, 650);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox4.Location = new System.Drawing.Point(666, 528);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(120, 122);
+            this.pictureBox4.Size = new System.Drawing.Size(90, 99);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox4.TabIndex = 14;
             this.pictureBox4.TabStop = false;
@@ -256,20 +254,21 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             // labelBirthday
             // 
             this.labelBirthday.AutoSize = true;
-            this.labelBirthday.Location = new System.Drawing.Point(181, 81);
+            this.labelBirthday.Location = new System.Drawing.Point(136, 66);
+            this.labelBirthday.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelBirthday.Name = "labelBirthday";
-            this.labelBirthday.Size = new System.Drawing.Size(64, 17);
+            this.labelBirthday.Size = new System.Drawing.Size(48, 13);
             this.labelBirthday.TabIndex = 15;
             this.labelBirthday.Text = "Birthday:";
             // 
             // textBoxBirthday
             // 
             this.textBoxBirthday.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "Birthday", true));
-            this.textBoxBirthday.Location = new System.Drawing.Point(276, 79);
-            this.textBoxBirthday.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxBirthday.Location = new System.Drawing.Point(207, 64);
+            this.textBoxBirthday.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxBirthday.Name = "textBoxBirthday";
             this.textBoxBirthday.ReadOnly = true;
-            this.textBoxBirthday.Size = new System.Drawing.Size(112, 22);
+            this.textBoxBirthday.Size = new System.Drawing.Size(85, 20);
             this.textBoxBirthday.TabIndex = 16;
             // 
             // lableFriends
@@ -277,9 +276,10 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             this.lableFriends.AutoSize = true;
             this.lableFriends.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.lableFriends.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(64)))), ((int)(((byte)(124)))));
-            this.lableFriends.Location = new System.Drawing.Point(471, 16);
+            this.lableFriends.Location = new System.Drawing.Point(353, 13);
+            this.lableFriends.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lableFriends.Name = "lableFriends";
-            this.lableFriends.Size = new System.Drawing.Size(119, 25);
+            this.lableFriends.Size = new System.Drawing.Size(96, 20);
             this.lableFriends.TabIndex = 17;
             this.lableFriends.Text = "My Friends";
             // 
@@ -288,9 +288,10 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             this.lableAlbums.AutoSize = true;
             this.lableAlbums.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.lableAlbums.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(64)))), ((int)(((byte)(124)))));
-            this.lableAlbums.Location = new System.Drawing.Point(887, 17);
+            this.lableAlbums.Location = new System.Drawing.Point(665, 14);
+            this.lableAlbums.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lableAlbums.Name = "lableAlbums";
-            this.lableAlbums.Size = new System.Drawing.Size(119, 25);
+            this.lableAlbums.Size = new System.Drawing.Size(95, 20);
             this.lableAlbums.TabIndex = 18;
             this.lableAlbums.Text = "My Albums";
             // 
@@ -299,9 +300,10 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             this.labelPosts.AutoSize = true;
             this.labelPosts.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.labelPosts.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(64)))), ((int)(((byte)(124)))));
-            this.labelPosts.Location = new System.Drawing.Point(683, 16);
+            this.labelPosts.Location = new System.Drawing.Point(512, 13);
+            this.labelPosts.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelPosts.Name = "labelPosts";
-            this.labelPosts.Size = new System.Drawing.Size(101, 25);
+            this.labelPosts.Size = new System.Drawing.Size(81, 20);
             this.labelPosts.TabIndex = 19;
             this.labelPosts.Text = "My Posts";
             // 
@@ -310,9 +312,10 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             this.labelPics.AutoSize = true;
             this.labelPics.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
             this.labelPics.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(64)))), ((int)(((byte)(124)))));
-            this.labelPics.Location = new System.Drawing.Point(748, 352);
+            this.labelPics.Location = new System.Drawing.Point(561, 286);
+            this.labelPics.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelPics.Name = "labelPics";
-            this.labelPics.Size = new System.Drawing.Size(241, 31);
+            this.labelPics.Size = new System.Drawing.Size(195, 25);
             this.labelPics.TabIndex = 20;
             this.labelPics.Text = "My Albums Game";
             this.labelPics.Paint += new System.Windows.Forms.PaintEventHandler(this.labelPics_Paint);
@@ -321,9 +324,10 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             // 
             this.labelSubAlbumGame.AutoSize = true;
             this.labelSubAlbumGame.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.labelSubAlbumGame.Location = new System.Drawing.Point(780, 474);
+            this.labelSubAlbumGame.Location = new System.Drawing.Point(585, 385);
+            this.labelSubAlbumGame.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelSubAlbumGame.Name = "labelSubAlbumGame";
-            this.labelSubAlbumGame.Size = new System.Drawing.Size(191, 20);
+            this.labelSubAlbumGame.Size = new System.Drawing.Size(150, 16);
             this.labelSubAlbumGame.TabIndex = 21;
             this.labelSubAlbumGame.Text = "Press the picture to play";
             // 
@@ -332,9 +336,10 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             this.labelGamePoints.AutoSize = true;
             this.labelGamePoints.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.labelGamePoints.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.labelGamePoints.Location = new System.Drawing.Point(780, 789);
+            this.labelGamePoints.Location = new System.Drawing.Point(585, 641);
+            this.labelGamePoints.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelGamePoints.Name = "labelGamePoints";
-            this.labelGamePoints.Size = new System.Drawing.Size(203, 20);
+            this.labelGamePoints.Size = new System.Drawing.Size(162, 16);
             this.labelGamePoints.TabIndex = 24;
             this.labelGamePoints.Text = "You earn 0 points in game";
             // 
@@ -342,10 +347,10 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             // 
             this.checkBoxRememberMe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkBoxRememberMe.AutoSize = true;
-            this.checkBoxRememberMe.Location = new System.Drawing.Point(24, 820);
-            this.checkBoxRememberMe.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.checkBoxRememberMe.Location = new System.Drawing.Point(18, 666);
+            this.checkBoxRememberMe.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBoxRememberMe.Name = "checkBoxRememberMe";
-            this.checkBoxRememberMe.Size = new System.Drawing.Size(122, 21);
+            this.checkBoxRememberMe.Size = new System.Drawing.Size(95, 17);
             this.checkBoxRememberMe.TabIndex = 25;
             this.checkBoxRememberMe.Text = "Remember Me";
             this.checkBoxRememberMe.UseVisualStyleBackColor = true;
@@ -354,10 +359,9 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             // buttonLogout
             // 
             this.buttonLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonLogout.Location = new System.Drawing.Point(19, 775);
-            this.buttonLogout.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonLogout.Location = new System.Drawing.Point(14, 630);
             this.buttonLogout.Name = "buttonLogout";
-            this.buttonLogout.Size = new System.Drawing.Size(127, 39);
+            this.buttonLogout.Size = new System.Drawing.Size(95, 32);
             this.buttonLogout.TabIndex = 26;
             this.buttonLogout.Text = "Logout";
             this.buttonLogout.UseVisualStyleBackColor = true;
@@ -368,10 +372,9 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             this.labelDating.AutoSize = true;
             this.labelDating.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.labelDating.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(64)))), ((int)(((byte)(124)))));
-            this.labelDating.Location = new System.Drawing.Point(71, 351);
-            this.labelDating.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelDating.Location = new System.Drawing.Point(53, 285);
             this.labelDating.Name = "labelDating";
-            this.labelDating.Size = new System.Drawing.Size(186, 31);
+            this.labelDating.Size = new System.Drawing.Size(151, 25);
             this.labelDating.TabIndex = 27;
             this.labelDating.Text = "Dating Match";
             this.labelDating.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -379,10 +382,9 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             // checkBoxMale
             // 
             this.checkBoxMale.AutoSize = true;
-            this.checkBoxMale.Location = new System.Drawing.Point(84, 399);
-            this.checkBoxMale.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBoxMale.Location = new System.Drawing.Point(63, 324);
             this.checkBoxMale.Name = "checkBoxMale";
-            this.checkBoxMale.Size = new System.Drawing.Size(60, 21);
+            this.checkBoxMale.Size = new System.Drawing.Size(49, 17);
             this.checkBoxMale.TabIndex = 28;
             this.checkBoxMale.Tag = "";
             this.checkBoxMale.Text = "Male";
@@ -392,10 +394,9 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             // checkBoxFemale
             // 
             this.checkBoxFemale.AutoSize = true;
-            this.checkBoxFemale.Location = new System.Drawing.Point(181, 399);
-            this.checkBoxFemale.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBoxFemale.Location = new System.Drawing.Point(136, 324);
             this.checkBoxFemale.Name = "checkBoxFemale";
-            this.checkBoxFemale.Size = new System.Drawing.Size(76, 21);
+            this.checkBoxFemale.Size = new System.Drawing.Size(60, 17);
             this.checkBoxFemale.TabIndex = 29;
             this.checkBoxFemale.Tag = "";
             this.checkBoxFemale.Text = "Female";
@@ -405,19 +406,19 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             // labelAge
             // 
             this.labelAge.AutoSize = true;
-            this.labelAge.Location = new System.Drawing.Point(128, 427);
+            this.labelAge.Location = new System.Drawing.Point(96, 347);
+            this.labelAge.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelAge.Name = "labelAge";
-            this.labelAge.Size = new System.Drawing.Size(79, 17);
+            this.labelAge.Size = new System.Drawing.Size(61, 13);
             this.labelAge.TabIndex = 31;
             this.labelAge.Text = "Age Range";
             // 
             // buttonMatch
             // 
             this.buttonMatch.Enabled = false;
-            this.buttonMatch.Location = new System.Drawing.Point(84, 502);
-            this.buttonMatch.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonMatch.Location = new System.Drawing.Point(63, 408);
             this.buttonMatch.Name = "buttonMatch";
-            this.buttonMatch.Size = new System.Drawing.Size(183, 28);
+            this.buttonMatch.Size = new System.Drawing.Size(137, 23);
             this.buttonMatch.TabIndex = 32;
             this.buttonMatch.Text = "Find my match!";
             this.buttonMatch.UseVisualStyleBackColor = true;
@@ -426,28 +427,24 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             // listBoxAgeRange
             // 
             this.listBoxAgeRange.FormattingEnabled = true;
-            this.listBoxAgeRange.ItemHeight = 16;
             this.listBoxAgeRange.Items.AddRange(new object[] {
             "15-18",
             "19-23",
             "24-30",
             "30-40",
             "40+"});
-            this.listBoxAgeRange.Location = new System.Drawing.Point(95, 452);
-            this.listBoxAgeRange.Margin = new System.Windows.Forms.Padding(4);
+            this.listBoxAgeRange.Location = new System.Drawing.Point(71, 367);
             this.listBoxAgeRange.Name = "listBoxAgeRange";
-            this.listBoxAgeRange.Size = new System.Drawing.Size(159, 36);
+            this.listBoxAgeRange.Size = new System.Drawing.Size(120, 30);
             this.listBoxAgeRange.TabIndex = 33;
             this.listBoxAgeRange.SelectedIndexChanged += new System.EventHandler(this.listBoxAgeRange_SelectedIndexChanged);
             // 
             // listBoxMatchingFriends
             // 
             this.listBoxMatchingFriends.FormattingEnabled = true;
-            this.listBoxMatchingFriends.ItemHeight = 16;
-            this.listBoxMatchingFriends.Location = new System.Drawing.Point(84, 538);
-            this.listBoxMatchingFriends.Margin = new System.Windows.Forms.Padding(4);
+            this.listBoxMatchingFriends.Location = new System.Drawing.Point(63, 437);
             this.listBoxMatchingFriends.Name = "listBoxMatchingFriends";
-            this.listBoxMatchingFriends.Size = new System.Drawing.Size(181, 180);
+            this.listBoxMatchingFriends.Size = new System.Drawing.Size(137, 147);
             this.listBoxMatchingFriends.TabIndex = 34;
             this.listBoxMatchingFriends.SelectedIndexChanged += new System.EventHandler(this.listBoxFriends_SelectedIndexChanged);
             // 
@@ -455,10 +452,9 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             // 
             this.buttonOpenFeature.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.buttonOpenFeature.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.buttonOpenFeature.Location = new System.Drawing.Point(29, 197);
-            this.buttonOpenFeature.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonOpenFeature.Location = new System.Drawing.Point(22, 160);
             this.buttonOpenFeature.Name = "buttonOpenFeature";
-            this.buttonOpenFeature.Size = new System.Drawing.Size(251, 70);
+            this.buttonOpenFeature.Size = new System.Drawing.Size(188, 57);
             this.buttonOpenFeature.TabIndex = 35;
             this.buttonOpenFeature.Text = "Open Features";
             this.buttonOpenFeature.UseVisualStyleBackColor = false;
@@ -468,9 +464,10 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             // 
             this.labelSelectedPost.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
             this.labelSelectedPost.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(64)))), ((int)(((byte)(124)))));
-            this.labelSelectedPost.Location = new System.Drawing.Point(347, 352);
+            this.labelSelectedPost.Location = new System.Drawing.Point(260, 286);
+            this.labelSelectedPost.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelSelectedPost.Name = "labelSelectedPost";
-            this.labelSelectedPost.Size = new System.Drawing.Size(315, 36);
+            this.labelSelectedPost.Size = new System.Drawing.Size(236, 29);
             this.labelSelectedPost.TabIndex = 36;
             this.labelSelectedPost.Text = "Press Post to Display";
             this.labelSelectedPost.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -478,10 +475,9 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             // labelPostMessage
             // 
             this.labelPostMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.labelPostMessage.Location = new System.Drawing.Point(355, 393);
-            this.labelPostMessage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelPostMessage.Location = new System.Drawing.Point(266, 319);
             this.labelPostMessage.Name = "labelPostMessage";
-            this.labelPostMessage.Size = new System.Drawing.Size(292, 28);
+            this.labelPostMessage.Size = new System.Drawing.Size(219, 23);
             this.labelPostMessage.TabIndex = 37;
             this.labelPostMessage.Text = "Post Message";
             this.labelPostMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -489,10 +485,9 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             // labelPostDate
             // 
             this.labelPostDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.labelPostDate.Location = new System.Drawing.Point(349, 562);
-            this.labelPostDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelPostDate.Location = new System.Drawing.Point(262, 457);
             this.labelPostDate.Name = "labelPostDate";
-            this.labelPostDate.Size = new System.Drawing.Size(292, 28);
+            this.labelPostDate.Size = new System.Drawing.Size(219, 23);
             this.labelPostDate.TabIndex = 38;
             this.labelPostDate.Text = "Post Date";
             this.labelPostDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -500,35 +495,34 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             // textBoxPostMsg
             // 
             this.textBoxPostMsg.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxPostMsg.Location = new System.Drawing.Point(387, 423);
-            this.textBoxPostMsg.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxPostMsg.Location = new System.Drawing.Point(290, 344);
+            this.textBoxPostMsg.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxPostMsg.Multiline = true;
             this.textBoxPostMsg.Name = "textBoxPostMsg";
             this.textBoxPostMsg.ReadOnly = true;
             this.textBoxPostMsg.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxPostMsg.Size = new System.Drawing.Size(237, 130);
+            this.textBoxPostMsg.Size = new System.Drawing.Size(178, 106);
             this.textBoxPostMsg.TabIndex = 39;
             this.textBoxPostMsg.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxPostDate
             // 
             this.textBoxPostDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxPostDate.Location = new System.Drawing.Point(387, 594);
-            this.textBoxPostDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxPostDate.Location = new System.Drawing.Point(290, 483);
+            this.textBoxPostDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxPostDate.Multiline = true;
             this.textBoxPostDate.Name = "textBoxPostDate";
             this.textBoxPostDate.ReadOnly = true;
-            this.textBoxPostDate.Size = new System.Drawing.Size(214, 24);
+            this.textBoxPostDate.Size = new System.Drawing.Size(161, 20);
             this.textBoxPostDate.TabIndex = 40;
             this.textBoxPostDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // pictureBoxPost
             // 
             this.pictureBoxPost.BackColor = System.Drawing.Color.Teal;
-            this.pictureBoxPost.Location = new System.Drawing.Point(387, 654);
-            this.pictureBoxPost.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBoxPost.Location = new System.Drawing.Point(290, 531);
             this.pictureBoxPost.Name = "pictureBoxPost";
-            this.pictureBoxPost.Size = new System.Drawing.Size(215, 169);
+            this.pictureBoxPost.Size = new System.Drawing.Size(161, 137);
             this.pictureBoxPost.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxPost.TabIndex = 41;
             this.pictureBoxPost.TabStop = false;
@@ -536,10 +530,9 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             // labelPostPic
             // 
             this.labelPostPic.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.labelPostPic.Location = new System.Drawing.Point(355, 622);
-            this.labelPostPic.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelPostPic.Location = new System.Drawing.Point(266, 505);
             this.labelPostPic.Name = "labelPostPic";
-            this.labelPostPic.Size = new System.Drawing.Size(292, 28);
+            this.labelPostPic.Size = new System.Drawing.Size(219, 23);
             this.labelPostPic.TabIndex = 42;
             this.labelPostPic.Text = "Post Picture";
             this.labelPostPic.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -548,46 +541,45 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             // 
             this.labelError.AutoSize = true;
             this.labelError.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.labelError.Location = new System.Drawing.Point(684, 514);
-            this.labelError.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelError.Location = new System.Drawing.Point(513, 418);
             this.labelError.Name = "labelError";
-            this.labelError.Size = new System.Drawing.Size(0, 20);
+            this.labelError.Size = new System.Drawing.Size(0, 16);
             this.labelError.TabIndex = 43;
             // 
             // textBoxAbout
             // 
             this.textBoxAbout.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "About", true));
-            this.textBoxAbout.Location = new System.Drawing.Point(95, 150);
-            this.textBoxAbout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxAbout.Location = new System.Drawing.Point(71, 122);
+            this.textBoxAbout.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxAbout.Name = "textBoxAbout";
-            this.textBoxAbout.Size = new System.Drawing.Size(321, 22);
+            this.textBoxAbout.Size = new System.Drawing.Size(242, 20);
             this.textBoxAbout.TabIndex = 45;
             // 
             // labelAbout
             // 
             this.labelAbout.AutoSize = true;
-            this.labelAbout.Location = new System.Drawing.Point(25, 153);
+            this.labelAbout.Location = new System.Drawing.Point(19, 124);
+            this.labelAbout.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelAbout.Name = "labelAbout";
-            this.labelAbout.Size = new System.Drawing.Size(49, 17);
+            this.labelAbout.Size = new System.Drawing.Size(38, 13);
             this.labelAbout.TabIndex = 44;
             this.labelAbout.Text = "About:";
             // 
             // emailTextBox
             // 
             this.emailTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "Email", true));
-            this.emailTextBox.Location = new System.Drawing.Point(251, 110);
-            this.emailTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.emailTextBox.Location = new System.Drawing.Point(188, 89);
             this.emailTextBox.Name = "emailTextBox";
             this.emailTextBox.ReadOnly = true;
-            this.emailTextBox.Size = new System.Drawing.Size(165, 22);
+            this.emailTextBox.Size = new System.Drawing.Size(125, 20);
             this.emailTextBox.TabIndex = 46;
             // 
             // buttonGameLocation
             // 
-            this.buttonGameLocation.Location = new System.Drawing.Point(782, 394);
-            this.buttonGameLocation.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonGameLocation.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.buttonGameLocation.Location = new System.Drawing.Point(586, 320);
             this.buttonGameLocation.Name = "buttonGameLocation";
-            this.buttonGameLocation.Size = new System.Drawing.Size(184, 28);
+            this.buttonGameLocation.Size = new System.Drawing.Size(138, 23);
             this.buttonGameLocation.TabIndex = 47;
             this.buttonGameLocation.Text = "Locations Game";
             this.buttonGameLocation.UseVisualStyleBackColor = true;
@@ -595,10 +587,10 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             // 
             // buttonGameNumbers
             // 
-            this.buttonGameNumbers.Location = new System.Drawing.Point(783, 433);
-            this.buttonGameNumbers.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonGameNumbers.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.buttonGameNumbers.Location = new System.Drawing.Point(587, 352);
             this.buttonGameNumbers.Name = "buttonGameNumbers";
-            this.buttonGameNumbers.Size = new System.Drawing.Size(185, 28);
+            this.buttonGameNumbers.Size = new System.Drawing.Size(139, 23);
             this.buttonGameNumbers.TabIndex = 48;
             this.buttonGameNumbers.Text = "Numbers Game";
             this.buttonGameNumbers.UseVisualStyleBackColor = true;
@@ -607,18 +599,20 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             // labelSortBy
             // 
             this.labelSortBy.AutoSize = true;
-            this.labelSortBy.Location = new System.Drawing.Point(641, 299);
+            this.labelSortBy.Location = new System.Drawing.Point(481, 243);
+            this.labelSortBy.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelSortBy.Name = "labelSortBy";
-            this.labelSortBy.Size = new System.Drawing.Size(73, 21);
+            this.labelSortBy.Size = new System.Drawing.Size(44, 13);
             this.labelSortBy.TabIndex = 50;
             this.labelSortBy.Text = "Sort By:";
             // 
             // radioButtonDate
             // 
             this.radioButtonDate.AutoSize = true;
-            this.radioButtonDate.Location = new System.Drawing.Point(705, 299);
+            this.radioButtonDate.Location = new System.Drawing.Point(529, 243);
+            this.radioButtonDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.radioButtonDate.Name = "radioButtonDate";
-            this.radioButtonDate.Size = new System.Drawing.Size(59, 21);
+            this.radioButtonDate.Size = new System.Drawing.Size(48, 17);
             this.radioButtonDate.TabIndex = 51;
             this.radioButtonDate.TabStop = true;
             this.radioButtonDate.Text = "Date";
@@ -628,9 +622,10 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             // radioButtonName
             // 
             this.radioButtonName.AutoSize = true;
-            this.radioButtonName.Location = new System.Drawing.Point(770, 299);
+            this.radioButtonName.Location = new System.Drawing.Point(578, 243);
+            this.radioButtonName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.radioButtonName.Name = "radioButtonName";
-            this.radioButtonName.Size = new System.Drawing.Size(66, 21);
+            this.radioButtonName.Size = new System.Drawing.Size(53, 17);
             this.radioButtonName.TabIndex = 52;
             this.radioButtonName.TabStop = true;
             this.radioButtonName.Text = "Name";
@@ -639,10 +634,10 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             // 
             // FormApp
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1068, 844);
+            this.ClientSize = new System.Drawing.Size(801, 686);
             this.Controls.Add(this.checkBoxMale);
             this.Controls.Add(this.checkBoxFemale);
             this.Controls.Add(this.radioButtonName);
@@ -693,7 +688,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.Name = "FormApp";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

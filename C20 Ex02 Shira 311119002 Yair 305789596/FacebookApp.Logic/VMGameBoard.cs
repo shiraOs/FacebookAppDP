@@ -3,7 +3,7 @@ using FacebookWrapper.ObjectModel;
 
 namespace C20_Ex03_Shira_311119002_Yair_305789596
 {
-    public static class VMPicutresBoard
+    public static class VMGameBoard
     {
         private static string[] m_PicturesURLsArray = new string[PictureGameFeature.sr_MinNumOfAlbumsInGame];
 
@@ -67,9 +67,9 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             PictureGameFeature.InitPictureGameDetails(o_IndexAlbum);
         }
 
-        public static void CreatePicturesGameFeature(FacebookObjectCollection<Album> o_Albums, PictureGameFeature.eGameType o_TypeGame)
+        public static void CreatePicturesGameFeature(FacebookObjectCollection<Album> o_Albums)
         {
-            PictureGameFeature.CreateGame(o_Albums, o_TypeGame);
+            PictureGameFeature.CreateGame(o_Albums);
             if (IsFeatureAvailable)
             {
                 PictureGameFeature.ChooseRandomAlbums(out m_PicturesURLsArray[0], out m_PicturesURLsArray[1], out m_PicturesURLsArray[2], out m_PicturesURLsArray[3]);                    
@@ -78,11 +78,23 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 
         public static void ResetFeature()
         {
-            PictureGameFeature.s_GamePoints = 0;
+            PictureGameFeature.Reset();
+        }
 
-            if (IsFeatureAvailable) 
+
+        public static void SetTypeGame(string i_Text)
+        {
+            if (i_Text.Contains("Location"))
             {
-                PictureGameFeature.ChooseRandomAlbums(out m_PicturesURLsArray[0], out m_PicturesURLsArray[1], out m_PicturesURLsArray[2], out m_PicturesURLsArray[3]);
+                PictureGameFeature.TypeGame = PictureGameFeature.eTypeGame.eGameLocation;
+            }
+            else if(i_Text.Contains("Number"))
+            {
+                PictureGameFeature.TypeGame = PictureGameFeature.eTypeGame.eGamePictureNum;
+            }
+            else
+            {
+                PictureGameFeature.TypeGame = PictureGameFeature.eTypeGame.eGameNotSet;
             }
         }
     }

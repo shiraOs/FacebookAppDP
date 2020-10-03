@@ -52,7 +52,7 @@
     <Compile Include="SortListBox.cs" />
     <Compile Include="SortListByDate.cs" />
     <Compile Include="SortListByName.cs" />
-    <Compile Include="VMPicutresBoard.cs" />
+    <Compile Include="VMGameBoard.cs" />
     <Compile Include="Details.cs" />
     <Compile Include="IFormDetails.cs" />
     <Compile Include="DetailsFriend.cs" />

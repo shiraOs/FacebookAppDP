@@ -17,11 +17,11 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             get
             {
                 string title = string.Empty;
-                if (PictureGameFeature.GameType == PictureGameFeature.eGameType.eGameLocation)
+                if (PictureGameFeature.TypeGame == PictureGameFeature.eTypeGame.eGameLocation)
                 {
                     title = "Where the picture was taken?";
                 }
-                else if (PictureGameFeature.GameType == PictureGameFeature.eGameType.eGamePictureNum)
+                else if (PictureGameFeature.TypeGame == PictureGameFeature.eTypeGame.eGamePictureNum)
                 {
                     title ="How many pictures in album?";
                 }
@@ -87,7 +87,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
                 if (PictureGameFeature.CheckUserAnswer())
                 {
                     answerMsg = string.Format("RIGHT ANSWER!!! :)){0}", Environment.NewLine);
-                    if (PictureGameFeature.GameType == PictureGameFeature.eGameType.eGameLocation)
+                    if (PictureGameFeature.TypeGame == PictureGameFeature.eTypeGame.eGameLocation)
                     {
                         answerMsg += string.Format("The picture was taken in {0}", PictureGameFeature.RightAnswer);
                     }

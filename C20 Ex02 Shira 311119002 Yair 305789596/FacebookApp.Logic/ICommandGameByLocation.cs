@@ -3,7 +3,7 @@ using FacebookWrapper.ObjectModel;
 
 namespace C20_Ex03_Shira_311119002_Yair_305789596
 {
-    internal class ICommandGameByLocation : ICommandGame
+    public class ICommandGameByLocation : ICommandGame
     {
         public List<Album> AlbumsGameList { get; private set; }
 

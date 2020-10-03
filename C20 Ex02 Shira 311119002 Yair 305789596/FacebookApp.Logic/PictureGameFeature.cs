@@ -5,18 +5,15 @@ using FacebookWrapper.ObjectModel;
 namespace C20_Ex03_Shira_311119002_Yair_305789596
 {
     public static class PictureGameFeature
-    { 
-        public enum eGameType
+    {
+        public enum eTypeGame
         {
             eGameNotSet,
             eGameLocation,
             eGamePictureNum
         }
 
-        public static eGameType GameType { get; set; }
-
-        private static ICommandGame Command { get; set; }
-
+      
         internal static int s_GamePoints = 0;
         internal static readonly int sr_MinNumOfAlbumsInGame = 4;
         internal static readonly int sr_AnswersCount = 4;
@@ -24,6 +21,11 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
         internal static int s_RightAnswerIndex;
         internal static Random s_Rnd = new Random();
         internal static string[] s_Answers = new string[sr_AnswersCount];
+
+        public static eTypeGame TypeGame { get; internal set; }
+
+        private static ICommandGame Command { get; set; }
+
 
         internal static string UserAnswer { get; set; }
 
@@ -75,10 +77,20 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             o_Url4 = Command.AlbumsGameList[Command.AlbumsIndexerList[3]].PictureAlbumURL;
         }
 
-        internal static void CreateGame(FacebookObjectCollection<Album> o_Albums, eGameType o_TypeGame)
+        internal static void Reset()
         {
-            SetGameTypeAndCommand(o_TypeGame);
-            Command.ExecuteGame(o_Albums);
+            s_GamePoints = 0;
+            Command = null;
+            TypeGame = eTypeGame.eGameNotSet;
+        }
+
+        internal static void CreateGame(FacebookObjectCollection<Album> o_Albums)
+        {
+            setCommand();
+            if(Command!= null)
+            {
+                Command.ExecuteGame(o_Albums);
+            }
         }
 
         internal static Album GetCurrentAlbum()
@@ -165,16 +177,15 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             }
         }
 
-        private static void SetGameTypeAndCommand(eGameType i_Type)
+        private static void setCommand()
         { 
-            GameType = i_Type;
 
-            if (GameType == eGameType.eGameLocation)
+            if (TypeGame == eTypeGame.eGameLocation)
             {
                 Command = new ICommandGameByLocation();
             }
 
-            if (GameType == eGameType.eGamePictureNum)
+            if (TypeGame == eTypeGame.eGamePictureNum)
             {
                 Command = new ICommandGameByNumbers();
             }

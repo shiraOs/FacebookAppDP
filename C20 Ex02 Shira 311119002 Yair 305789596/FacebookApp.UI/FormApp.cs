@@ -167,9 +167,13 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 
         private void resetPicturesGame()
         {
-            if (VMPicutresBoard.IsFeatureAvailable)
+            if (VMGameBoard.IsFeatureAvailable)
             {
-                VMPicutresBoard.ResetFeature();
+                bool state = false;
+                VMGameBoard.ResetFeature();
+                initPictureBox();
+                setPictureBoxsState(state);
+                updatePointsLable();
             }
         }
 
@@ -205,10 +209,10 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             labelSubAlbumGame.Invoke(new Action(() => labelSubAlbumGame.Text = "Press the picture to play"));
             labelError.Invoke(new Action(() => labelError.Text = ""));
             labelGamePoints.Invoke(new Action(() => labelGamePoints.ForeColor = Color.Black));
-            pictureBox1.LoadAsync(VMPicutresBoard.GetPicUrlByIndex(0));
-            pictureBox2.LoadAsync(VMPicutresBoard.GetPicUrlByIndex(1));
-            pictureBox3.LoadAsync(VMPicutresBoard.GetPicUrlByIndex(2));
-            pictureBox4.LoadAsync(VMPicutresBoard.GetPicUrlByIndex(3));
+            pictureBox1.LoadAsync(VMGameBoard.GetPicUrlByIndex(0));
+            pictureBox2.LoadAsync(VMGameBoard.GetPicUrlByIndex(1));
+            pictureBox3.LoadAsync(VMGameBoard.GetPicUrlByIndex(2));
+            pictureBox4.LoadAsync(VMGameBoard.GetPicUrlByIndex(3));
         }
 
         private void buttonOpenFeature_Click(object sender, EventArgs e)
@@ -408,19 +412,19 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 
         private void replacePictureBoxGame()
         {
-            switch (VMPicutresBoard.PictureGameAlbumIndex)
+            switch (VMGameBoard.PictureGameAlbumIndex)
             {
                 case 0:
-                    pictureBox1.LoadAsync(VMPicutresBoard.GetPicUrlByIndex(0));
+                    pictureBox1.LoadAsync(VMGameBoard.GetPicUrlByIndex(0));
                     break;
                 case 1:
-                    pictureBox2.LoadAsync(VMPicutresBoard.GetPicUrlByIndex(1));
+                    pictureBox2.LoadAsync(VMGameBoard.GetPicUrlByIndex(1));
                     break;
                 case 2:
-                    pictureBox3.LoadAsync(VMPicutresBoard.GetPicUrlByIndex(2));
+                    pictureBox3.LoadAsync(VMGameBoard.GetPicUrlByIndex(2));
                     break;
                 case 3:
-                    pictureBox4.LoadAsync(VMPicutresBoard.GetPicUrlByIndex(3));
+                    pictureBox4.LoadAsync(VMGameBoard.GetPicUrlByIndex(3));
                     break;
             }
         }
@@ -435,13 +439,13 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
         
         private void setPictureBoxsAndLablesForGame()
         {
-            if (VMPicutresBoard.IsFeatureAvailable)
+            if (VMGameBoard.IsFeatureAvailable)
             { // setting the game if user have more then 4 albums with pic and loction
                 bool pictureboxState = true;
                 setAlbumPictuersGame();
                 setPictureBoxsState(pictureboxState);
             }
-            else if (PictureGameFeature.GameType != PictureGameFeature.eGameType.eGameNotSet)
+            else if (PictureGameFeature.TypeGame != PictureGameFeature.eTypeGame.eGameNotSet)
             {
                 abortAlbumGame();
             }
@@ -449,32 +453,28 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 
         private void pictureBoxGame_Click(object sender, EventArgs e)
         {
-            VMPicutresBoard.InitPictureGameDetails(int.Parse((sender as PictureBox).Tag.ToString()));
+            VMGameBoard.InitPictureGameDetails(int.Parse((sender as PictureBox).Tag.ToString()));
             DialogResult res = r_PictureGameForm.ShowDialog();
 
             if(res == DialogResult.Yes)
             {
-                VMPicutresBoard.ReplaceRightAnswerPictureURL();
+                VMGameBoard.ReplaceRightAnswerPictureURL();
                 replacePictureBoxGame();
             }
 
-            labelGamePoints.Text = string.Format("You earn {0} points in game", VMPicutresBoard.Points);
+            updatePointsLable();
+        }
+
+        private void updatePointsLable()
+        {
+            labelGamePoints.Text = string.Format("You earn {0} points in game", VMGameBoard.Points);
         }
 
         private void buttonGameOption_Click(object sender, EventArgs e)
         {
             Button currBtn = sender as Button;
-            PictureGameFeature.eGameType typeGame;
-            if(currBtn.Equals(buttonGameLocation))
-            {
-                typeGame = PictureGameFeature.eGameType.eGameLocation;
-            }
-            else
-            {
-                typeGame = PictureGameFeature.eGameType.eGamePictureNum;
-            }
-
-            VMPicutresBoard.CreatePicturesGameFeature(m_LoggedInUser.Albums, typeGame);
+            VMGameBoard.SetTypeGame(currBtn.Text);
+            VMGameBoard.CreatePicturesGameFeature(m_LoggedInUser.Albums);
             setPictureBoxsAndLablesForGame();
         }
 
