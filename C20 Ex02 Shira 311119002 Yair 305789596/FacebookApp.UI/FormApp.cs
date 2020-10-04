@@ -160,10 +160,10 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 
         private void setPictureBoxsState(bool pictureBoxState)
         {
-            pictureBox1.Invoke(new Action(() => pictureBox1.Enabled = pictureBoxState));
-            pictureBox2.Invoke(new Action(() => pictureBox2.Enabled = pictureBoxState));
-            pictureBox3.Invoke(new Action(() => pictureBox3.Enabled = pictureBoxState));
-            pictureBox4.Invoke(new Action(() => pictureBox4.Enabled = pictureBoxState));
+            pictureBox1.Enabled = pictureBoxState;
+            pictureBox2.Enabled = pictureBoxState;
+            pictureBox3.Enabled = pictureBoxState;
+            pictureBox4.Enabled = pictureBoxState;
         }
 
         private void resetFeatures()
