@@ -4,10 +4,10 @@ using FacebookWrapper.ObjectModel;
 
 namespace C20_Ex03_Shira_311119002_Yair_305789596
 {
-    public static class PictureGameFeature
+    internal static class PictureGameFeature
     {
 
-      
+ 
         internal static int s_GamePoints = 0;
         internal static readonly int sr_MinNumOfAlbumsInGame = 4;
         internal static readonly int sr_AnswersCount = 4;
