@@ -123,22 +123,34 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 
         private static bool matchByGender(User i_Friend)
         {
+            bool isMatch = false;
+
             if (RequiredGender == null)
             {
-                return true;
+                isMatch =  true;
+            }
+            else
+            {
+                isMatch = i_Friend.Gender.Equals(RequiredGender);
             }
 
-            return i_Friend.Gender.Equals(RequiredGender);
+            return isMatch;
         }
 
         private static bool matchByAge(User i_Friend)
-        { 
-            if(RequiredAgeRange == null)
+        {
+            bool isMatch = false;
+
+            if (RequiredAgeRange == null)
             {
-                return true;
+                isMatch =  true;
+            }
+            else
+            {
+                isMatch = isAgeInRequiredAgeRange(Utils.GetUserAge(i_Friend.Birthday), RequiredAgeRange);
             }
 
-            return isAgeInRequiredAgeRange(Utils.GetUserAge(i_Friend.Birthday), RequiredAgeRange);
+            return isMatch;
         }
 
         private static bool isFriendSingle(User i_Friend)
