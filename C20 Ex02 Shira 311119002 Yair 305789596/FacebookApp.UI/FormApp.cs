@@ -142,15 +142,20 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             labelSubAlbumGame.Invoke(new Action(() => labelSubAlbumGame.Text = "Cannot load Game!"));
             labelError.Invoke(new Action(() => labelError.Text = "You should have at least 4 albums with location"));
             labelGamePoints.Invoke(new Action(() => labelGamePoints.ForeColor = Color.White));
-            pictureBox1.BackColor = Color.White;
-            pictureBox2.BackColor = Color.White;
-            pictureBox3.BackColor = Color.White;
-            pictureBox4.BackColor = Color.White;
-            pictureBox1.Refresh();
-            pictureBox2.Refresh();
-            pictureBox3.Refresh();
-            pictureBox4.Refresh();
+            colorPictureBoxsGame(Color.White);
             setPictureBoxsState(pictureBoxState);
+        }
+
+        private void colorPictureBoxsGame(Color i_Color)
+        {
+            pictureBox1.BackColor = i_Color;
+            pictureBox2.BackColor = i_Color;
+            pictureBox3.BackColor = i_Color;
+            pictureBox4.BackColor = i_Color;
+            pictureBox1.Image = null;
+            pictureBox2.Image = null;
+            pictureBox3.Image = null;
+            pictureBox4.Image = null;
         }
 
         private void setPictureBoxsState(bool pictureBoxState)
