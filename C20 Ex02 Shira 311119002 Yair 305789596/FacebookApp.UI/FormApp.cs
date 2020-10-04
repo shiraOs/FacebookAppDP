@@ -175,14 +175,11 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 
         private void resetPicturesGame()
         {
-            if (VMGameBoard.IsFeatureAvailable)
-            {
-                bool state = false;
-                VMGameBoard.ResetFeature();
-                initPictureBox();
-                setPictureBoxsState(state);
-                updatePointsLable();
-            }
+            bool state = false;
+            VMGameBoard.ResetFeature();
+            initPictureBox();
+            setPictureBoxsState(state);
+            updatePointsLable();
         }
 
         private void resetPostDetailes()
