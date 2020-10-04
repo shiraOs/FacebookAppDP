@@ -86,7 +86,6 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 
         public static void SetCommand(string i_Text)
         {
-   
             if (i_Text.Contains("Location"))
             {
                 PictureGameFeature.Command = new CommandGameByLocation();
@@ -101,7 +100,6 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             {
                 IsGameCommandSet = false;
             }
-
         }
     }
 }

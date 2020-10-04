@@ -17,7 +17,6 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
         private User m_LoggedInUser;
         private string m_AccessToken;
 
-
         public FormApp()
         {
             InitializeComponent();
@@ -147,6 +146,10 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             pictureBox2.BackColor = Color.White;
             pictureBox3.BackColor = Color.White;
             pictureBox4.BackColor = Color.White;
+            pictureBox1.Refresh();
+            pictureBox2.Refresh();
+            pictureBox3.Refresh();
+            pictureBox4.Refresh();
             setPictureBoxsState(pictureBoxState);
         }
 
@@ -258,9 +261,9 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
                 listBoxMatchingFriends.Invoke(new Action(() => listBoxMatchingFriends.Items.Add("No Matching Friends.")));
                 listBoxMatchingFriends.Invoke(new Action(() => listBoxMatchingFriends.Enabled = false));
             }
+
             setStateDatingFeatureButtons(!state);
         }
-
 
         private void setStateDatingFeatureButtons(bool i_State)
         {
@@ -289,8 +292,8 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             {
                 ageRange = null;
                 listBoxAgeRange.ClearSelected();
-   
             }
+
             DatingFeature.RequiredAgeRange = ageRange;
             setButtonMatchState();
         }
@@ -365,6 +368,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
                     DatingFeature.RequiredGender = null;
                 }
             }
+
             setButtonMatchState();
         }
         

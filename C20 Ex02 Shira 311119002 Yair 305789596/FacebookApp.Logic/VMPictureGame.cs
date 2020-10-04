@@ -23,7 +23,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
                 }
                 else if (PictureGameFeature.Command is CommandGameByNumbers)
                 {
-                    title ="How many pictures in album?";
+                    title = "How many pictures in album?";
                 }
 
                 return title;

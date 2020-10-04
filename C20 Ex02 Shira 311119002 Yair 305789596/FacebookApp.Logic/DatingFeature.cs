@@ -28,16 +28,8 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 
             set
             {
-                if(m_RequiredGender == null)
-                {
-                    r_MatchStrategies.Add(matchByGender);
-                }
-
+                setStrategy(value, m_RequiredGender, matchByGender);
                 m_RequiredGender = value;
-                if(m_RequiredGender == null)
-                {
-                    r_MatchStrategies.Remove(matchByGender);
-                }
             }
         }
 
@@ -50,16 +42,20 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 
             set
             {
-                if (m_RequiredAgeRange == null)
-                {
-                    r_MatchStrategies.Add(matchByAge);
-                }
-
+                setStrategy(value, m_RequiredAgeRange, matchByAge);
                 m_RequiredAgeRange = value;
-                if (m_RequiredAgeRange == null)
-                {
-                    r_MatchStrategies.Remove(matchByAge);
-                }
+            }
+        }
+        
+        private static void setStrategy(object i_NewValue, object i_OldValue, Func<User, bool> i_Strategy)
+        {
+            if (i_NewValue == null)
+            {
+                r_MatchStrategies.Remove(i_Strategy);
+            }
+            else if (i_OldValue == null)
+            {
+                r_MatchStrategies.Add(i_Strategy);
             }
         }
 
@@ -123,34 +119,12 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 
         private static bool matchByGender(User i_Friend)
         {
-            bool isMatch = false;
-
-            if (RequiredGender == null)
-            {
-                isMatch =  true;
-            }
-            else
-            {
-                isMatch = i_Friend.Gender.Equals(RequiredGender);
-            }
-
-            return isMatch;
+            return i_Friend.Gender.Equals(RequiredGender);
         }
 
         private static bool matchByAge(User i_Friend)
         {
-            bool isMatch = false;
-
-            if (RequiredAgeRange == null)
-            {
-                isMatch =  true;
-            }
-            else
-            {
-                isMatch = isAgeInRequiredAgeRange(Utils.GetUserAge(i_Friend.Birthday), RequiredAgeRange);
-            }
-
-            return isMatch;
+            return isAgeInRequiredAgeRange(Utils.GetUserAge(i_Friend.Birthday), RequiredAgeRange);
         }
 
         private static bool isFriendSingle(User i_Friend)
@@ -158,19 +132,19 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             return i_Friend.RelationshipStatus.Equals(User.eRelationshipStatus.Single) || i_Friend.RelationshipStatus.Equals(User.eRelationshipStatus.None);
         }
 
-
         public static User.eGender? ParseGender(string i_Text)
         {
             User.eGender? result = null;
             if (i_Text.Equals("Male"))
             {
                 result = User.eGender.male;
-
             }
+
             if (i_Text.Equals("Female"))
             {
                 result = User.eGender.female;
             }
+
             return result;
         }
     }

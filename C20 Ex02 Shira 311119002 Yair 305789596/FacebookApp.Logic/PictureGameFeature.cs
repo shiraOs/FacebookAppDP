@@ -6,16 +6,13 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 {
     internal static class PictureGameFeature
     {
-
- 
-        internal static int s_GamePoints = 0;
         internal static readonly int sr_MinNumOfAlbumsInGame = 4;
         internal static readonly int sr_AnswersCount = 4;
+        internal static int s_GamePoints = 0;
         internal static int s_PictureGameIndex;
         internal static int s_RightAnswerIndex;
         internal static Random s_Rnd = new Random();
         internal static string[] s_Answers = new string[sr_AnswersCount];
-
 
         internal static ICommandGame Command { get; set; }
 
@@ -77,7 +74,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 
         internal static void CreateGame(FacebookObjectCollection<Album> o_Albums)
         {
-            if(Command!= null)
+            if(Command != null)
             {
                 Command.ExecuteGame(o_Albums);
             }

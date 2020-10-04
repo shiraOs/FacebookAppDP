@@ -5,7 +5,9 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
     public abstract class SortListBox
     {
         public ListBox List { get; set; }
+
         public abstract bool SwapMethod(ISortableItem i_Item1, ISortableItem i_Item2);
+
         public void Sort()
         {
             if (List.Items.Count > 1)
@@ -25,6 +27,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
                             List.Items[counter - 1] = temp;
                             swapped = true;
                         }
+
                         counter--;
                     }
                 }
