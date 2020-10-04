@@ -6,9 +6,9 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 {
     public static class DatingFeature
     {
-        private static readonly List<Func<User, bool>> r_MatchStrategies = new List<Func<User, bool>>();
-        private static User.eGender? m_RequiredGender;
-        private static eAgeRange? m_RequiredAgeRange;
+        private static readonly List<Func<User, bool>> sr_MatchStrategies = new List<Func<User, bool>>();
+        private static User.eGender? s_RequiredGender;
+        private static eAgeRange? s_RequiredAgeRange;
 
         public enum eAgeRange
         {
@@ -23,13 +23,13 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
         { 
             get
             {
-                return m_RequiredGender;
+                return s_RequiredGender;
             }
 
             set
             {
-                setStrategy(value, m_RequiredGender, matchByGender);
-                m_RequiredGender = value;
+                setStrategy(value, s_RequiredGender, matchByGender);
+                s_RequiredGender = value;
             }
         }
 
@@ -37,13 +37,13 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
         {
             get
             {
-                return m_RequiredAgeRange;
+                return s_RequiredAgeRange;
             }
 
             set
             {
-                setStrategy(value, m_RequiredAgeRange, matchByAge);
-                m_RequiredAgeRange = value;
+                setStrategy(value, s_RequiredAgeRange, matchByAge);
+                s_RequiredAgeRange = value;
             }
         }
         
@@ -51,31 +51,31 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
         {
             if (i_NewValue == null)
             {
-                r_MatchStrategies.Remove(i_Strategy);
+                sr_MatchStrategies.Remove(i_Strategy);
             }
             else if (i_OldValue == null)
             {
-                r_MatchStrategies.Add(i_Strategy);
+                sr_MatchStrategies.Add(i_Strategy);
             }
         }
 
         public static void RestartFeature()
         {
-            r_MatchStrategies.Clear();
-            m_RequiredGender = null;
-            m_RequiredAgeRange = null;
+            sr_MatchStrategies.Clear();
+            s_RequiredGender = null;
+            s_RequiredAgeRange = null;
         }
 
-        public static bool IsFriendMatchToUserRequests(User i_Friend)
+        public static bool IsFriendMatchToUserRequests(User o_Friend)
         {
             bool isMatch = false;
 
-            if (isFriendSingle(i_Friend))
+            if (isFriendSingle(o_Friend))
             {
                 isMatch = true;
-                foreach (Func<User, bool> strategy in r_MatchStrategies)
+                foreach (Func<User, bool> strategy in sr_MatchStrategies)
                 {
-                    if(strategy.Invoke(i_Friend) == false)
+                    if(strategy.Invoke(o_Friend) == false)
                     {
                         isMatch = false;
                         break;

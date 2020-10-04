@@ -22,7 +22,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             foreach (Album album in i_Albums)
             {
                 if ((album.Count > 0) && !string.IsNullOrEmpty(album.PictureAlbumURL))
-                { // album has picture and location
+                { // album has picture and positive num of pictures
                     AlbumsGameList.Add(album);
                 }
             }

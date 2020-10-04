@@ -90,12 +90,15 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 
         private void fetchAlbums()
         { // Action in other threads and data binding
-            listBoxAlbums.Invoke(new Action(() => albumBindingSource.DataSource = m_LoggedInUser.Albums));
-
-            if (m_LoggedInUser.Albums.Count == 0)
+            if(listBoxAlbums.IsHandleCreated)
             {
-                listBoxAlbums.Invoke(new Action(() => listBoxAlbums.Items.Add("No Albums to Show.")));
-                listBoxAlbums.Invoke(new Action(() => listBoxAlbums.Enabled = false));
+                listBoxAlbums.Invoke(new Action(() => albumBindingSource.DataSource = m_LoggedInUser.Albums));
+
+                if (m_LoggedInUser.Albums.Count == 0)
+                {
+                    listBoxAlbums.Invoke(new Action(() => listBoxAlbums.Items.Add("No Albums to Show.")));
+                    listBoxAlbums.Invoke(new Action(() => listBoxAlbums.Enabled = false));
+                }
             }
         }
 
@@ -124,8 +127,11 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 
             foreach (User friend in m_LoggedInUser.Friends)
             {
-                listBoxFriends.Invoke(new Action(() => listBoxFriends.Items.Add(friend)));
-                friend.ReFetch(DynamicWrapper.eLoadOptions.Full);
+                if(listBoxFriends.IsHandleCreated)
+                {
+                    listBoxFriends.Invoke(new Action(() => listBoxFriends.Items.Add(friend)));
+                    friend.ReFetch(DynamicWrapper.eLoadOptions.Full);
+                }
             }
 
             if (m_LoggedInUser.Friends.Count == 0)
@@ -139,9 +145,9 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
         { // Action in other threads
           // If user doesn't have at least 4 albums with location and picture
             bool pictureBoxState = false;
-            labelSubAlbumGame.Invoke(new Action(() => labelSubAlbumGame.Text = "Cannot load Game!"));
-            labelError.Invoke(new Action(() => labelError.Text = "You should have at least 4 albums with location"));
-            labelGamePoints.Invoke(new Action(() => labelGamePoints.ForeColor = Color.White));
+            labelSubAlbumGame.Text = "Cannot load Game!";
+            labelError.Text = "You should have at least 4 albums with location";
+            labelGamePoints.ForeColor = Color.White;
             colorPictureBoxsGame(Color.White);
             setPictureBoxsState(pictureBoxState);
         }
@@ -158,12 +164,12 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             pictureBox4.Image = null;
         }
 
-        private void setPictureBoxsState(bool pictureBoxState)
+        private void setPictureBoxsState(bool i_PictureBoxState)
         {
-            pictureBox1.Enabled = pictureBoxState;
-            pictureBox2.Enabled = pictureBoxState;
-            pictureBox3.Enabled = pictureBoxState;
-            pictureBox4.Enabled = pictureBoxState;
+            pictureBox1.Enabled = i_PictureBoxState;
+            pictureBox2.Enabled = i_PictureBoxState;
+            pictureBox3.Enabled = i_PictureBoxState;
+            pictureBox4.Enabled = i_PictureBoxState;
         }
 
         private void resetFeatures()

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using FacebookWrapper.ObjectModel;
 
 namespace C20_Ex03_Shira_311119002_Yair_305789596
@@ -108,14 +107,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 
         internal static bool CheckUserAnswer()
         {
-            bool result = false;
-
-            if (UserAnswer.Equals(RightAnswer))
-            {
-                result = true;
-            }
-
-            return result;
+            return UserAnswer.Equals(RightAnswer);
         }
 
         private static void getRandomIndex(out int o_Index)

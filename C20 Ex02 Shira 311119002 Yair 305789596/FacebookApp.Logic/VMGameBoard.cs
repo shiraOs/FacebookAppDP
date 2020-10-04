@@ -5,7 +5,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 {
     public static class VMGameBoard
     {
-        private static string[] m_PicturesURLsArray = new string[PictureGameFeature.sr_MinNumOfAlbumsInGame];
+        private static string[] s_PicturesURLsArray = new string[PictureGameFeature.sr_MinNumOfAlbumsInGame];
 
         public static bool IsGameCommandSet { get; set; }
 
@@ -16,7 +16,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
                 throw new Exception(string.Format("your Index is out of range. The game as only {0} pictures", PictureGameFeature.sr_MinNumOfAlbumsInGame));
             }
 
-            return m_PicturesURLsArray[i_Index];
+            return s_PicturesURLsArray[i_Index];
         }
 
         public static int Points
@@ -50,16 +50,16 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             switch(PictureGameFeature.s_PictureGameIndex)
             {
                 case 0:
-                    m_PicturesURLsArray[0] = newPictureURL;
+                    s_PicturesURLsArray[0] = newPictureURL;
                     break;
                 case 1:
-                    m_PicturesURLsArray[1] = newPictureURL;
+                    s_PicturesURLsArray[1] = newPictureURL;
                     break;
                 case 2:
-                    m_PicturesURLsArray[2] = newPictureURL;
+                    s_PicturesURLsArray[2] = newPictureURL;
                     break;
                 case 3:
-                    m_PicturesURLsArray[3] = newPictureURL;
+                    s_PicturesURLsArray[3] = newPictureURL;
                     break;
             }
         }
@@ -74,14 +74,14 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             PictureGameFeature.CreateGame(o_Albums);
             if (IsFeatureAvailable)
             {
-                PictureGameFeature.ChooseRandomAlbums(out m_PicturesURLsArray[0], out m_PicturesURLsArray[1], out m_PicturesURLsArray[2], out m_PicturesURLsArray[3]);                    
+                PictureGameFeature.ChooseRandomAlbums(out s_PicturesURLsArray[0], out s_PicturesURLsArray[1], out s_PicturesURLsArray[2], out s_PicturesURLsArray[3]);                    
             }
         }
 
         public static void ResetFeature()
         {
-            IsGameCommandSet = false;
             PictureGameFeature.Reset();
+            IsGameCommandSet = false;
         }
 
         public static void SetCommand(string i_Text)

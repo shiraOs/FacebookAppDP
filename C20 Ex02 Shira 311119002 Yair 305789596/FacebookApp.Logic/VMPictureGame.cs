@@ -83,7 +83,6 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             get
             {
                 string answerMsg = string.Empty;
-
                 if (PictureGameFeature.CheckUserAnswer())
                 {
                     answerMsg = string.Format("RIGHT ANSWER!!! :)){0}", Environment.NewLine);
