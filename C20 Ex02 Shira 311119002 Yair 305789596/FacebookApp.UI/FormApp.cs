@@ -445,7 +445,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
                 setAlbumPictuersGame();
                 setPictureBoxsState(pictureboxState);
             }
-            else if (PictureGameFeature.TypeGame != PictureGameFeature.eTypeGame.eGameNotSet)
+            else if(VMGameBoard.GameSet)
             {
                 abortAlbumGame();
             }
@@ -473,7 +473,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
         private void buttonGameOption_Click(object sender, EventArgs e)
         {
             Button currBtn = sender as Button;
-            VMGameBoard.SetTypeGame(currBtn.Text);
+            VMGameBoard.SetCommand(currBtn.Text);
             VMGameBoard.CreatePicturesGameFeature(m_LoggedInUser.Albums);
             setPictureBoxsAndLablesForGame();
         }

@@ -44,8 +44,8 @@
     <Compile Include="AppSettings.cs" />
     <Compile Include="DetailsAlbum.cs" />
     <Compile Include="ICommandGame.cs" />
-    <Compile Include="ICommandGameByLocation.cs" />
-    <Compile Include="ICommandGameByNumbers.cs" />
+    <Compile Include="CommandGameByLocation.cs" />
+    <Compile Include="CommandGameByNumbers.cs" />
     <Compile Include="IFormFriend.cs" />
     <Compile Include="DatingFeature.cs" />
     <Compile Include="ISortableItem.cs" />
