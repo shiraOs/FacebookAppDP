@@ -106,7 +106,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 
             foreach (Post post in m_LoggedInUser.NewsFeed)
             {
-                if (!string.IsNullOrEmpty(post.Name))
+                if (!string.IsNullOrEmpty(post.Name) && listBoxPosts.IsHandleCreated)
                 {
                     listBoxPosts.Invoke(new Action(() => listBoxPosts.Items.Add(new AdapterPost { Adoptee = post })));
                 }
