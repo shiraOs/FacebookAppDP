@@ -6,12 +6,6 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 {
     public static class PictureGameFeature
     {
-        public enum eTypeGame
-        {
-            eGameNotSet,
-            eGameLocation,
-            eGamePictureNum
-        }
 
       
         internal static int s_GamePoints = 0;
@@ -22,9 +16,8 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
         internal static Random s_Rnd = new Random();
         internal static string[] s_Answers = new string[sr_AnswersCount];
 
-        public static eTypeGame TypeGame { get; internal set; }
 
-        private static ICommandGame Command { get; set; }
+        internal static ICommandGame Command { get; set; }
 
         internal static string UserAnswer { get; set; }
 
@@ -80,12 +73,10 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
         {
             s_GamePoints = 0;
             Command = null;
-            TypeGame = eTypeGame.eGameNotSet;
         }
 
         internal static void CreateGame(FacebookObjectCollection<Album> o_Albums)
         {
-            setCommand();
             if(Command!= null)
             {
                 Command.ExecuteGame(o_Albums);
@@ -173,20 +164,6 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
                     s_Answers[i] = Command.GetAnswer(albumIndex);
                     albumIndex++;
                 }
-            }
-        }
-
-        private static void setCommand()
-        { 
-
-            if (TypeGame == eTypeGame.eGameLocation)
-            {
-                Command = new ICommandGameByLocation();
-            }
-
-            if (TypeGame == eTypeGame.eGamePictureNum)
-            {
-                Command = new ICommandGameByNumbers();
             }
         }
     }

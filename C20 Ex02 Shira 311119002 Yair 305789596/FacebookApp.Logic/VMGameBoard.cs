@@ -7,6 +7,8 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
     {
         private static string[] m_PicturesURLsArray = new string[PictureGameFeature.sr_MinNumOfAlbumsInGame];
 
+        public static bool GameSet { get; set; }
+
         public static string GetPicUrlByIndex(int i_Index)
         {
             if (i_Index > PictureGameFeature.sr_MinNumOfAlbumsInGame)
@@ -78,23 +80,28 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 
         public static void ResetFeature()
         {
+            GameSet = false;
             PictureGameFeature.Reset();
         }
 
-        public static void SetTypeGame(string i_Text)
+        public static void SetCommand(string i_Text)
         {
+   
             if (i_Text.Contains("Location"))
             {
-                PictureGameFeature.TypeGame = PictureGameFeature.eTypeGame.eGameLocation;
+                PictureGameFeature.Command = new CommandGameByLocation();
+                GameSet = true;
             }
             else if(i_Text.Contains("Number"))
             {
-                PictureGameFeature.TypeGame = PictureGameFeature.eTypeGame.eGamePictureNum;
+                GameSet = true;
+                PictureGameFeature.Command = new CommandGameByNumbers();
             }
             else
             {
-                PictureGameFeature.TypeGame = PictureGameFeature.eTypeGame.eGameNotSet;
+                GameSet = false;
             }
+
         }
     }
 }
