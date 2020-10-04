@@ -179,6 +179,14 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
             VMGameBoard.ResetFeature();
             initPictureBox();
             setPictureBoxsState(state);
+            updatePictureGameLables();
+        }
+
+        private void updatePictureGameLables()
+        {
+            labelSubAlbumGame.Text = "Press the picture to play";
+            labelError.Text = string.Empty;
+            labelGamePoints.ForeColor = Color.Black;
             updatePointsLable();
         }
 
@@ -211,9 +219,7 @@ namespace C20_Ex03_Shira_311119002_Yair_305789596
 
         private void setAlbumPictuersGame()
         {
-            labelSubAlbumGame.Invoke(new Action(() => labelSubAlbumGame.Text = "Press the picture to play"));
-            labelError.Invoke(new Action(() => labelError.Text = ""));
-            labelGamePoints.Invoke(new Action(() => labelGamePoints.ForeColor = Color.Black));
+            updatePictureGameLables();
             pictureBox1.LoadAsync(VMGameBoard.GetPicUrlByIndex(0));
             pictureBox2.LoadAsync(VMGameBoard.GetPicUrlByIndex(1));
             pictureBox3.LoadAsync(VMGameBoard.GetPicUrlByIndex(2));
